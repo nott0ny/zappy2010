@@ -1,0 +1,18 @@
+LAUNCH
+
+/u/all/astek/public/zappy-server-freebsd -p 4242 -n toto titi -x 10 -y 10
+/u/all/astek/public/zappy-gfx-freebsd localhost 4242
+
+Priorite :
+
+-> Gestion des receptions, apelle a l aide
+   et incantations
+
+-> verif bouff et Gestion inventaire
+-> repeat phrase de l ennemie
+
+-> gestion classe des metiees // never ending action
+
+-> generation de lvl up
+-> Parsseur
+-> Memory map

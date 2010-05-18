@@ -1,0 +1,86 @@
+
+
+
+
+
+class IA_Player ()
+{
+
+ + string nom_equipe; 
+ + int vie;
+ + int bouf;
+ + array** inventaire;
+ + array stack_action;
+
+...
+...
+...
+
+ - reception_msg();
+ - deplacement();
+ - reproduire();
+ - check_inventaire();
+ - check_vie();
+ - incatation();
+
+
+ - nourrir();
+	|_> voir
+	|_> trouver (ou pas)
+	|_> marcher (x X)
+	|_> ramasser
+	|_> Si y a plus a manger ?
+
+ - repousser();
+ - broadcast();
+
+};
+
+
+
+
+list actions possible
+{
+	monter_lvl2()
+	{
+		verif_bouff()
+		verif_pierre()
+		ìncantation()
+	}
+
+	verif_bouff()
+	{
+	 if (lvl_bouff == OK)
+		return // Pas d'action => rien a attendre de reception message
+	 else 
+		manger();
+	}
+
+		go_manger(voir bouff, prendre bouff);
+		voir_bouff();
+		{
+			voir;
+			if (bouff )
+				{
+					calcul_deplacement();	
+					ajouter_deplacement_dans_la_liste();
+				}
+		}
+
+
+}
+
+
+
+Type de stack d'action
+
+| nom              |ordre | etat
+|------------------|------|-------
+| mounter_lvl2     | 0    | ok
+| verif_bouff	   | 1    | ok
+|
+| tourner_a_droite | 2    | ok
+| ramasser_pierre  | 3    | attend_ok
+| incantation      | 4    | a faire
+| 
+

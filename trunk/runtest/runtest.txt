@@ -1,0 +1,11 @@
+
+
+
+Graphique :
+/afs/epitech.net/users/prof/astek/public/zappy-gfx-freebsd
+
+Serveur :
+/afs/epitech.net/users/prof/astek/public/zappy-server-freebsd
+
+ex :
+/afs/epitech.net/users/prof/astek/public/zappy-server-freebsd -p 4242 -t 10 -n toto titi &

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Thu May 13 16:37:33 2010 amine mouafik
+** Last update Mon May 31 14:02:21 2010 alban roux
 */
 
 #ifndef __SERVER_H__
@@ -66,15 +66,30 @@ typedef struct		s_map {
   int			thystame;
 }			t_map;
 
+typedef struct		s_msg {
+  void			(*f)();
+}			t_msg;
+
+typedef struct		s_fdt {
+  int			type;
+#define T_CONN	(1<<0)
+#define T_READ	(1<<1)
+#define T_WRITE	(1<<2)
+#define T_FREE	(1<<3)
+  t_msg			in;
+  t_msg			out;
+}			t_fdt;
+
 typedef struct		s_network {
-  int			s;
-  int			cs;
-  u_int			csl;
+  int			op_flags;
+#define OP_V    (1<<0)
+#define OP_U    (1<<1)
   int			port;
-  struct sockaddr_in	server;
-  struct sockaddr_in	client;
-  fd_set		rd;
-  fd_set		wr;
+  int			max_fd_used;
+  int			max_fd;
+  t_fdt			**fdt;
+  fd_set		r;
+  fd_set		w;
 }			t_network;
 
 typedef struct		s_bag {

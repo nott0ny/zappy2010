@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Mon May 31 14:02:21 2010 alban roux
+** Last update Tue Jun  1 19:07:37 2010 alban roux
 */
 
 #ifndef __SERVER_H__
@@ -102,11 +102,13 @@ typedef struct		s_bag {
 }			t_bag;
 
 typedef struct		s_players {
+  int			fd_associate;
+  char			*team_name;
   int			life;
   t_bag			*bag;
   int			posx;
   int			posy;
-  struct s_player	*next;
+  struct s_players	*next;
 }			t_players;
 
 typedef struct		s_clients {
@@ -120,7 +122,7 @@ typedef struct		s_env {
   t_params		*params;
   t_map			**map;
   t_network		*network;
-  t_clients		*clients;
+  t_players		*clients;
 }			t_env;
 
 int		manage_client(t_env *e);

@@ -1,5 +1,5 @@
 /*
-** server.h for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/serveur/sources
+** server.h for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/serveur/includes
 ** 
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
@@ -13,36 +13,8 @@
 
 # define CLIENT_GRAPHIC	"GRAPHIC"
 
-# define ERR_MAP	"the world is too small"
-# define ERR_TIME	"the speed must be between 1 and 1000000"
-# define ERR_CLIENT	"you must allow at least one client per team"
-# define ERR_TEAMS	"each team name must be unique"
-# define ERR_TEAMS_RSV	"the team name "CLIENT_GRAPHIC" is reserved"
-# define ERR_TEAMS_MIN	"you must create at least two teams"
-
-# define DEFAULT_PORT	4242
-# define DEFAULT_WIDTH	20
-# define DEFAULT_HEIGHT	20
-# define DEFAULT_CLIENT 1
-# define DEFAULT_TIME	100
-
 # define DENSITY_HIGH	10
 # define DENSITY_LOW	30
-
-# define WHITE		"\033[0;m"
-# define BLACK		"\033[1;30m"
-# define RED		"\033[1;31m"
-# define GREEN		"\033[1;32m"
-# define YELLOW		"\033[1;33m"
-# define BLUE		"\033[1;34m"
-# define PURPLE		"\033[1;35m"
-# define CYAN		"\033[1;36m"
-# define GREY		"\033[1;37m"
-
-# define X(err, res, str)	(x(err, res, str, __FILE__, __LINE__))
-# define _X(err, res, str)	(_x(err, res, str, __FILE__, __LINE__))
-# define _XW(str)		(_xw(str))
-# define Xmalloc(size)		(xmalloc(size, __FILE__, __LINE__))
 
 #define MAX(a,b)	( (a>b)?(a):(b) )
 #define READ_SIZE	2048
@@ -160,10 +132,5 @@ int			wait_clients(t_env *e);
 /* fix */
 int			init_fds(t_env *e);
 void			watch_fds(t_env *e);
-
-void  	*x(void *err, void *res, char *str, char *file, int line);
-void   	*_x(void *err, void *res, char *str, char *file, int line);
-int	_xw(char *str);
-void	*xmalloc(int size, char *file, int line);
 
 #endif

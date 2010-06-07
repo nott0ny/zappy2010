@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "server.h"
+#include "colors.h"
 
 void	*x(void *err, void *res, char *str, char *file, int line)
 {

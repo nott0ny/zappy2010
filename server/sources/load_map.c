@@ -14,6 +14,8 @@
 #include <time.h>
 #include <stdio.h>
 #include "server.h"
+#include "colors.h"
+#include "x.h"
 
 static int	generate()
 {

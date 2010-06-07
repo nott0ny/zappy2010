@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "server.h"
+#include "x.h"
 
 static void	get_teams_name(char **av, int *i, t_params *server)
 {

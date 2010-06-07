@@ -15,6 +15,8 @@
 #include <stdio.h>
 #include <string.h>
 #include "server.h"
+#include "colors.h"
+#include "x.h"
 
 static void	accept_client(t_env *e, int fd)
 {

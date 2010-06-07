@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "server.h"
+#include "x.h"
 
 static void	create_player_list(t_env *e, int fd, char *t_name, int x, int y)
 {

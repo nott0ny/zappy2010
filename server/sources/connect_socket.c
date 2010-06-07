@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "server.h"
+#include "x.h"
 
 static int		create_bind_socket(int port)
 {

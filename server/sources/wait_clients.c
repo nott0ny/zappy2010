@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Fri May  7 10:58:37 2010 amine mouafik
-** Last update Mon Jun  7 16:03:31 2010 amine mouafik
+** Last update Mon Jun  7 22:05:23 2010 alban roux
 */
 
 #include <sys/types.h>
@@ -44,7 +44,7 @@ int	wait_clients(t_env *e)
   while (42)
     {
       init_fds(e);
-      nfds = (int)_X((void *)-1, (void *)select(e->network->max_fd_used + 1, &e->network->r, &e->network->w, 0, &e->network->timeout), "select");
+      nfds = (int)_X((void *)-1, (void *)select(e->network->max_fd_used + 1, &e->network->r, &e->network->w, 0, 0), "select");
       if (nfds)
 	watch_fds(e);
       else

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Wed May  5 17:27:30 2010 amine mouafik
-** Last update Mon Jun  7 16:03:32 2010 amine mouafik
+** Last update Mon Jun  7 22:21:37 2010 alban roux
 */
 
 #include <sys/types.h>
@@ -47,8 +47,8 @@ t_params	*load_params(char **argv)
   params = Xmalloc(sizeof(t_params));
   init_params(params);
   get_params(argv, params);
-  view_params(params);
   if (check_params(params))
     return (NULL);
+  view_params(params);
   return (params);
 }

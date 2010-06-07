@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Tue May  4 23:39:46 2010 amine mouafik
-** Last update Mon Jun  7 15:52:19 2010 amine mouafik
+** Last update Mon Jun  7 22:19:04 2010 alban roux
 */
 
 #include <sys/types.h>
@@ -85,15 +85,15 @@ int	check_params(t_params *params)
 	    if (!check_limits(params->maxclient, 1, 0))
 	      return (0);
 	    else
-	      return (_XW(ERR_CLIENT));
+	      return (_xw(ERR_CLIENT));
 	  else
-	    return (_XW(ERR_TEAMS));
+	    return (_xw(ERR_TEAMS));
 	else
-	  return (_XW(ERR_TEAMS_MIN));
+	  return (_xw(ERR_TEAMS_MIN));
       else
-	return (_XW(ERR_TEAMS_RSV));
+	return (_xw(ERR_TEAMS_RSV));
     else
-      return (_XW(ERR_TIME));
+      return (_xw(ERR_TIME));
   else
-    return (_XW(ERR_MAP));
+    return (_xw(ERR_MAP));
 }

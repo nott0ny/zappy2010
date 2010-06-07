@@ -5,14 +5,14 @@
 ** Login   <roux_a@epitech.net>
 ** 
 ** Started on  Tue May  4 22:17:56 2010 alban roux
-** Last update Fri May  7 10:08:00 2010 amine mouafik
+** Last update Mon Jun  7 16:03:33 2010 amine mouafik
 */
 
 #include <stdlib.h>
 #include <string.h>
 #include "server.h"
 
-void		get_teams_name(char **av, int *i, t_params *server)
+static void	get_teams_name(char **av, int *i, t_params *server)
 {
   int		size;
   t_teams	*elem;
@@ -31,7 +31,7 @@ void		get_teams_name(char **av, int *i, t_params *server)
   (*i) -= size;
 }
 
-void		get_params(char **av, t_params *server)
+void	get_params(char **av, t_params *server)
 {
   int	i;
 

@@ -5,19 +5,24 @@
 ## Login   <mouafi_a@epitech.net>
 ## 
 ## Started on  Tue May  4 20:55:10 2010 amine mouafik
-## Last update Thu May 13 17:11:29 2010 amine mouafik
+## Last update Mon Jun  7 15:32:03 2010 amine mouafik
 ##
 
 CC	=	cc
 NAME	=	server
 SRCS	=	sources/main.c			\
-		sources/init.c			\
 		sources/load_params.c		\
 		sources/get_params.c		\
 		sources/check_params.c		\
 		sources/load_map.c		\
 		sources/load_network.c		\
+		sources/connect_socket.c	\
+		sources/manage_fdts.c		\
 		sources/wait_clients.c		\
+		sources/watch_fds.c		\
+		sources/new_connection.c	\
+		sources/add_player.c		\
+		sources/stdread.c		\
 		sources/tools/print_err.c	\
 		sources/tools/xmalloc.c
 OBJS	=	$(SRCS:.c=.o)

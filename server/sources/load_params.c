@@ -5,13 +5,24 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Wed May  5 17:27:30 2010 amine mouafik
-** Last update Thu May 13 16:47:36 2010 amine mouafik
+** Last update Mon Jun  7 16:03:32 2010 amine mouafik
 */
 
 #include <stdio.h>
 #include "server.h"
 
-int		view_params(t_params *params)
+static int	init_params(t_params *params)
+{
+  params->port = DEFAULT_PORT;
+  params->width = DEFAULT_WIDTH;
+  params->height = DEFAULT_HEIGHT;
+  params->teams = NULL;
+  params->maxclient = DEFAULT_CLIENT;
+  params->time = DEFAULT_TIME;
+  return (0);
+}
+
+static int		view_params(t_params *params)
 {
   t_teams	*teams;
 

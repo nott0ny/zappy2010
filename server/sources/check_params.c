@@ -5,13 +5,13 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Tue May  4 23:39:46 2010 amine mouafik
-** Last update Thu May 13 16:50:10 2010 amine mouafik
+** Last update Mon Jun  7 15:52:19 2010 amine mouafik
 */
 
 #include <string.h>
 #include "server.h"
 
-int		check_limits(int nb, int a, int b)
+static int	check_limits(int nb, int a, int b)
 {
   if (b)
     if (nb < a || nb > b)
@@ -22,7 +22,7 @@ int		check_limits(int nb, int a, int b)
   return (0);
 }
 
-int		check_teams_reserved(t_teams *teams)
+static int	check_teams_reserved(t_teams *teams)
 {
   t_teams	*current;
 
@@ -36,7 +36,7 @@ int		check_teams_reserved(t_teams *teams)
   return (0);
 }
 
-int		check_teams_minimum(t_teams *teams)
+static int	check_teams_minimum(t_teams *teams)
 {
   t_teams	*current;
   int		i;
@@ -50,7 +50,7 @@ int		check_teams_minimum(t_teams *teams)
   return (0);
 }
 
-int		check_teams_uniqueness(t_teams *teams)
+static int	check_teams_uniqueness(t_teams *teams)
 {
   t_teams	*begin;
   t_teams	*steps;
@@ -72,7 +72,7 @@ int		check_teams_uniqueness(t_teams *teams)
   return (0);
 }
 
-int		check_params(t_params *params)
+int	check_params(t_params *params)
 {
   if (!check_limits(params->width, 1, 0) &&
       !check_limits(params->height, 1, 0))

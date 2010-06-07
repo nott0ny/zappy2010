@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Wed May  5 18:34:02 2010 amine mouafik
-** Last update Thu May 13 16:49:12 2010 amine mouafik
+** Last update Mon Jun  7 15:53:45 2010 amine mouafik
 */
 
 #include <openssl/rand.h>
@@ -13,9 +13,9 @@
 #include <stdio.h>
 #include "server.h"
 
-int	generate()
+static int	generate()
 {
-  int	nb;
+  int		nb;
 
   nb = rand() % 100;
   if (nb < DENSITY_HIGH)

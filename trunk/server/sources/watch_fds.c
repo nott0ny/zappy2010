@@ -8,30 +8,9 @@
 ** Last update Mon Jun  7 16:03:30 2010 amine mouafik
 */
 
+#include <sys/types.h>
+#include <sys/socket.h>
 #include "server.h"
-
-int	init_fds(t_env *e)
-{
-  int	cur;
-
-  cur = 0;
-  FD_ZERO(&e->network->r);
-  FD_ZERO(&e->network->w);
-  while (cur < e->network->max_fd_used + 1)
-    {
-      if (!e->network->fdt[cur])
-	{
-	  cur++;
-	  continue;
-	}
-      if (e->network->fdt[cur]->type & T_READ)
-	FD_SET(cur,&e->network->r);
-      if (e->network->fdt[cur]->type & T_WRITE)
-	FD_SET(cur,&e->network->w);
-      cur++;
-    }
-  return (0);
-}
 
 void	watch_fds(t_env *e)
 {

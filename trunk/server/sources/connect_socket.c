@@ -8,10 +8,10 @@
 ** Last update Mon Jun  7 15:50:15 2010 amine mouafik
 */
 
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -23,23 +23,14 @@ static int		create_bind_socket(int port)
   int			dum;
   int			fd;
 
-  fd = socket(PF_INET,SOCK_STREAM,0);
-  if (fd < 0)
-    {
-      perror("ARRG socket");
-      exit(1);
-    }
+  fd = (int)X((void *)-1, (void *)socket(PF_INET,SOCK_STREAM,0), "socket");
   dum = 1;
-  setsockopt(fd,SOL_SOCKET,SO_REUSEPORT,&dum,sizeof(dum));
+  X((void *)-1, (void *)setsockopt(fd, SOL_SOCKET, SO_REUSEPORT, &dum, sizeof(dum)), "setsockopt");
   host.sin_family = PF_INET;
   host.sin_port = htons(port);
   host.sin_addr.s_addr = htonl(INADDR_ANY);
-  if ( bind(fd,(struct sockaddr *)&host,sizeof(host)) < 0)
-    {
-      perror("ARRG bind");
-      exit(1);
-    }
-  listen(fd,STD_BACKLOG);
+  X((void *)-1, (void *)bind(fd, (struct sockaddr *)&host, sizeof(host)), "bind");
+  X((void *)-1, (void *)listen(fd,STD_BACKLOG), "listen");
   return (fd);
 }
 

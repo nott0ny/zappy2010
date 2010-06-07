@@ -8,6 +8,8 @@
 ** Last update Mon Jun  7 16:03:33 2010 amine mouafik
 */
 
+#include <sys/types.h>
+#include <sys/socket.h>
 #include <stdlib.h>
 #include <string.h>
 #include "server.h"
@@ -22,8 +24,8 @@ static void	get_teams_name(char **av, int *i, t_params *server)
 	 && strcmp(av[(*i)], "-n") && strcmp(av[(*i)], "-n")
 	 && strcmp(av[(*i)], "-c") && strcmp(av[(*i)], "-t"))
     {
-      elem = xmalloc(1 * sizeof(elem));
-      elem->name = strdup(av[(*i)]);
+      elem = Xmalloc(sizeof(elem));
+      elem->name = X(NULL, (void *)strdup(av[(*i)]), "strdup");
       elem->next = server->teams;
       server->teams = elem;
       size++;

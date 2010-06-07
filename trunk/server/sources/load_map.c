@@ -9,6 +9,8 @@
 */
 
 #include <openssl/rand.h>
+#include <sys/types.h>
+#include <sys/socket.h>
 #include <time.h>
 #include <stdio.h>
 #include "server.h"
@@ -33,11 +35,11 @@ t_map	**load_map(t_params *params)
 
   i = -1;
   srand(time(NULL));
-  map = xmalloc(params->height * sizeof(*map));
+  map = Xmalloc(params->height * sizeof(*map));
   while (++i < params->height)
     {
       j = -1;
-      map[i] = xmalloc(params->width * sizeof(**map));
+      map[i] = Xmalloc(params->width * sizeof(**map));
       while (++j < params->width)
 	{
 	  map[i][j].food = 0;

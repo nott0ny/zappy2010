@@ -8,6 +8,8 @@
 ** Last update Mon Jun  7 15:52:19 2010 amine mouafik
 */
 
+#include <sys/types.h>
+#include <sys/socket.h>
 #include <string.h>
 #include "server.h"
 
@@ -83,15 +85,15 @@ int	check_params(t_params *params)
 	    if (!check_limits(params->maxclient, 1, 0))
 	      return (0);
 	    else
-	      return (print_err(ERR_CLIENT));
+	      return (_XW(ERR_CLIENT));
 	  else
-	    return (print_err(ERR_TEAMS));
+	    return (_XW(ERR_TEAMS));
 	else
-	  return (print_err(ERR_TEAMS_MIN));
+	  return (_XW(ERR_TEAMS_MIN));
       else
-	return (print_err(ERR_TEAMS_RSV));
+	return (_XW(ERR_TEAMS_RSV));
     else
-      return (print_err(ERR_TIME));
+      return (_XW(ERR_TIME));
   else
-    return (print_err(ERR_MAP));
+    return (_XW(ERR_MAP));
 }

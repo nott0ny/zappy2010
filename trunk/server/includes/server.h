@@ -5,13 +5,11 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Mon Jun  7 16:08:56 2010 amine mouafik
+** Last update Mon Jun  7 21:48:51 2010 alban roux
 */
 
 #ifndef __SERVER_H__
 # define __SERVER_H__
-
-# define SO_REUSEPORT 15 
 
 # define CLIENT_GRAPHIC	"GRAPHIC"
 

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Mon Jun  7 16:03:33 2010 amine mouafik
+** Last update Mon Jun  7 16:36:10 2010 alban roux
 */
 
 #include <sys/types.h>
@@ -54,4 +54,3 @@ void	add_player(t_env *e, int fd, char *t_name, int x, int y)
   else
     add_player_tolist(e, fd, t_name, x, y);
 }
-

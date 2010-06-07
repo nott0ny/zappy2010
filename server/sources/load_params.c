@@ -8,6 +8,8 @@
 ** Last update Mon Jun  7 16:03:32 2010 amine mouafik
 */
 
+#include <sys/types.h>
+#include <sys/socket.h>
 #include <stdio.h>
 #include "server.h"
 
@@ -42,7 +44,7 @@ t_params	*load_params(char **argv)
 {
   t_params	*params;
 
-  params = xmalloc(sizeof(t_params));
+  params = Xmalloc(sizeof(t_params));
   init_params(params);
   get_params(argv, params);
   view_params(params);

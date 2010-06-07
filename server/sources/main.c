@@ -8,6 +8,8 @@
 ** Last update Mon Jun  7 15:56:53 2010 amine mouafik
 */
 
+#include <sys/types.h>
+#include <sys/socket.h>
 #include <stdio.h>
 #include "server.h"
 
@@ -15,7 +17,7 @@ static int	server(char **argv)
 {
   t_env		*e;
 
-  e = xmalloc(sizeof(t_env));
+  e = Xmalloc(sizeof(t_env));
   if ((e->params = load_params(argv)))
     if ((e->map = load_map(e->params)))
       if ((e->network = load_network(e->params)))

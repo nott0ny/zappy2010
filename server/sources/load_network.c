@@ -8,6 +8,8 @@
 ** Last update Mon Jun  7 16:03:32 2010 amine mouafik
 */
 
+#include <sys/types.h>
+#include <sys/socket.h>
 #include <string.h>
 #include "server.h"
 
@@ -22,9 +24,11 @@ static t_network	*init_network(t_params *params)
 {
   t_network		*network;
 
-  network = xmalloc(sizeof(*network));
-  memset(network, 0, sizeof(*network));
+  network = Xmalloc(sizeof(*network));
+  X(NULL, memset(network, 0, sizeof(*network)), "memset");
   network->port = params->port;
+  network->timeout.tv_sec = TIMEOUT;
+  network->timeout.tv_usec = 0;
   return (network);
 }
 

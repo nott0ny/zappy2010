@@ -8,6 +8,8 @@
 ** Last update Mon Jun  7 16:03:33 2010 amine mouafik
 */
 
+#include <sys/types.h>
+#include <sys/socket.h>
 #include <stdlib.h>
 #include <string.h>
 #include "server.h"
@@ -16,9 +18,10 @@ static void	create_player_list(t_env *e, int fd, char *t_name, int x, int y)
 {
   t_players	*player;
 
-  player = xmalloc(sizeof(*player));
+  player = Xmalloc(sizeof(*player));
   player->fd_associate = fd;
-  player->team_name = xmalloc(strlen(t_name) * sizeof(*t_name));
+  player->team_name = Xmalloc(strlen(t_name) * sizeof(*t_name));
+  /* CHECK X */
   player->team_name = strcpy(player->team_name, t_name);
   player->posx = x;
   player->posy = y;
@@ -34,9 +37,10 @@ static void	add_player_tolist(t_env *e, int fd, char *t_name, int x, int y)
   last_player = e->clients;
   while (last_player->next)
     last_player = last_player->next;
-  new_player = xmalloc(sizeof(*new_player));
+  new_player = Xmalloc(sizeof(*new_player));
   new_player->fd_associate = fd;
-  new_player->team_name = strdup(t_name);
+  /* CHECK X */
+  new_player->team_name = (char *)strdup(t_name);
   new_player->posx = x;
   new_player->posy = y;
   new_player->next = NULL;

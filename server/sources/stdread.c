@@ -19,14 +19,13 @@ void		stdread(t_env *e,int fd)
 {
   t_players	*tmp;
   char		*buf;
-  int		cur;
-  int		l;
+  int		len;
 
-  buf = xmalloc(READ_SIZE * sizeof(*buf));
-  memset(buf, 0, READ_SIZE * sizeof(*buf));
-  l = recv(fd, buf, READ_SIZE, 0);
-  if (l <= 0)
-    close_fd(e->network,fd);
+  buf = Xmalloc(READ_SIZE * sizeof(*buf));
+  X(NULL, memset(buf, 0, READ_SIZE * sizeof(*buf)), "memset");
+  len = (int)X((void *)-1, (void *)recv(fd, buf, READ_SIZE, 0), "recv");
+  if (len <= 0)
+    close_fd(e->network, fd);
   else
     {
       tmp = e->clients;

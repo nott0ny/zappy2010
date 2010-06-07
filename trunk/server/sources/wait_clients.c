@@ -45,7 +45,10 @@ int	wait_clients(t_env *e)
   while (42)
     {
       init_fds(e);
-      nfds = (int)_X((void *)-1, (void *)select(e->network->max_fd_used + 1, &e->network->r, &e->network->w, 0, 0), "select");
+      nfds = (int)_X((void *)-1, 
+		     (void *)select(e->network->max_fd_used + 1, 
+				    &e->network->r, &e->network->w, 
+				    0, 0), "select");
       if (nfds)
 	watch_fds(e);
       else

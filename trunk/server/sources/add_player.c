@@ -15,6 +15,10 @@
 #include "server.h"
 #include "x.h"
 
+/* 
+** CHECK X strcpy
+*/
+
 static void	create_player_list(t_env *e, int fd, char *t_name, int x, int y)
 {
   t_players	*player;
@@ -22,13 +26,16 @@ static void	create_player_list(t_env *e, int fd, char *t_name, int x, int y)
   player = Xmalloc(sizeof(*player));
   player->fd_associate = fd;
   player->team_name = Xmalloc(strlen(t_name) * sizeof(*t_name));
-  /* CHECK X */
   player->team_name = strcpy(player->team_name, t_name);
   player->posx = x;
   player->posy = y;
   player->next = NULL;
   e->clients = player;
 }
+
+/*
+** CHECK X strdup
+*/
 
 static void	add_player_tolist(t_env *e, int fd, char *t_name, int x, int y)
 {
@@ -40,7 +47,6 @@ static void	add_player_tolist(t_env *e, int fd, char *t_name, int x, int y)
     last_player = last_player->next;
   new_player = Xmalloc(sizeof(*new_player));
   new_player->fd_associate = fd;
-  /* CHECK X */
   new_player->team_name = (char *)strdup(t_name);
   new_player->posx = x;
   new_player->posy = y;

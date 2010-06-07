@@ -26,7 +26,8 @@ static void	accept_client(t_env *e, int fd)
 
   printf("%s'BIENVENUE' envoye a %d%s\n", BLUE, fd, WHITE);
   X(NULL, memset(buf, 0, READ_SIZE * sizeof(*buf)), "memset");
-  X((void *)-1, (void *)write(fd, "BIENVENUE\n", strlen("BIENVENUE\n")), "write");
+  X((void *)-1, (void *)write(fd, "BIENVENUE\n", strlen("BIENVENUE\n")),
+    "write");
   X((void *)-1, (void *)read(fd, buf, READ_SIZE), "read");
   buf[strlen(buf) - 1] = '\0';
   printf("%sRecieved : %s from %d%s\n", RED, buf, fd, WHITE);
@@ -48,8 +49,11 @@ void			new_connection(t_env *e, int fd_conn)
   char			addr[4];
 
   namelen = sizeof(name);
-  fd = (int)X((void *)-1, (void *)accept(fd_conn, (struct sockaddr *)&name, &namelen), "accept");
-  X(NULL, memcpy(&addr, &name.sin_addr.s_addr, sizeof(name.sin_addr.s_addr)), "memcpy");
+  fd = (int)X((void *)-1, 
+	      (void *)accept(fd_conn, (struct sockaddr *)&name,&namelen),
+	      "accept");
+  X(NULL, memcpy(&addr, &name.sin_addr.s_addr, sizeof(name.sin_addr.s_addr)),
+    "memcpy");
   alloc_fd(e->network, fd);
   e->network->fdt[fd]->type |= T_READ;
   e->network->fdt[fd]->in.f = stdread;

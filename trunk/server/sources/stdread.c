@@ -34,7 +34,8 @@ void		stdread(t_env *e,int fd)
       while (tmp && (tmp->fd_associate != fd))
 	tmp = tmp->next;
       if (tmp)
-	printf("%sI'm client %d\nmy team is %s%s\n", YELLOW, tmp->fd_associate, tmp->team_name, WHITE);
+	printf("%sI'm client %d\nmy team is %s%s\n", YELLOW,
+	       tmp->fd_associate, tmp->team_name, WHITE);
       printf("%sRECU CMD : %s%s\n", YELLOW, buf, WHITE);
     }
   free(buf);

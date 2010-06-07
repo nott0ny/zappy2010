@@ -11,6 +11,8 @@
 #ifndef __SERVER_H__
 # define __SERVER_H__
 
+# define SO_REUSEPORT 15 
+
 # define CLIENT_GRAPHIC	"GRAPHIC"
 
 # define ERR_MAP	"the world is too small"
@@ -25,6 +27,7 @@
 # define DEFAULT_HEIGHT	20
 # define DEFAULT_CLIENT 1
 # define DEFAULT_TIME	100
+# define TIMEOUT	1
 
 # define DENSITY_HIGH	10
 # define DENSITY_LOW	30
@@ -38,6 +41,11 @@
 # define PURPLE		"\033[1;35m"
 # define CYAN		"\033[1;36m"
 # define GREY		"\033[1;37m"
+
+# define X(err, res, str)	(x(err, res, str, __FILE__, __LINE__))
+# define _X(err, res, str)	(_x(err, res, str, __FILE__, __LINE__))
+# define _XW(str)		(_xw(str))
+# define Xmalloc(size)		(xmalloc(size, __FILE__, __LINE__))
 
 #define MAX(a,b)	( (a>b)?(a):(b) )
 #define READ_SIZE	2048
@@ -84,6 +92,8 @@ typedef struct		s_fdt {
   t_msg			out;
 }			t_fdt;
 
+#include <sys/select.h>
+
 typedef struct		s_network {
   int			op_flags;
 #define OP_V    (1<<0)
@@ -94,6 +104,7 @@ typedef struct		s_network {
   t_fdt			**fdt;
   fd_set		r;
   fd_set		w;
+  struct timeval	timeout;
 }			t_network;
 
 typedef struct		s_bag {
@@ -129,9 +140,6 @@ typedef struct		s_env {
   t_players		*clients;
 }			t_env;
 
-int			print_err(char *str);
-void			*xmalloc(unsigned int size);
-
 void			add_player(t_env *e, int fd, char *t_name, int x, int y);
 int			check_params(t_params *params);
 int			init_connect_socket(t_network *network);
@@ -155,5 +163,10 @@ int			wait_clients(t_env *e);
 /* fix */
 int			init_fds(t_env *e);
 void			watch_fds(t_env *e);
+
+void  	*x(void *err, void *res, char *str, char *file, int line);
+void   	*_x(void *err, void *res, char *str, char *file, int line);
+int	_xw(char *str);
+void	*xmalloc(int size, char *file, int line);
 
 #endif

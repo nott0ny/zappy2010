@@ -26,11 +26,13 @@ static int		create_bind_socket(int port)
 
   fd = (int)X((void *)-1, (void *)socket(PF_INET,SOCK_STREAM,0), "socket");
   dum = 1;
-  X((void *)-1, (void *)setsockopt(fd, IPPROTO_IP, IP_TOS, &dum, sizeof(dum)), "setsockopt");
+  X((void *)-1, (void *)setsockopt(fd, IPPROTO_IP, IP_TOS, &dum, sizeof(dum)),
+    "setsockopt");
   host.sin_family = PF_INET;
   host.sin_port = htons(port);
   host.sin_addr.s_addr = htonl(INADDR_ANY);
-  X((void *)-1, (void *)bind(fd, (struct sockaddr *)&host, sizeof(host)), "bind");
+  X((void *)-1, (void *)bind(fd, (struct sockaddr *)&host, sizeof(host)),
+    "bind");
   X((void *)-1, (void *)listen(fd,STD_BACKLOG), "listen");
   return (fd);
 }
@@ -41,7 +43,7 @@ int	init_connect_socket(t_network *network)
 
   fd = create_bind_socket(network->port);
   alloc_fd(network, fd);
-  network->fdt[fd]->type |= (T_CONN|T_READ);
+  network->fdt[fd]->type |= (T_CONN | T_READ);
   network->fdt[fd]->in.f = new_connection;
   network->max_fd_used = MAX(network->max_fd_used, fd);
   return (0);

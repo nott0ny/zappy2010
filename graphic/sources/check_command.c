@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 23:06:34 2010 adrien veau-greiner
-** Last update Fri May 14 19:33:38 2010 adrien veau-greiner
+** Last update Mon Jun  7 18:50:52 2010 adrien veau-greiner
 */
 
 #include <string.h>
@@ -15,28 +15,24 @@
 #include "client.h"
 #include "command.h"
 
-int		cmd_tna(char **params, t_graph *fx)
+int		cmd_tna(char **params, t_client *cl)
 {
-  int		i;
-
-  fx = fx;
-  for (i = 0; params[i]; i++)
-    printf("%s ", params[i]);
-  printf("\n");
+  printf("cmd_tna => ");
+  aff_tab(params);
   return (0);
 }
 
-int		check_command(char *cmd, t_graph *fx)
+int		check_command(t_client *cl)
 {
   char		**params;
   int		i;
 
   i = 0;
-  params = str_to_wordtab(cmd, ' ');
+  params = str_to_wordtab(cl->cmd, ' ');
   while (cmd_tab[i].cmd_name != 0)
     {
       if (strcmp(params[0], cmd_tab[i].cmd_name) == 0)
-	return (cmd_tab[i].f(params, fx));
+	return (cmd_tab[i].f(params, cl));
       i++;
     }
   printf("command not found\n");

@@ -5,20 +5,18 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Fri May 14 18:58:39 2010 adrien veau-greiner
-** Last update Fri May 14 19:06:24 2010 adrien veau-greiner
+** Last update Mon Jun  7 18:54:13 2010 adrien veau-greiner
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "client.h"
 #include "graphics.h"
 
-int	cmd_sgt(char **params, t_graph *fx)
+int	cmd_sgt(char **params, t_client *cl)
 {
-  if (tablen(params) != 2)
-    return (-1);
-  if (!str_isnum(params[1]))
-    return (-1);
-  fx->time_u = atoi(params[1]);
+  printf("cmd_sgt => ");
+  aff_tab(params);
   return (0);
 }

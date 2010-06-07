@@ -5,9 +5,11 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 22:44:03 2010 adrien veau-greiner
-** Last update Fri May 14 18:03:42 2010 adrien veau-greiner
+** Last update Mon Jun  7 19:00:56 2010 adrien veau-greiner
 */
 
+#include <sys/types.h>
+#include <sys/select.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
@@ -16,24 +18,15 @@
 #include "client.h"
 #include "graphics.h"
 
-int		client_handler(t_client *cl)
+int client_handler(t_client *cl)
 {
-  t_graph	fx;
-  char		*cmd;
-
-  init_graph(&fx);
-  if (init_world(cl, &fx) == -1)
-    return (-1);
   while (42)
     {
-      if ((cmd = receive_command(cl->sock)) == NULL)
-	{
-	  printf("exit\n");
-	  return (disconnect(cl));
-	}
-      if (check_command(cmd, &fx) == -1)
-	return (disconnect(cl));
-      free(cmd);
+      init_fd(cl);
+      my_select(cl);
+      check_fd(cl);
     }
+  xclose(cl->sock);
   return (0);
 }
+

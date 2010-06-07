@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 23:08:35 2010 adrien veau-greiner
-** Last update Fri May 14 19:45:27 2010 adrien veau-greiner
+** Last update Mon Jun  7 19:03:51 2010 adrien veau-greiner
 */
 
 #ifndef __COMMAND_H__
@@ -15,6 +15,7 @@
 # include "client.h"
 
 /* ----- MACRO ----- */
+# define WELCOME        "BIENVENUE"
 # define CMD_BCT	"bct"
 # define CMD_TNA	"tna"
 # define CMD_MSZ	"msz"
@@ -24,11 +25,12 @@
 typedef struct	s_command
 {
   char		*cmd_name;
-  int		(*f)(char **param, t_graph *fx);
+  int		(*f)(char **param, t_client *cl);
 }		t_cmd;
 
 /* Tableau de pointeurs sur fonction */
-t_cmd		cmd_tab[5] = {
+t_cmd		cmd_tab[6] = {
+  {WELCOME, cmd_init},
   {CMD_BCT, cmd_bct},
   {CMD_TNA, cmd_tna},
   {CMD_MSZ, cmd_msz},

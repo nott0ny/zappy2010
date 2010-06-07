@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Mon Jun  7 16:03:33 2010 amine mouafik
+** Last update Tue Jun  8 00:11:34 2010 amine mouafik
 */
 
 #include <errno.h>
@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "server.h"
 #include "colors.h"
 
 void	*x(void *err, void *res, char *str, char *file, int line)
@@ -47,10 +46,11 @@ void	*xmalloc(int size, char *file, int line)
 
   if (!(p = malloc(size)))
     {
-      fprintf(stderr, "Error with malloc (in %s, line %d) : %s\n",
+      fprintf(stderr, "Can't alloc memory() (in %s, line %d) : %s\n",
 	      file, line, strerror(errno));
       exit(EXIT_FAILURE);
     }
   memset(p, 0, size);
   return (p);
 }
+

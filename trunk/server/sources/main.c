@@ -5,13 +5,13 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Tue May  4 20:55:54 2010 amine mouafik
-** Last update Thu May 13 16:45:09 2010 amine mouafik
+** Last update Mon Jun  7 15:56:53 2010 amine mouafik
 */
 
 #include <stdio.h>
 #include "server.h"
 
-int		server(char **argv)
+static int	server(char **argv)
 {
   t_env		*e;
 

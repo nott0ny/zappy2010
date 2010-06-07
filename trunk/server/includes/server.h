@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Tue Jun  1 19:07:37 2010 alban roux
+** Last update Mon Jun  7 16:08:56 2010 amine mouafik
 */
 
 #ifndef __SERVER_H__
@@ -13,18 +13,18 @@
 
 # define CLIENT_GRAPHIC	"GRAPHIC"
 
-# define DEFAULT_PORT	4242
-# define DEFAULT_WIDTH	20
-# define DEFAULT_HEIGHT	20
-# define DEFAULT_CLIENT 1
-# define DEFAULT_TIME	100
-
 # define ERR_MAP	"the world is too small"
 # define ERR_TIME	"the speed must be between 1 and 1000000"
 # define ERR_CLIENT	"you must allow at least one client per team"
 # define ERR_TEAMS	"each team name must be unique"
 # define ERR_TEAMS_RSV	"the team name "CLIENT_GRAPHIC" is reserved"
 # define ERR_TEAMS_MIN	"you must create at least two teams"
+
+# define DEFAULT_PORT	4242
+# define DEFAULT_WIDTH	20
+# define DEFAULT_HEIGHT	20
+# define DEFAULT_CLIENT 1
+# define DEFAULT_TIME	100
 
 # define DENSITY_HIGH	10
 # define DENSITY_LOW	30
@@ -38,6 +38,10 @@
 # define PURPLE		"\033[1;35m"
 # define CYAN		"\033[1;36m"
 # define GREY		"\033[1;37m"
+
+#define MAX(a,b)	( (a>b)?(a):(b) )
+#define READ_SIZE	2048
+#define STD_BACKLOG	5
 
 # include <sys/types.h>
 # include <netinet/in.h>
@@ -125,29 +129,31 @@ typedef struct		s_env {
   t_players		*clients;
 }			t_env;
 
-int		manage_client(t_env *e);
-int		wait_clients(t_env *e);
+int			print_err(char *str);
+void			*xmalloc(unsigned int size);
 
-t_network	*load_network(t_params *params);
+void			add_player(t_env *e, int fd, char *t_name, int x, int y);
+int			check_params(t_params *params);
+int			init_connect_socket(t_network *network);
+void			get_params(char **av, t_params *server);
+t_map			**load_map(t_params *params);
+t_network		*load_network(t_params *params);
+t_params		*load_params(char **argv);
+int			main(int argc, char **argv);
 
-int		generate();
-void		view_map(t_map **map, t_params *params);
-t_map		**load_map(t_params *params);
+/* fix */
+void			search_max_fd(t_network *e);
+void			alloc_fd(t_network *network, int fd);
+void			alloc_fdt(t_network *network);
+void			set_max_fd(t_network *network, int fd);
+void			close_fd(t_network *network, int fd);
 
-int		check_mapsize(int width, int height);
-int		check_timescale(int time);
-int		check_teams_uniqueness(t_teams *teams);
-int		check_params(t_params *params);
+void			new_connection(t_env *e, int fd_conn);
+void			stdread(t_env *e,int fd);
+int			wait_clients(t_env *e);
 
-void		get_teams_name(char **av, int *i, t_params *server);
-void		get_params(char **av, t_params *server);
-
-t_params	*load_params(char **argv);
-int		view_params(t_params *params);
-
-int		init_params(t_params *params);
-
-int		print_err(char *str);
-void		*xmalloc(unsigned int size);
+/* fix */
+int			init_fds(t_env *e);
+void			watch_fds(t_env *e);
 
 #endif

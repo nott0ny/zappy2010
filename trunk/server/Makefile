@@ -23,8 +23,7 @@ SRCS	=	sources/main.c			\
 		sources/new_connection.c	\
 		sources/add_player.c		\
 		sources/stdread.c		\
-		sources/tools/print_err.c	\
-		sources/tools/xmalloc.c
+		sources/x.c
 OBJS	=	$(SRCS:.c=.o)
 CFLAGS	=	-W -Wall -ansi -pedantic -o $@ $(IFLAGS)
 IFLAGS	=	-I./includes

@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 12:33:33 2010 adrien veau-greiner
-** Last update Mon Jun  7 19:45:27 2010 adrien veau-greiner
+** Last update Mon Jun  7 20:38:46 2010 adrien veau-greiner
 */
 
 #ifndef __CLIENT_H__

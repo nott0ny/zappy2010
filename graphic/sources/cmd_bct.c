@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Fri May 14 19:32:42 2010 adrien veau-greiner
-** Last update Mon Jun  7 18:47:32 2010 adrien veau-greiner
+** Last update Mon Jun  7 20:05:16 2010 adrien veau-greiner
 */
 
 #include <string.h>
@@ -16,7 +16,7 @@
 
 int		cmd_bct(char **params, t_client *cl)
 {
-  printf("cmd_bct => ");
-  aff_tab(params);
+  /*printf("cmd_bct => ");
+    aff_tab(params);*/
   return (0);
 }

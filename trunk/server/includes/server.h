@@ -25,7 +25,6 @@
 # define DEFAULT_HEIGHT	20
 # define DEFAULT_CLIENT 1
 # define DEFAULT_TIME	100
-# define TIMEOUT	1
 
 # define DENSITY_HIGH	10
 # define DENSITY_LOW	30

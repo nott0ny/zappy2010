@@ -12,6 +12,7 @@
 #include <sys/socket.h>
 #include <stdio.h>
 #include "server.h"
+#include "x.h"
 
 static int	server(char **argv)
 {

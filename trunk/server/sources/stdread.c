@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "server.h"
+#include "colors.h"
+#include "x.h"
 
 void		stdread(t_env *e,int fd)
 {

@@ -12,6 +12,8 @@
 #include <sys/socket.h>
 #include <string.h>
 #include "server.h"
+#include "check_params.h"
+#include "x.h"
 
 static int	check_limits(int nb, int a, int b)
 {

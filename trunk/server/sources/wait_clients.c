@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "server.h"
+#include "x.h"
 
 int	init_fds(t_env *e)
 {

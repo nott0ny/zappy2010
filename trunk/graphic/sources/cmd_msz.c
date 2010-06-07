@@ -5,21 +5,18 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Fri May 14 18:36:07 2010 adrien veau-greiner
-** Last update Fri May 14 19:06:22 2010 adrien veau-greiner
+** Last update Mon Jun  7 18:54:14 2010 adrien veau-greiner
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "client.h"
 #include "graphics.h"
 
-int	cmd_msz(char **params, t_graph *fx)
+int	cmd_msz(char **params, t_client *cl)
 {
-  if (tablen(params) != 3)
-    return (-1);
-  if (!str_isnum(params[1]) || !str_isnum(params[2]))
-    return (-1);
-  fx->x = atoi(params[1]);
-  fx->y = atoi(params[2]);
+  printf("cmd_msz => ");
+  aff_tab(params);
   return (0);
 }

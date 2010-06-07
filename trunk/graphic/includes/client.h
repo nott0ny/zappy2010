@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 12:33:33 2010 adrien veau-greiner
-** Last update Fri May 14 19:45:28 2010 adrien veau-greiner
+** Last update Mon Jun  7 19:45:27 2010 adrien veau-greiner
 */
 
 #ifndef __CLIENT_H__
@@ -13,6 +13,7 @@
 
 # include <netinet/in.h>
 # include <sys/socket.h>
+# include <sys/types.h>
 # include <arpa/inet.h>
 # include <netdb.h>
 
@@ -23,10 +24,10 @@
 
 # define MAX_PORT	65535
 # define READ_B		512
-# define BUFFER		4096
+# define MAXCMD_LEN	256
+# define BUFFER         4096
 # define PROTO		"IP"
 # define NAME		"GRAPHIC\n"
-# define WELCOME	"BIENVENUE\n"
 # define CLEAN_SCREEN	"\033[H\033[2J"
 # define BANNER		"____________ ZappyFX Tools ____________"
 
@@ -37,6 +38,12 @@ typedef struct		s_client {
   int			port;
   int			sock;
   socklen_t		addrlen;
+  int                   f_send;
+  char                  *cmd;
+  char                  *send_buff;
+  fd_set                rdfs;
+  fd_set                wrfs;
+  t_graph               *fx;                
   struct sockaddr_in	sin;
   struct protoent	*proto;
   struct hostent	*host;
@@ -49,7 +56,10 @@ void	aff_start(void);
 int	aff_help(void);
 
 /* check_command.c */
-int	check_command(char *cmd, t_graph *fx);
+int	check_command(t_client *cl);
+
+/* check_fd.c */
+void  check_fd(t_client *cl);
 
 /* client_handler.c */
 int	client_handler(t_client *cl);
@@ -57,11 +67,12 @@ int	client_handler(t_client *cl);
 /* connect_server.c */
 int	connect_server(t_client *cl);
 
-/* cmd_* */
-int	cmd_bct(char **param, t_graph *fx);
-int	cmd_tna(char **param, t_graph *fx);
-int	cmd_msz(char **param, t_graph *fx);
-int	cmd_sgt(char **param, t_graph *fx);
+/* cmd_*.c */
+int	cmd_bct(char **param, t_client *cl);
+int	cmd_tna(char **param, t_client *cl);
+int	cmd_msz(char **param, t_client *cl);
+int	cmd_sgt(char **param, t_client *cl);
+int     cmd_init(char **params, t_client *cl);
 
 /* disconnect.c */
 int	disconnect(t_client *cl);
@@ -73,11 +84,23 @@ char	*nerror(char *from);
 /* get_entry.c */
 int	get_entry(char **av, t_client *cl);
 
+/* init_cl.c */
+void    init_cl(t_client *cl);
+
+/* init_client.c */
+int    init_client(t_client *cl);
+
+/* init_fd.c */
+void   init_fd(t_client *cl);
+
 /* init_graph.c */
 void	init_graph(t_graph *fx);
 
 /* init_world */
 int	init_world(t_client *cl, t_graph *fx);
+
+/* my_select */
+void    my_select(t_client *cl);
 
 /* receive_command.c */
 char	*gnl(const int fd, int *index, char *buff);
@@ -106,6 +129,7 @@ char	**str_to_wordtab(char *str, char dif);
 char	*my_strcat(char *str1, char *str2);
 int	str_isnum(char *str);
 int	tablen(char **tab);
+void aff_tab(char **tab);
 
 /* xfunctions.c */
 void	xclose(int fd);

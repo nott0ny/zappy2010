@@ -25,7 +25,7 @@ static int		create_bind_socket(int port)
 
   fd = (int)X((void *)-1, (void *)socket(PF_INET,SOCK_STREAM,0), "socket");
   dum = 1;
-  X((void *)-1, (void *)setsockopt(fd, SOL_SOCKET, SO_REUSEPORT, &dum, sizeof(dum)), "setsockopt");
+  X((void *)-1, (void *)setsockopt(fd, IPPROTO_IP, IP_TOS, &dum, sizeof(dum)), "setsockopt");
   host.sin_family = PF_INET;
   host.sin_port = htons(port);
   host.sin_addr.s_addr = htonl(INADDR_ANY);

@@ -21,21 +21,18 @@
 
 void		stdwrite(t_env *e, int fd)
 {
-  t_players	*tmp;
+  t_players	*player;
   char		send_cmd[256];
   int		len;
 
-  tmp = e->clients;
-  while (tmp)
+  player = get_player_byfd(e, fd);
+  if (player)
     {
-      if (tmp->fd_associate == fd)
-	break ;
-      tmp = tmp->next;
+      if ((len = rb_has_cmd(player->wr_rb)) > 0)
+	{
+	  rb_read(player->wr_rb, (unsigned char *)send_cmd, len);
+	  X((void *)-1, (void *)write(fd, send_cmd, strlen(send_cmd)), "write");
+	}
+      e->network->fdt[fd]->type |= T_READ;
     }
-  if ((len = rb_has_cmd(tmp->wr_rb)) > 0)
-    {
-      rb_read(tmp->wr_rb, (unsigned char *)send_cmd, len);
-      X((void *)-1, (void *)write(fd, send_cmd, strlen(send_cmd)), "write");
-    }
-  e->network->fdt[fd]->type |= T_READ;
 }

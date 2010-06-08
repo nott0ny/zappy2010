@@ -19,10 +19,8 @@ static void	create_player_list(t_env *e, int fd)
   t_players	*player;
   
   player = Xmalloc(sizeof(*player));
-  if (rb_init(&(player->wr_rb), BUF_SIZE) != 1)
-    _XW("rb_init");
-  if (rb_init(&(player->rd_rb), BUF_SIZE) != 1)
-    _XW("rb_init");
+  rb_init(&(player->wr_rb), BUF_SIZE);
+  rb_init(&(player->rd_rb), BUF_SIZE);
   player->fd_associate = fd;
   rb_write(player->wr_rb, (unsigned char *)MSG_CO, strlen(MSG_CO));
   player->bag = Xmalloc(sizeof(player->bag));
@@ -37,7 +35,6 @@ static void	add_player_tolist(t_env *e, int fd)
   player = Xmalloc(sizeof(t_players));
   rb_init(&player->wr_rb, BUF_SIZE);
   rb_init(&player->rd_rb, BUF_SIZE);
-  player = Xmalloc(sizeof(*player));
   player->fd_associate = fd;
   rb_write(player->wr_rb, (unsigned char *)MSG_CO, strlen(MSG_CO));
   player->bag = Xmalloc(sizeof(player->bag));

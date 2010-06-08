@@ -30,11 +30,13 @@ int	rb_has_cmd(t_ringbuffer *rb)
   j = 0;
   while (i != rb->wr_pointer && rb->buffer[i] != '\n')
     {
-      if (i > rb->size)
+      if (i >= rb->size)
 	i = 0;
       else
-	i++;
-      j++;
+	{
+	  i++;
+	  j++;
+	}
     }
   if (j == 0)
     return (0);

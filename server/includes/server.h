@@ -88,11 +88,12 @@ typedef struct		s_bag {
 
 typedef struct		s_ringbuffer
 {
-    char *buffer;
-    int wr_pointer;
-    int rd_pointer;
-    int size;
+    char       		*buffer;
+    int			wr_pointer;
+    int			rd_pointer;
+    int			size;
 }			t_ringbuffer;
+
 
 typedef struct		s_players {
   int			fd_associate;
@@ -106,12 +107,43 @@ typedef struct		s_players {
   struct s_players	*next;
 }			t_players;
 
+typedef struct		s_cmds {
+  int			id;
+  char			*cmd;
+  void			(*f)();
+  int			duration;
+}			t_cmds;
+
+# define PREND	        5
+# define POSE		6
+# define INCANTATION	9
+
+typedef struct		s_stack {
+  struct timeval     	timestamp;
+  int			id_cmd;
+  int			fd_player;
+  struct s_stack	*next;
+}			t_stack;
+
 typedef struct		s_env {
   t_params		*params;
   t_map			**map;
   t_network		*network;
   t_players		*clients;
+  t_stack		*execution;
 }			t_env;
+
+void	go_forward(t_env *e, t_players *player);
+void	rotate_right(t_env *e, t_players *player);
+void	rotate_left(t_env *e, t_players *player);
+void	explore(t_env *e, t_players *player);
+void	list_inventory(t_env *e, t_players *player);
+void	take_object(t_env *e, t_players *player);
+void	drop_object(t_env *e, t_players *player);
+void	expulse(t_env *e, t_players *player);
+void	broadcast(t_env *e, t_players *player);
+void	incantation(t_env *e, t_players *player);
+void	player_fork(t_env *e, t_players *player);
 
 void			add_player(t_env *e, int fd);
 int			check_params(t_params *params);
@@ -137,5 +169,12 @@ int			wait_clients(t_env *e);
 /* fix */
 int			init_fds(t_env *e);
 void			watch_fds(t_env *e);
+
+int			check_player_cmd(t_env *e, t_players *player, char *cmd);
+t_players		*get_player_byfd(t_env *e, int fd);
+int			get_player_message(char **buf, int fd);
+
+void			display_stack(t_stack *execution);
+void			add_cmd_onstack(t_env *e, int fd_player, int id_cmd);
 
 #endif

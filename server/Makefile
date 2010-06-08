@@ -23,12 +23,15 @@ SRCS	=	sources/main.c			\
 		sources/new_connection.c	\
 		sources/add_player.c		\
 		sources/stdread.c		\
+		sources/stdread_player.c	\
 		sources/stdwrite.c		\
 		sources/init_ringbuffer.c	\
 		sources/manage_ringbuffer.c	\
+		sources/execution_stack.c	\
+		sources/tmp_actions.c		\
 		sources/x.c
 OBJS	=	$(SRCS:.c=.o)
-CFLAGS	=	-W -Wall -ansi -pedantic -o $@ $(IFLAGS) -g3
+CFLAGS	=	-W -Wall -ansi -pedantic -o $@ $(IFLAGS)
 IFLAGS	=	-I./includes
 RM	=	rm -rf
 

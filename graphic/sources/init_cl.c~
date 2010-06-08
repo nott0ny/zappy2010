@@ -1,0 +1,19 @@
+
+#include <stdlib.h>
+#include <unistd.h>
+
+#include "client.h"
+
+void  init_cl(t_client *cl)
+{
+  cl = xmalloc(sizeof(t_client*));
+  cl->port = 0;
+  cl->sock = 0;
+  cl->addrlen = 0;
+  cl->cmd = xmalloc(sizeof(cl->cmd) * MAXCMD_LEN);
+  cl->send_buff = xmalloc(sizeof(cl->send_buff) * MAXCMD_LEN);
+  cl->f_send = 0;
+  cl->fx = xmalloc(sizeof(t_graph*));
+  cl->proto = NULL;
+  cl->host = NULL;
+}

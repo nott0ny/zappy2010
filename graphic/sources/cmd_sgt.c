@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Fri May 14 18:58:39 2010 adrien veau-greiner
-** Last update Mon Jun  7 18:54:13 2010 adrien veau-greiner
+** Last update Tue Jun  8 18:01:19 2010 adrien veau-greiner
 */
 
 #include <stdlib.h>
@@ -14,7 +14,8 @@
 #include "client.h"
 #include "graphics.h"
 
-int	cmd_sgt(char **params, t_client *cl)
+int	cmd_sgt(__attribute__((unused))char **params,
+		__attribute__((unused))t_client *cl)
 {
   printf("cmd_sgt => ");
   aff_tab(params);

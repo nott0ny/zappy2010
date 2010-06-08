@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 12:33:33 2010 adrien veau-greiner
-** Last update Mon Jun  7 20:38:46 2010 adrien veau-greiner
+** Last update Tue Jun  8 18:59:02 2010 adrien veau-greiner
 */
 
 #ifndef __CLIENT_H__
@@ -18,14 +18,14 @@
 # include <netdb.h>
 
 # include "graphics.h"
+# include "ringbuffer.h"
 # include "player.h"
 
 /* ----- MACRO ----- */
 
 # define MAX_PORT	65535
 # define READ_B		512
-# define MAXCMD_LEN	256
-# define BUFFER         4096
+# define MAXCMD_LEN	512
 # define PROTO		"IP"
 # define NAME		"GRAPHIC\n"
 # define CLEAN_SCREEN	"\033[H\033[2J"
@@ -41,6 +41,7 @@ typedef struct		s_client {
   int                   f_send;
   char                  *cmd;
   char                  *send_buff;
+  t_ringbuffer          *read_buff;
   fd_set                rdfs;
   fd_set                wrfs;
   t_graph               *fx;                
@@ -103,9 +104,7 @@ int	init_world(t_client *cl, t_graph *fx);
 void    my_select(t_client *cl);
 
 /* receive_command.c */
-char	*gnl(const int fd, int *index, char *buff);
-char	*getnl(char *str, int *index, const int fd);
-char	*receive_command(int sock);
+char	*receive_command(t_client *cl);
 
 /* receive_map.c */
 int	receive_map(t_client *cl, t_graph *fx);

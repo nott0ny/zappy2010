@@ -7,6 +7,7 @@
 void  init_cl(t_client *cl)
 {
   cl = xmalloc(sizeof(t_client*));
+  /*rb_init(&cl->read_buff, MAXCMD_LEN);*/
   cl->port = 0;
   cl->sock = 0;
   cl->addrlen = 0;

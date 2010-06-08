@@ -5,7 +5,7 @@
 ## Login   <veau-g_a@epitech.net>
 ## 
 ## Started on  Thu May 13 12:21:33 2010 adrien veau-greiner
-## Last update Mon Jun  7 19:06:05 2010 adrien veau-greiner
+## Last update Tue Jun  8 18:34:30 2010 adrien veau-greiner
 ##
 
 CC	=	gcc
@@ -20,7 +20,9 @@ SRC	=	main.c \
 		error.c \
 		check_fd.c \
 		connect_server.c \
+		manage_ringbuffer.c \
 		start_client.c \
+		init_ringbuffer.c \
 		init_cl.c \
 		init_fd.c \
 		utils.c \
@@ -40,7 +42,7 @@ OBJ	=	$(SRC:.c=.o)
 
 INCLUDE	=	-I./includes/
 
-CFLAGS	=	-W -Wall -ansi -pedantic $(INCLUDE)
+CFLAGS	=	-W -Wall -ansi -pedantic -g3 $(INCLUDE)
 
 LDFLAGS	=
 

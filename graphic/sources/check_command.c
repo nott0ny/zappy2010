@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 23:06:34 2010 adrien veau-greiner
-** Last update Mon Jun  7 20:28:19 2010 adrien veau-greiner
+** Last update Tue Jun  8 18:05:14 2010 adrien veau-greiner
 */
 
 #include <string.h>
@@ -15,7 +15,7 @@
 #include "client.h"
 #include "command.h"
 
-int		cmd_tna(char **params, t_client *cl)
+int		cmd_tna(char **params, __attribute__((unused))t_client *cl)
 {
   printf("cmd_tna => ");
   aff_tab(params);

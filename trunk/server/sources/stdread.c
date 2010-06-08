@@ -18,27 +18,55 @@
 #include "colors.h"
 #include "x.h"
 
+t_players	*get_player_byfd(t_env *e, int fd)
+{
+  t_players	*player;
+
+  player = e->clients;
+  while (player)
+    {
+      if (fd == player->fd_associate)
+	break;
+      player = player->next;
+    }
+  return (player);
+}
+
+int		get_player_message(char **buf, int fd)
+{
+  int		len;
+
+  *buf = Xmalloc(READ_SIZE * sizeof(*buf));
+  X(NULL, memset(*buf, 0, READ_SIZE * sizeof(*buf)), "memset");
+  len = (int)X((void *)-1, (void *)recv(fd, *buf, READ_SIZE, 0), "recv");
+  return (len);
+}
+
+void		manage_player_cmd(t_env *e, int fd, int cmdlen)
+{
+  return ;
+}
+
 void		stdread(t_env *e,int fd)
 {
-  t_players	*tmp;
+  t_players	*player;
   char		*buf;
   int		len;
 
-  buf = Xmalloc(READ_SIZE * sizeof(*buf));
-  X(NULL, memset(buf, 0, READ_SIZE * sizeof(*buf)), "memset");
-  len = (int)X((void *)-1, (void *)recv(fd, buf, READ_SIZE, 0), "recv");
+  len = get_player_message(&buf, fd);
   if (len <= 0)
     close_fd(e->network, fd);
   else
     {
-      tmp = e->clients;
-      while (tmp && (tmp->fd_associate != fd))
-	tmp = tmp->next;
-      if (tmp)
-	printf("%sI'm client %d\nmy team is %s%s\n", YELLOW,
-	       tmp->fd_associate, tmp->team_name, WHITE);
-      printf("%sRECU CMD : %s%s\n", YELLOW, buf, WHITE);
-      
+      player = get_player_byfd(e, fd);
+      if (player)
+	{
+	  rb_write(player->rd_rb, (unsigned char *)buf, len);
+	  if ((len = rb_has_cmd(player->rd_rb)) > 0)
+	    manage_player_cmd(e, fd, len);
+	  else if (len == -1)
+	    close_fd(e->network, fd);
+	}
     }
   free(buf);
 }

@@ -15,14 +15,11 @@ void check_fd(t_client *cl)
   if (FD_ISSET(cl->sock, &cl->rdfs))
     {
       receive_command(cl);
-      if ((check = rb_has_cmd(cl->read_buff)) > 0)
+      while ((check = rb_has_cmd(cl->read_buff)) > 0)
 	{
 	  memset(cl->cmd, '\0', MAXCMD_LEN);
 	  rb_read(cl->read_buff, (unsigned char*)cl->cmd, check);
-	  cl->cmd[strlen(cl->cmd)] = '\0';
-	  /* printf("%s\n", cl->cmd);*/
 	  check_command(cl);
-	  memset(cl->cmd, '\0', MAXCMD_LEN);
      	}
     }
   if (FD_ISSET(cl->sock, &cl->wrfs) && cl->f_send == 1)

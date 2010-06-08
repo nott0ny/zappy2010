@@ -5,7 +5,7 @@
 ** Login   <roux_a@epitech.net>
 ** 
 ** Started on  Tue May  4 22:17:56 2010 alban roux
-** Last update Tue Jun  8 18:54:49 2010 adrien veau-greiner
+** Last update Wed Jun  9 00:45:49 2010 adrien veau-greiner
 */
 
 #include <stdlib.h>
@@ -25,11 +25,13 @@ int	rb_has_cmd(t_ringbuffer *rb)
   j = 0;
   while (i != rb->wr_pointer && rb->buffer[i] != '\n')
     {
-      if (i > rb->size)
+      if (i >= rb->size)
 	i = 0;
-      else
-	i++;
-      j++;
+      else 
+	{
+	  i++;
+	  j++;
+	}
     }
   if (j == 0)
     return (0);
@@ -86,7 +88,7 @@ int	rb_read(t_ringbuffer *rb, unsigned char *buf, int max)
       i = 0;
     }
   memcpy(buf, rb->buffer + i, max);
-  buf[max] = '\0';
+  buf[max - 1] = '\0';
   rb->rd_pointer = i + max;
   return (total);
 }

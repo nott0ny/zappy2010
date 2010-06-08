@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 12:33:33 2010 adrien veau-greiner
-** Last update Tue Jun  8 22:39:13 2010 adrien veau-greiner
+** Last update Wed Jun  9 01:12:28 2010 adrien veau-greiner
 */
 
 #ifndef __CLIENT_H__
@@ -44,6 +44,7 @@ typedef struct		s_client {
   fd_set                rdfs;
   fd_set                wrfs;
   t_graph               *fx;                
+  int		        time_u;
   struct sockaddr_in	sin;
   struct protoent	*proto;
   struct hostent	*host;

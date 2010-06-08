@@ -5,7 +5,7 @@
 ** Login   <roux_a@epitech.net>
 ** 
 ** Started on  Thu Oct 22 15:48:18 2009 alban roux
-** Last update Tue Jun  8 22:59:04 2010 adrien veau-greiner
+** Last update Tue Jun  8 23:44:11 2010 adrien veau-greiner
 */
 
 #include <string.h>
@@ -16,10 +16,9 @@
 void		receive_command(t_client *cl)
 {
   int nb_rec;
-  char temp[305];
+  char temp[MAXCMD_LEN];
   
-  memset(temp, '\0', 305);
-  nb_rec = read(cl->sock, temp, 10);
-  printf("%s", temp);
+  memset(temp, 0, MAXCMD_LEN);
+  nb_rec = read(cl->sock, temp, MAXCMD_LEN);
   rb_write(cl->read_buff, (unsigned char*)temp, nb_rec);
 }

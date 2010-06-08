@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 23:22:28 2010 adrien veau-greiner
-** Last update Mon May 17 13:24:23 2010 adrien veau-greiner
+** Last update Wed Jun  9 01:12:27 2010 adrien veau-greiner
 */
 
 #ifndef __GRAPHICS_H__
@@ -31,7 +31,6 @@ typedef struct	s_graphics
   int		size;
   int		x;
   int		y;
-  int		time_u;
 }		t_graph;
 
 #endif

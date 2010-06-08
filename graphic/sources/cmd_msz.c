@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Fri May 14 18:36:07 2010 adrien veau-greiner
-** Last update Tue Jun  8 18:01:17 2010 adrien veau-greiner
+** Last update Tue Jun  8 22:37:11 2010 adrien veau-greiner
 */
 
 #include <stdlib.h>
@@ -17,7 +17,7 @@
 int	cmd_msz(__attribute__((unused))char **params,
 		__attribute__((unused))t_client *cl)
 {
-  printf("cmd_msz => ");
-  aff_tab(params);
+  /*printf("cmd_msz => ");*/
+  /*aff_tab(params);*/
   return (0);
 }

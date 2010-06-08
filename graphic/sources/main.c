@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 12:28:50 2010 adrien veau-greiner
-** Last update Tue Jun  8 19:03:04 2010 adrien veau-greiner
+** Last update Tue Jun  8 21:31:16 2010 adrien veau-greiner
 */
 
 #include <stdlib.h>
@@ -14,14 +14,14 @@
 
 int		main(int ac, char **av)
 {
-  t_client	cl;
+  t_client	*cl;
 
   if (ac != 5)
     return (aff_help());
   init_cl(&cl);
-  if (get_entry(av, &cl) == -1)
+  if (get_entry(av, cl) == -1)
     return (EXIT_FAILURE);
-  if (start_client(&cl) == -1)
+  if (start_client(cl) == -1)
     return (EXIT_FAILURE);
   return (EXIT_SUCCESS);
 }

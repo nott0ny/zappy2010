@@ -4,10 +4,11 @@
 
 #include "client.h"
 
-void  init_cl(t_client *cl)
+void  init_cl(t_client **clg)
 {
-  cl = xmalloc(sizeof(t_client)));
-  /rb_init(&cl->read_buff, MAXCMD_LEN);*/
+  t_client *cl;
+
+  cl = xmalloc(sizeof(t_client));
   cl->port = 0;
   cl->sock = 0;
   cl->addrlen = 0;
@@ -15,4 +16,6 @@ void  init_cl(t_client *cl)
   cl->fx = xmalloc(sizeof(t_graph*));
   cl->proto = NULL;
   cl->host = NULL;
+  rb_init(&cl->read_buff, MAXCMD_LEN);
+  *clg = cl;
 }

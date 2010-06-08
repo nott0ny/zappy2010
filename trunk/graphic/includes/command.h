@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 23:08:35 2010 adrien veau-greiner
-** Last update Mon Jun  7 19:03:51 2010 adrien veau-greiner
+** Last update Tue Jun  8 21:52:42 2010 adrien veau-greiner
 */
 
 #ifndef __COMMAND_H__
@@ -15,7 +15,7 @@
 # include "client.h"
 
 /* ----- MACRO ----- */
-# define WELCOME        "BIENVENUE"
+# define WELCOME        "BIENVENUE\n"
 # define CMD_BCT	"bct"
 # define CMD_TNA	"tna"
 # define CMD_MSZ	"msz"

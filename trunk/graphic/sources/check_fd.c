@@ -6,7 +6,7 @@
 
 #include "client.h"
 
-#define WELCOME "BIENVENUE"
+#define WELCOME "BIENVENUE\n"
 
 void check_fd(t_client *cl)
 {
@@ -14,17 +14,16 @@ void check_fd(t_client *cl)
 
   if (FD_ISSET(cl->sock, &cl->rdfs))
     {
-      cl->cmd = xmalloc(sizeof(char*) * MAXCMD_LEN);
-      cl->cmd = receive_command(cl);
-      /*if ((check = rb_has_cmd(cl->read_buff)) > 0)
+      receive_command(cl);
+      if ((check = rb_has_cmd(cl->read_buff)) > 0)
 	{
+	  memset(cl->cmd, '\0', MAXCMD_LEN);
 	  rb_read(cl->read_buff, (unsigned char*)cl->cmd, check);
-	  if (strcmp(cl->cmd, WELCOME) == 0)
-	    write(cl->sock, "GRAPHIC\n", 8);
-	  printf("-%s-\n", cl->cmd);
-	  }*/
-      /*check_command(cl);*/
-      free(cl->cmd);
+	  cl->cmd[strlen(cl->cmd)] = '\0';
+	  /* printf("%s\n", cl->cmd);*/
+	  check_command(cl);
+	  memset(cl->cmd, '\0', MAXCMD_LEN);
+     	}
     }
   if (FD_ISSET(cl->sock, &cl->wrfs) && cl->f_send == 1)
     {

@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 23:06:34 2010 adrien veau-greiner
-** Last update Tue Jun  8 18:05:14 2010 adrien veau-greiner
+** Last update Tue Jun  8 22:41:36 2010 adrien veau-greiner
 */
 
 #include <string.h>
@@ -17,8 +17,8 @@
 
 int		cmd_tna(char **params, __attribute__((unused))t_client *cl)
 {
-  printf("cmd_tna => ");
-  aff_tab(params);
+  /* printf("cmd_tna => ");
+     aff_tab(params);*/
   return (0);
 }
 
@@ -29,13 +29,14 @@ int		check_command(t_client *cl)
 
   i = 0;
   params = str_to_wordtab(cl->cmd, ' ');
+  /*aff_tab(params);*/
   while (cmd_tab[i].cmd_name != 0)
     {
       if (strcmp(params[0], cmd_tab[i].cmd_name) == 0)
 	return (cmd_tab[i].f(params, cl));
       i++;
     }
-  printf("command not found\n");
+  printf("\ncommand not found\n");
   free(params);
   return (0);
 }

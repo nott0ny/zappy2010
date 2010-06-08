@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 12:33:33 2010 adrien veau-greiner
-** Last update Tue Jun  8 18:59:02 2010 adrien veau-greiner
+** Last update Tue Jun  8 22:39:13 2010 adrien veau-greiner
 */
 
 #ifndef __CLIENT_H__
@@ -24,8 +24,7 @@
 /* ----- MACRO ----- */
 
 # define MAX_PORT	65535
-# define READ_B		512
-# define MAXCMD_LEN	512
+# define MAXCMD_LEN	256
 # define PROTO		"IP"
 # define NAME		"GRAPHIC\n"
 # define CLEAN_SCREEN	"\033[H\033[2J"
@@ -39,7 +38,7 @@ typedef struct		s_client {
   int			sock;
   socklen_t		addrlen;
   int                   f_send;
-  char                  *cmd;
+  char                  cmd[MAXCMD_LEN];
   char                  *send_buff;
   t_ringbuffer          *read_buff;
   fd_set                rdfs;
@@ -86,7 +85,7 @@ char	*nerror(char *from);
 int	get_entry(char **av, t_client *cl);
 
 /* init_cl.c */
-void    init_cl(t_client *cl);
+void    init_cl(t_client **cl);
 
 /* init_client.c */
 int    init_client(t_client *cl);
@@ -104,7 +103,7 @@ int	init_world(t_client *cl, t_graph *fx);
 void    my_select(t_client *cl);
 
 /* receive_command.c */
-char	*receive_command(t_client *cl);
+void	receive_command(t_client *cl);
 
 /* receive_map.c */
 int	receive_map(t_client *cl, t_graph *fx);

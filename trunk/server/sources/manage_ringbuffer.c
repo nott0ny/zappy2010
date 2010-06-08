@@ -93,7 +93,7 @@ int	rb_read(t_ringbuffer *rb, unsigned char * buf, int max)
       i = 0;
     }
   memcpy(buf, rb->buffer + i, max);
-  buf[max] = '\0';
+  buf[max - 1] = '\0';
   rb->rd_pointer = i + max;
   return (total);
 }

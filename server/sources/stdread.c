@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "server.h"
+#include "ringbuffer.h"
 #include "colors.h"
 #include "x.h"
 
@@ -37,6 +38,7 @@ void		stdread(t_env *e,int fd)
 	printf("%sI'm client %d\nmy team is %s%s\n", YELLOW,
 	       tmp->fd_associate, tmp->team_name, WHITE);
       printf("%sRECU CMD : %s%s\n", YELLOW, buf, WHITE);
+      
     }
   free(buf);
 }

@@ -5,59 +5,50 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Tue Jun  8 00:10:22 2010 amine mouafik
+** Last update Mon Jun  7 16:03:33 2010 amine mouafik
 */
 
-#include <sys/types.h>
-#include <sys/socket.h>
 #include <stdlib.h>
 #include <string.h>
 #include "server.h"
+#include "ringbuffer.h"
 #include "x.h"
 
-/* 
-** CHECK X strcpy
-*/
-
-static void	create_player_list(t_env *e, int fd, char *t_name, int x, int y)
+static void	create_player_list(t_env *e, int fd)
 {
   t_players	*player;
-
+  
   player = Xmalloc(sizeof(*player));
+  if (rb_init(&(player->wr_rb), BUF_SIZE) != 1)
+    _XW("rb_init");
+  if (rb_init(&(player->rd_rb), BUF_SIZE) != 1)
+    _XW("rb_init");
   player->fd_associate = fd;
-  player->team_name = Xmalloc(strlen(t_name) * sizeof(*t_name));
-  player->team_name = strcpy(player->team_name, t_name);
-  player->posx = x;
-  player->posy = y;
+  rb_write(player->wr_rb, strdup(MSG_CO), strlen(MSG_CO));
+  player->bag = Xmalloc(sizeof(player->bag));
   player->next = NULL;
   e->clients = player;
 }
 
-/*
-** CHECK X strdup
-*/
-
-static void	add_player_tolist(t_env *e, int fd, char *t_name, int x, int y)
+static void	add_player_tolist(t_env *e, int fd)
 {
-  t_players	*new_player;
-  t_players	*last_player;
+  t_players	*player;
 
-  last_player = e->clients;
-  while (last_player->next)
-    last_player = last_player->next;
-  new_player = Xmalloc(sizeof(*new_player));
-  new_player->fd_associate = fd;
-  new_player->team_name = (char *)strdup(t_name);
-  new_player->posx = x;
-  new_player->posy = y;
-  new_player->next = NULL;
-  last_player->next = new_player;
+  player = Xmalloc(sizeof(t_players));
+  rb_init(player->wr_rb, BUF_SIZE);
+  rb_init(player->rd_rb, BUF_SIZE);
+  player = Xmalloc(sizeof(*player));
+  player->fd_associate = fd;
+  rb_write(player->wr_rb, MSG_CO, strlen(MSG_CO));
+  player->bag = Xmalloc(sizeof(player->bag));
+  player->next = e->clients;
+  e->clients = player;
 }
 
-void	add_player(t_env *e, int fd, char *t_name, int x, int y)
+void	add_player(t_env *e, int fd)
 {
   if (e->clients == NULL)
-    create_player_list(e, fd, t_name, x, y);
+    create_player_list(e, fd);
   else
-    add_player_tolist(e, fd, t_name, x, y);
+    add_player_tolist(e, fd);
 }

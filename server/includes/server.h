@@ -12,6 +12,7 @@
 # define __SERVER_H__
 
 # define CLIENT_GRAPHIC	"GRAPHIC"
+# define MSG_CO		"BIENVENUE\n"
 
 # define DENSITY_HIGH	10
 # define DENSITY_LOW	30
@@ -85,6 +86,15 @@ typedef struct		s_bag {
   int			thystame;
 }			t_bag;
 
+typedef struct		s_ringbuffer
+{
+    char *buffer;
+    int wr_pointer;
+    int rd_pointer;
+    long magic;
+    int size;
+}			t_ringbuffer;
+
 typedef struct		s_players {
   int			fd_associate;
   char			*team_name;
@@ -92,15 +102,10 @@ typedef struct		s_players {
   t_bag			*bag;
   int			posx;
   int			posy;
+  t_ringbuffer	       	*wr_rb;
+  t_ringbuffer		*rd_rb;
   struct s_players	*next;
 }			t_players;
-
-typedef struct		s_clients {
-  int			cs;
-  int			id;
-  t_players		*players;
-  struct s_clients	*next;
-}			t_clients;
 
 typedef struct		s_env {
   t_params		*params;
@@ -109,7 +114,7 @@ typedef struct		s_env {
   t_players		*clients;
 }			t_env;
 
-void			add_player(t_env *e, int fd, char *t_name, int x, int y);
+void			add_player(t_env *e, int fd);
 int			check_params(t_params *params);
 int			init_connect_socket(t_network *network);
 void			get_params(char **av, t_params *server);
@@ -127,6 +132,7 @@ void			close_fd(t_network *network, int fd);
 
 void			new_connection(t_env *e, int fd_conn);
 void			stdread(t_env *e,int fd);
+void			stdwrite(t_env *e,int fd);
 int			wait_clients(t_env *e);
 
 /* fix */

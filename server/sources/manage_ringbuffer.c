@@ -18,7 +18,7 @@
 #include "ringbuffer.h"
 #include "x.h"
 
-int	calc_max(t_ringbuffer *rb)
+int	rb_has_cmd(t_ringbuffer *rb)
 {
   int	i;
   int	j;

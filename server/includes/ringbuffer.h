@@ -10,7 +10,7 @@ int	rb_write (t_ringbuffer *, unsigned char *, int);
 int	rb_free (t_ringbuffer *);
 int	rb_read (t_ringbuffer *, unsigned char *, int);
 
-int	calc_max(t_ringbuffer *);
+int	rb_has_cmd(t_ringbuffer *);
 int	rb_data_size (t_ringbuffer *);
 int	rb_clear (t_ringbuffer *);
 

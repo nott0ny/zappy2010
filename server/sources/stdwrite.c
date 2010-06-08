@@ -10,6 +10,7 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -21,8 +22,8 @@
 void		stdwrite(t_env *e, int fd)
 {
   t_players	*tmp;
-  int		cmd;
   char		send_cmd[256];
+  int		len;
 
   tmp = e->clients;
   while (tmp)
@@ -31,10 +32,10 @@ void		stdwrite(t_env *e, int fd)
 	break ;
       tmp = tmp->next;
     }
-  if ((cmd = calc_max(tmp->wr_rb)) > 0)
+  if ((len = rb_has_cmd(tmp->wr_rb)) > 0)
     {
-      rb_read(tmp->wr_rb, (unsigned char *)send_cmd, cmd);
-      write(fd, send_cmd, strlen(send_cmd));
+      rb_read(tmp->wr_rb, (unsigned char *)send_cmd, len);
+      X((void *)-1, (void *)write(fd, send_cmd, strlen(send_cmd)), "write");
     }
   e->network->fdt[fd]->type |= T_READ;
 }

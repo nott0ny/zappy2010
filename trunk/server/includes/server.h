@@ -91,7 +91,6 @@ typedef struct		s_ringbuffer
     char *buffer;
     int wr_pointer;
     int rd_pointer;
-    long magic;
     int size;
 }			t_ringbuffer;
 

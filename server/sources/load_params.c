@@ -27,7 +27,7 @@ static int	init_params(t_params *params)
   return (0);
 }
 
-static int		view_params(t_params *params)
+static int	view_params(t_params *params)
 {
   t_teams	*teams;
 

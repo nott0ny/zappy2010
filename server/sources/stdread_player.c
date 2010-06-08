@@ -18,12 +18,11 @@ t_players	*get_player_byfd(t_env *e, int fd)
   t_players	*player;
 
   player = e->clients;
-  while (player)
-    {
-      if (fd == player->fd_associate)
-	break;
-      player = player->next;
-    }
+  if (fd == player->fd_associate)
+    return (player);
+  while ((player = player->next))
+    if (fd == player->fd_associate)
+      break;
   return (player);
 }
 

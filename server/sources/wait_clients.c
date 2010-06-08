@@ -40,21 +40,19 @@ int	init_fds(t_env *e)
 
 int	wait_clients(t_env *e)
 {
-  int	nfds;
-  struct timeval timeout;
+  int  	nfds;
 
   while (42)
     {
-      timeout.tv_sec = 1;
-      timeout.tv_usec = 0;
+      e->network->timeout.tv_sec = 1;
+      e->network->timeout.tv_usec = 0;
       init_fds(e);
       nfds = (int)_X((void *)-1, 
 		     (void *)select(e->network->max_fd_used + 1, 
 				    &e->network->r, &e->network->w,
-				    0, &timeout), "select");
+				    0, &e->network->timeout), "select");
       if (nfds)
 	watch_fds(e);
-      /* Exec_stack */
     }
   return (0);
 }

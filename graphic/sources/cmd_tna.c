@@ -1,4 +1,6 @@
 
+#include <stdio.h>
+
 #include "client.h"
 
 int	cmd_tna(char **params, t_client *cl)

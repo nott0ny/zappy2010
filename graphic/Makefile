@@ -5,7 +5,7 @@
 ## Login   <veau-g_a@epitech.net>
 ## 
 ## Started on  Thu May 13 12:21:33 2010 adrien veau-greiner
-## Last update Wed Jun  9 12:41:53 2010 adrien veau-greiner
+## Last update Wed Jun  9 15:45:22 2010 adrien veau-greiner
 ##
 
 CC	=	gcc
@@ -32,6 +32,26 @@ SRC	=	main.c \
 		cmd_sgt.c \
 		cmd_msz.c \
 		cmd_tna.c \
+		cmd_pnw.c \
+		cmd_ppo.c \
+		cmd_plv.c \
+		cmd_pin.c \
+		cmd_pex.c \
+		cmd_pbc.c \
+		cmd_pic.c \
+		cmd_pie.c \
+		cmd_pfk.c \
+		cmd_pdr.c \
+		cmd_pgt.c \
+		cmd_pdi.c \
+		cmd_enw.c \
+		cmd_eht.c \
+		cmd_ebo.c \
+		cmd_edi.c \
+		cmd_seg.c \
+		cmd_smg.c \
+		cmd_suc.c \
+		cmd_sbp.c \
 		receive_command.c \
 		str_to_wordtab.c \
 		xfunctions.c \

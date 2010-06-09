@@ -5,7 +5,7 @@
 ** Login   <roux_a@epitech.net>
 ** 
 ** Started on  Thu Oct 22 15:48:18 2009 alban roux
-** Last update Tue Jun  8 23:44:11 2010 adrien veau-greiner
+** Last update Wed Jun  9 16:48:05 2010 adrien veau-greiner
 */
 
 #include <string.h>

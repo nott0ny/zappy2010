@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 12:33:33 2010 adrien veau-greiner
-** Last update Wed Jun  9 12:32:05 2010 adrien veau-greiner
+** Last update Wed Jun  9 20:10:18 2010 adrien veau-greiner
 */
 
 #ifndef __CLIENT_H__
@@ -29,8 +29,30 @@
 # define CLEAN_SCREEN	"\033[H\033[2J"
 # define BANNER		"____________ ZappyFX Tools ____________"
 
+# define ACT_BRD	0
+# define ACT_TAK	1
+# define ACT_INC	2
+# define ACT_EXP	3
+# define ACT_LVL	4
+# define ACT_DIE	5
+# define ACT_FRK	6 
 
 /* --- Structure --- */
+
+typedef struct		s_player
+{
+  int			id;
+  int			o;
+  int			action;
+  int			status;
+  int			level;
+  int			pos_x;
+  int			pos_y;
+  int			*ress;
+  char			*team;
+  char			*message;
+  struct s_player	*next;
+}			t_player;
 
 typedef struct		s_client {
   int			port;
@@ -41,6 +63,7 @@ typedef struct		s_client {
   char			*team_name2;
   char                  cmd[MAXCMD_LEN];
   char                  *send_buff;
+  t_player		*plist;
   t_ringbuffer          *read_buff;
   fd_set                rdfs;
   fd_set                wrfs;
@@ -55,6 +78,7 @@ typedef struct		s_client {
 
 /* aff.c */
 void	aff_start(void);
+void	aff_player(t_client *cl, int id);
 int	aff_help(void);
 
 /* check_command.c */
@@ -70,11 +94,31 @@ int	client_handler(t_client *cl);
 int	connect_server(t_client *cl);
 
 /* cmd_*.c */
+int     cmd_init(char **params, t_client *cl);
 int	cmd_bct(char **param, t_client *cl);
 int	cmd_tna(char **param, t_client *cl);
 int	cmd_msz(char **param, t_client *cl);
 int	cmd_sgt(char **param, t_client *cl);
-int     cmd_init(char **params, t_client *cl);
+int	cmd_pnw(char **param, t_client *cl);
+int	cmd_ppo(char **param, t_client *cl);
+int	cmd_plv(char **param, t_client *cl);
+int	cmd_pin(char **param, t_client *cl);
+int	cmd_pex(char **param, t_client *cl);
+int	cmd_pbc(char **param, t_client *cl);
+int	cmd_pic(char **param, t_client *cl);
+int	cmd_pie(char **param, t_client *cl);
+int	cmd_pfk(char **param, t_client *cl);
+int	cmd_pdr(char **param, t_client *cl);
+int	cmd_pgt(char **param, t_client *cl);
+int	cmd_pdi(char **param, t_client *cl);
+int	cmd_enw(char **param, t_client *cl);
+int	cmd_eht(char **param, t_client *cl);
+int	cmd_ebo(char **param, t_client *cl);
+int	cmd_edi(char **param, t_client *cl);
+int	cmd_seg(char **param, t_client *cl);
+int	cmd_smg(char **param, t_client *cl);
+int	cmd_suc(char **param, t_client *cl);
+int	cmd_sbp(char **param, t_client *cl);
 
 /* disconnect.c */
 int	disconnect(t_client *cl);

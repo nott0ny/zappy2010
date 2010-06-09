@@ -17,10 +17,10 @@ void check_fd(t_client *cl)
       receive_command(cl);
       while ((check = rb_has_cmd(cl->read_buff)) > 0)
 	{
-	  memset(cl->cmd, '\0', MAXCMD_LEN);
+	  memset(cl->cmd, 0, MAXCMD_LEN);
 	  rb_read(cl->read_buff, (unsigned char*)cl->cmd, check);
 	  check_command(cl);
-     	}
+	}
     }
   if (FD_ISSET(cl->sock, &cl->wrfs) && cl->f_send == 1)
     {

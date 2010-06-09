@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 23:06:34 2010 adrien veau-greiner
-** Last update Wed Jun  9 12:41:32 2010 adrien veau-greiner
+** Last update Wed Jun  9 16:41:36 2010 adrien veau-greiner
 */
 
 #include <string.h>
@@ -25,10 +25,15 @@ int		check_command(t_client *cl)
   while (cmd_tab[i].cmd_name != 0)
     {
       if (strcmp(params[0], cmd_tab[i].cmd_name) == 0)
-	return (cmd_tab[i].f(params, cl));
+	{
+	  i = cmd_tab[i].f(params, cl);
+	  free(params);
+	  return (i);
+	}
       i++;
     }
-  printf("command not found\n");
+  printf("=> command not found\n");
   free(params);
+  exit(0);
   return (0);
 }

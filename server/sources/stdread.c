@@ -52,7 +52,7 @@ static int	match_player_cmd(t_env *e, t_players *player, char *cmd, int i)
       if (id_cmd == PREND || id_cmd == POSE || id_cmd == INCANTATION)
 	if (check_player_cmd(e, player, cmd) == -1)
 	  return (1);
-      add_cmd_onstack(e, player->fd_associate, gl_cmds[i].id, gl_cmds[i].duration);
+      add_cmd_onstack(e, player->fd_associate, cmd, gl_cmds[i].duration);
       printf("%s[%d] Received : '%s'.%s\n",
 	     CYAN, player->fd_associate, cmd, WHITE);
       return (1);

@@ -11,10 +11,11 @@
 #include <sys/time.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include "server.h"
 #include "x.h"
 
-void		display_stack(t_stack *execution)
+static void	display_stack(t_stack *execution)
 {
   t_stack	*stack;
   int		i;
@@ -32,23 +33,40 @@ void		display_stack(t_stack *execution)
   printf("--- Stack End ---\n");
 }
 
-void			add_cmd_onstack(t_env *e, int fd_player, int id_cmd)
+static void	push_onstack(t_env *e, t_stack *newcmd)
 {
-  struct timeval	timestamp;
-  t_stack		*newcmd;
-  t_stack		*current;
+  t_stack     	*current;
 
   current = e->execution;
+  if (e->execution == NULL)
+    {
+      newcmd->next = NULL;
+      e->execution = newcmd;
+    }
+  else
+    {
+      while (current->next && (int)current->timestamp.tv_sec < (int)newcmd->timestamp.tv_sec)
+	current = current->next;
+      newcmd->next = current->next;
+      current->next = newcmd;
+    }
+}
+
+void			add_cmd_onstack(t_env *e, int fd_player, int id_cmd, int duration)
+{
+  float			durationtime;
+  struct timeval	timestamp;
+  t_stack		*newcmd;
+
   gettimeofday(&timestamp, NULL);
   newcmd = Xmalloc(sizeof(*newcmd));
+  durationtime = (float)duration / (float)e->params->time;
+  durationtime = ceil(durationtime);
+  timestamp.tv_sec += durationtime;
   newcmd->timestamp = timestamp;
   newcmd->id_cmd = id_cmd;
   newcmd->fd_player = fd_player;
-  if (e->execution == NULL)
-    newcmd->next = NULL;
-  else
-    newcmd->next = current;
-  e->execution = newcmd;
+  push_onstack(e, newcmd);
   display_stack(e->execution);
 }
 

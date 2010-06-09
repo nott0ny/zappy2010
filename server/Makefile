@@ -33,10 +33,11 @@ SRCS	=	sources/main.c			\
 OBJS	=	$(SRCS:.c=.o)
 CFLAGS	=	-W -Wall -ansi -pedantic -o $@ $(IFLAGS)
 IFLAGS	=	-I./includes
+LFLAGS	=	-lm
 RM	=	rm -rf
 
 $(NAME)	: 	$(OBJS)
-		$(CC) -o $(NAME) $(OBJS)
+		$(CC) -o $(NAME) $(OBJS) $(LFLAGS)
 
 all	: 	$(NAME)
 

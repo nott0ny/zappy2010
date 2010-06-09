@@ -33,6 +33,15 @@ t_cmds	gl_cmds[] = {
   {-1, 0, 0, 0}
 };
 
+static char	*clean_player_cmd(char *cmd)
+{
+  int		len;
+
+  len = strlen(cmd);
+  cmd[len - 2] = '\0';
+  return (cmd);
+}
+
 static int	match_player_cmd(t_env *e, t_players *player, char *cmd, int i)
 {
   int		id_cmd;
@@ -43,7 +52,7 @@ static int	match_player_cmd(t_env *e, t_players *player, char *cmd, int i)
       if (id_cmd == PREND || id_cmd == POSE || id_cmd == INCANTATION)
 	if (check_player_cmd(e, player, cmd) == -1)
 	  return (1);
-      add_cmd_onstack(e, player->fd_associate, gl_cmds[i].id);
+      add_cmd_onstack(e, player->fd_associate, gl_cmds[i].id, gl_cmds[i].duration);
       printf("%s[%d] Received : '%s'.%s\n",
 	     CYAN, player->fd_associate, cmd, WHITE);
       return (1);
@@ -59,10 +68,11 @@ static void	manage_player_cmd(t_env *e, t_players *player, int cmdlen)
   i = -1;
   cmd = Xmalloc((cmdlen + 1) * sizeof(char));
   rb_read(player->rd_rb, (unsigned char *)cmd, cmdlen);
+  cmd = clean_player_cmd(cmd);
   if (player->team_name == NULL)
     player->team_name = (char *)strdup(cmd);
-  while (gl_cmds[i].id != -1)
-    if (match_player_cmd(e, player, cmd, i++))
+  while (gl_cmds[++i].id != -1)
+    if (match_player_cmd(e, player, cmd, i))
       return ;
   printf("%s[%d] Received : unknown command.%s\n",
 	 RED, player->fd_associate, WHITE);

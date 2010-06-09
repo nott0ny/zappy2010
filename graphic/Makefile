@@ -5,7 +5,7 @@
 ## Login   <veau-g_a@epitech.net>
 ## 
 ## Started on  Thu May 13 12:21:33 2010 adrien veau-greiner
-## Last update Tue Jun  8 18:34:30 2010 adrien veau-greiner
+## Last update Wed Jun  9 12:41:53 2010 adrien veau-greiner
 ##
 
 CC	=	gcc
@@ -31,6 +31,7 @@ SRC	=	main.c \
 		cmd_bct.c \
 		cmd_sgt.c \
 		cmd_msz.c \
+		cmd_tna.c \
 		receive_command.c \
 		str_to_wordtab.c \
 		xfunctions.c \

@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 12:33:33 2010 adrien veau-greiner
-** Last update Wed Jun  9 01:12:28 2010 adrien veau-greiner
+** Last update Wed Jun  9 12:32:05 2010 adrien veau-greiner
 */
 
 #ifndef __CLIENT_H__
@@ -19,7 +19,6 @@
 
 # include "graphics.h"
 # include "ringbuffer.h"
-# include "player.h"
 
 /* ----- MACRO ----- */
 
@@ -36,15 +35,17 @@
 typedef struct		s_client {
   int			port;
   int			sock;
-  socklen_t		addrlen;
   int                   f_send;
+  int		        time_u;
+  char			*team_name1;
+  char			*team_name2;
   char                  cmd[MAXCMD_LEN];
   char                  *send_buff;
   t_ringbuffer          *read_buff;
   fd_set                rdfs;
   fd_set                wrfs;
   t_graph               *fx;                
-  int		        time_u;
+  socklen_t		addrlen;
   struct sockaddr_in	sin;
   struct protoent	*proto;
   struct hostent	*host;

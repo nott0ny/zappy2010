@@ -33,7 +33,7 @@ static void	display_stack(t_stack *execution)
   printf("--- Stack End ---\n");
 }
 
-static void	push_onstack(t_env *e, t_stack *newcmd)
+static void	push_sorted_onstack(t_env *e, t_stack *newcmd)
 {
   t_stack     	*current;
 
@@ -45,8 +45,26 @@ static void	push_onstack(t_env *e, t_stack *newcmd)
     }
   else
     {
-      while (current->next && (int)current->timestamp.tv_sec < (int)newcmd->timestamp.tv_sec)
-	current = current->next;
+      if (current->next == NULL)
+	{
+	  if ((int)current->timestamp.tv_sec <= (int)newcmd->timestamp.tv_sec)
+	    {
+	      current->next = newcmd;
+	      newcmd->next = NULL;
+	    }
+	  else
+	    {
+	      newcmd->next = current;
+	      e->execution = newcmd;
+	    }
+	  return;
+	}
+      while (current->next && (int)current->timestamp.tv_sec <= (int)newcmd->timestamp.tv_sec)
+	{
+	  printf ("%d\n", (int)current->timestamp.tv_sec - (int)newcmd->timestamp.tv_sec);
+	  current = current->next;
+	}
+      printf ("%d\n", (int)current->timestamp.tv_sec - (int)newcmd->timestamp.tv_sec);
       newcmd->next = current->next;
       current->next = newcmd;
     }
@@ -66,7 +84,7 @@ void			add_cmd_onstack(t_env *e, int fd_player, int id_cmd, int duration)
   newcmd->timestamp = timestamp;
   newcmd->id_cmd = id_cmd;
   newcmd->fd_player = fd_player;
-  push_onstack(e, newcmd);
+  push_sorted_onstack(e, newcmd);
   display_stack(e->execution);
 }
 

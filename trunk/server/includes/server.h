@@ -174,7 +174,6 @@ int			check_player_cmd(t_env *e, t_players *player, char *cmd);
 t_players		*get_player_byfd(t_env *e, int fd);
 int			get_player_message(char **buf, int fd);
 
-void			display_stack(t_stack *execution);
-void			add_cmd_onstack(t_env *e, int fd_player, int id_cmd);
+void			add_cmd_onstack(t_env *e, int fd_player, int id_cmd, int duration);
 
 #endif

@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 23:22:28 2010 adrien veau-greiner
-** Last update Wed Jun  9 01:12:27 2010 adrien veau-greiner
+** Last update Wed Jun  9 12:14:41 2010 adrien veau-greiner
 */
 
 #ifndef __GRAPHICS_H__
@@ -19,18 +19,24 @@
 
 typedef struct	s_case
 {
-  t_player	*nb_player;
-  t_rsrc	*resource;
+  int		nb_food;
+  int		nb_linemate;
+  int		nb_deraunere;
+  int		nb_sibur;
+  int		nb_mandiane;
+  int		nb_phiras;
+  int		nb_thystane;
+  int		nb_player;
+  char		*team_name;
   int		status;
-  char		*test;
 }		t_case;
 
 typedef struct	s_graphics
 {
   t_case	***map;
   int		size;
-  int		x;
-  int		y;
+  int		size_x;
+  int		size_y;
 }		t_graph;
 
 #endif

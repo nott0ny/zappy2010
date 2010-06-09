@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 15:00:05 2010 adrien veau-greiner
-** Last update Thu May 13 17:02:06 2010 adrien veau-greiner
+** Last update Wed Jun  9 14:14:13 2010 adrien veau-greiner
 */
 
 #include <stdlib.h>
@@ -33,5 +33,6 @@ int	connect_server(t_client *cl)
   printf("Try connecting... %s:%d\n", inet_ntoa(cl->sin.sin_addr), cl->port);
   if (connect(cl->sock, (struct sockaddr*)&cl->sin, cl->addrlen) == -1)
     return (error("connect"));
+  printf("Client-fx connect successfullly\n\n");
   return (0);
 }

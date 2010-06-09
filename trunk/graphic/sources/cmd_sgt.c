@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Fri May 14 18:58:39 2010 adrien veau-greiner
-** Last update Wed Jun  9 01:13:34 2010 adrien veau-greiner
+** Last update Wed Jun  9 14:12:54 2010 adrien veau-greiner
 */
 
 #include <stdlib.h>
@@ -19,6 +19,6 @@ int	cmd_sgt(char **params, t_client *cl)
   if (tablen(params) != 2)
     return (0);
   cl->time_u = atoi(params[1]);
-  printf("time %d\n", cl->time_u);
+  printf("time unity : %d\n", cl->time_u);
   return (0);
 }

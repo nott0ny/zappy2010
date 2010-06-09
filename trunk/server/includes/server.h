@@ -17,6 +17,14 @@
 # define DENSITY_HIGH	10
 # define DENSITY_LOW	30
 
+# define UP		1
+# define LEFT		2
+# define DOWN		3
+# define RIGHT		4
+
+# define OK		"ok\n"
+# define KO		"ko\n"
+
 #define MAX(a,b)	( (a>b)?(a):(b) )
 #define READ_SIZE	2048
 #define STD_BACKLOG	5
@@ -39,6 +47,7 @@ typedef struct		s_params {
 }			t_params;
 
 typedef struct		s_map {
+  int			nb_player;
   int			food;
   int			linemate;
   int			deraumere;
@@ -102,6 +111,7 @@ typedef struct		s_players {
   t_bag			*bag;
   int			posx;
   int			posy;
+  short			direction;
   t_ringbuffer	       	*wr_rb;
   t_ringbuffer		*rd_rb;
   struct s_players	*next;
@@ -120,7 +130,7 @@ typedef struct		s_cmds {
 
 typedef struct		s_stack {
   struct timeval     	timestamp;
-  int			id_cmd;
+  char			*cmd;
   int			fd_player;
   struct s_stack	*next;
 }			t_stack;

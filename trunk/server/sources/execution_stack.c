@@ -1,9 +1,9 @@
 /*
 ** execution_stack.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
-** 
+**
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
-** 
+**
 ** Started on  Fri May  7 10:58:37 2010 amine mouafik
 ** Last update Thu Jun 10 19:45:00 2010 amine mouafik
 */

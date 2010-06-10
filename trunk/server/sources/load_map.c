@@ -1,9 +1,9 @@
 /*
 ** load_map.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources/
-** 
+**
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
-** 
+**
 ** Started on  Wed May  5 18:34:02 2010 amine mouafik
 ** Last update Thu Jun 10 19:33:20 2010 amine mouafik
 */
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include "server.h"
 #include "colors.h"
+#include "map.h"
 #include "x.h"
 
 static int	generate()

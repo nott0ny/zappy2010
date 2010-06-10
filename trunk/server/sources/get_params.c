@@ -25,7 +25,7 @@ static void	get_teams_name(char **av, int *i, t_params *server)
 	 && strcmp(av[(*i)], "-n") && strcmp(av[(*i)], "-n")
 	 && strcmp(av[(*i)], "-c") && strcmp(av[(*i)], "-t"))
     {
-      elem = Xmalloc(sizeof(elem));
+      elem = Xmalloc(sizeof(t_teams));
       elem->name = X(NULL, (void *)strdup(av[(*i)]), "strdup");
       elem->next = server->teams;
       server->teams = elem;

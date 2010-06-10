@@ -1,5 +1,5 @@
 /*
-** add_player.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server
+** add_player.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
 ** 
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>

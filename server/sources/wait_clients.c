@@ -15,9 +15,9 @@
 #include "server.h"
 #include "x.h"
 
-int	init_fds(t_env *e)
+static int	init_fds(t_env *e)
 {
-  int	cur;
+  int		cur;
 
   cur = 0;
   FD_ZERO(&e->network->r);

@@ -23,7 +23,11 @@ SRCS	=	sources/main.c			\
 		sources/new_connection.c	\
 		sources/add_player.c		\
 		sources/stdread.c		\
-		sources/stdread_player.c	\
+		sources/get_player_infos.c	\
+		sources/check_player_team.c	\
+		sources/check_player_cmd.c	\
+		sources/check_object_arg.c	\
+		sources/check_incantation.c	\
 		sources/stdwrite.c		\
 		sources/init_ringbuffer.c	\
 		sources/manage_ringbuffer.c	\
@@ -31,7 +35,7 @@ SRCS	=	sources/main.c			\
 		sources/tmp_actions.c		\
 		sources/x.c
 OBJS	=	$(SRCS:.c=.o)
-CFLAGS	=	-W -Wall -ansi -pedantic -o $@ $(IFLAGS)
+CFLAGS	=	-W -Wall -ansi -pedantic -o $@ $(IFLAGS) -g3
 IFLAGS	=	-I./includes
 LFLAGS	=	-lm
 RM	=	rm -rf

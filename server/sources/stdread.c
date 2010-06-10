@@ -19,17 +19,17 @@
 #include "x.h"
 
 t_cmds	gl_cmds[] = {
-  {0, "avance\n", go_forward, 7},
-  {1, "droite\n", rotate_right, 7},
-  {2, "gauche\n" , rotate_left, 7},
-  {3, "voir\n" , explore, 7},
-  {4, "inventaire\n" , list_inventory, 1},
+  {0, "avance", go_forward, 7},
+  {1, "droite", rotate_right, 7},
+  {2, "gauche" , rotate_left, 7},
+  {3, "voir" , explore, 7},
+  {4, "inventaire" , list_inventory, 1},
   {5, "prend" , take_object, 7},
   {6, "pose" , drop_object, 7},
-  {7, "expulse\n" , expulse, 7},
-  {8, "broatcast\n" , broadcast, 7},
-  {9, "incantation\n" , incantation, 300},
-  {10, "fork\n" , player_fork, 42},
+  {7, "expulse" , expulse, 7},
+  {8, "broatcast" , broadcast, 7},
+  {9, "incantation" , incantation, 300},
+  {10, "fork" , player_fork, 42},
   {-1, 0, 0, 0}
 };
 
@@ -46,15 +46,12 @@ static int	match_player_cmd(t_env *e, t_players *player, char *cmd, int i)
 {
   int		id_cmd;
 
-  if (strncmp(cmd, gl_cmds[i].cmd, strlen(gl_cmds[i].cmd) - 1) == 0)
+  if (strncmp(cmd, gl_cmds[i].cmd, strlen(gl_cmds[i].cmd)) == 0)
     {
       id_cmd = gl_cmds[i].id;
-      if (id_cmd == PREND || id_cmd == POSE || id_cmd == INCANTATION)
-	if (check_player_cmd(e, player, cmd) == -1)
-	  return (1);
+      if (check_player_cmd(e, player, cmd, strlen(gl_cmds[i].cmd), id_cmd) == -1)
+	return (0);
       add_cmd_onstack(e, player->fd_associate, cmd, gl_cmds[i].duration);
-      printf("%s[%d] Received : '%s'.%s\n",
-	     CYAN, player->fd_associate, cmd, WHITE);
       return (1);
     }
   return (0);
@@ -69,14 +66,14 @@ static void	manage_player_cmd(t_env *e, t_players *player, int cmdlen)
   cmd = Xmalloc((cmdlen + 1) * sizeof(char));
   rb_read(player->rd_rb, (unsigned char *)cmd, cmdlen);
   cmd = clean_player_cmd(cmd);
-  if (player->team_name == NULL)
-    player->team_name = (char *)strdup(cmd);
-  while (gl_cmds[++i].id != -1)
-    if (match_player_cmd(e, player, cmd, i))
+  if (!player->team_name)
+    if (check_player_team(e, player, cmd))
       return ;
-  printf("%s[%d] Received : unknown command.%s\n",
+  while (gl_cmds[++i].id != -1)
+    if (match_player_cmd(e, player, cmd, i) != 0)
+      return ;
+  printf("%s[%d] Received unknown command.%s\n",
 	 RED, player->fd_associate, WHITE);
-  return ;
 }
 
 void		stdread(t_env *e,int fd)

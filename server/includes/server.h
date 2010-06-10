@@ -13,6 +13,8 @@
 
 # define CLIENT_GRAPHIC	"GRAPHIC"
 # define MSG_CO		"BIENVENUE\n"
+# define OK		"ok\n"
+# define KO		"ko\n"
 
 # define DENSITY_HIGH	10
 # define DENSITY_LOW	30
@@ -21,9 +23,6 @@
 # define LEFT		2
 # define DOWN		3
 # define RIGHT		4
-
-# define OK		"ok\n"
-# define KO		"ko\n"
 
 #define MAX(a,b)	( (a>b)?(a):(b) )
 #define READ_SIZE	2048
@@ -107,6 +106,7 @@ typedef struct		s_ringbuffer
 typedef struct		s_players {
   int			fd_associate;
   char			*team_name;
+  int			level;
   int			life;
   t_bag			*bag;
   int			posx;
@@ -124,7 +124,7 @@ typedef struct		s_cmds {
   int			duration;
 }			t_cmds;
 
-# define PREND	        5
+# define PRENDRE	5
 # define POSE		6
 # define INCANTATION	9
 
@@ -143,47 +143,41 @@ typedef struct		s_env {
   t_stack		*execution;
 }			t_env;
 
-void	go_forward(t_env *e, t_players *player);
-void	rotate_right(t_env *e, t_players *player);
-void	rotate_left(t_env *e, t_players *player);
-void	explore(t_env *e, t_players *player);
-void	list_inventory(t_env *e, t_players *player);
-void	take_object(t_env *e, t_players *player);
-void	drop_object(t_env *e, t_players *player);
-void	expulse(t_env *e, t_players *player);
-void	broadcast(t_env *e, t_players *player);
-void	incantation(t_env *e, t_players *player);
-void	player_fork(t_env *e, t_players *player);
-
-void			add_player(t_env *e, int fd);
-int			check_params(t_params *params);
-int			init_connect_socket(t_network *network);
-void			get_params(char **av, t_params *server);
-t_map			**load_map(t_params *params);
-t_network		*load_network(t_params *params);
-t_params		*load_params(char **argv);
-int			main(int argc, char **argv);
-
-/* fix */
-void			search_max_fd(t_network *e);
-void			alloc_fd(t_network *network, int fd);
-void			alloc_fdt(t_network *network);
-void			set_max_fd(t_network *network, int fd);
-void			close_fd(t_network *network, int fd);
-
-void			new_connection(t_env *e, int fd_conn);
-void			stdread(t_env *e,int fd);
-void			stdwrite(t_env *e,int fd);
-int			wait_clients(t_env *e);
-
-/* fix */
-int			init_fds(t_env *e);
-void			watch_fds(t_env *e);
-
-int			check_player_cmd(t_env *e, t_players *player, char *cmd);
-t_players		*get_player_byfd(t_env *e, int fd);
-int			get_player_message(char **buf, int fd);
-
-void			add_cmd_onstack(t_env *e, int fd_player, int id_cmd, int duration);
+void		go_forward(t_env *e, t_players *player);
+void		rotate_right(t_env *e, t_players *player);
+void		rotate_left(t_env *e, t_players *player);
+void		explore(t_env *e, t_players *player);
+void		list_inventory(t_env *e, t_players *player);
+void		take_object(t_env *e, t_players *player);
+void		drop_object(t_env *e, t_players *player);
+void		expulse(t_env *e, t_players *player);
+void		broadcast(t_env *e, t_players *player);
+void		incantation(t_env *e, t_players *player);
+void		player_fork(t_env *e, t_players *player);
+void	       	add_player(t_env *e, int fd);
+int	       	check_params(t_params *params);
+int	       	init_connect_socket(t_network *network);
+void	       	get_params(char **av, t_params *server);
+t_map	       	**load_map(t_params *params);
+t_network      	*load_network(t_params *params);
+t_params       	*load_params(char **argv);
+int	       	main(int argc, char **argv);
+void	       	search_max_fd(t_network *e);
+void	       	alloc_fd(t_network *network, int fd);
+void	       	alloc_fdt(t_network *network);
+void	       	set_max_fd(t_network *network, int fd);
+void	       	close_fd(t_network *network, int fd);
+void	       	new_connection(t_env *e, int fd_conn);
+void	       	stdread(t_env *e,int fd);
+void	       	stdwrite(t_env *e,int fd);
+int	       	wait_clients(t_env *e);
+void	       	watch_fds(t_env *e);
+int	       	check_player_cmd(t_env *e, t_players *player, char *cmd, int len, int id);
+t_players      	*get_player_byfd(t_env *e, int fd);
+int	       	get_player_message(char **buf, int fd);
+void	       	add_cmd_onstack(t_env *e, int fd_player, char *cmd, int duration);
+int	       	check_player_team(t_env *e, t_players *player, char *cmd);
+int		check_object_arg(char *cmd);
+int		check_incantation(t_env *e, t_players *player);
 
 #endif

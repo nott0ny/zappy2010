@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 12:33:33 2010 adrien veau-greiner
-** Last update Thu Jun 10 12:17:52 2010 adrien veau-greiner
+** Last update Thu Jun 10 16:01:50 2010 adrien veau-greiner
 */
 
 #ifndef __CLIENT_H__
@@ -37,7 +37,9 @@
 # define ACT_LVL	4
 # define ACT_DIE	5
 # define ACT_FRK	6
-# define ACT_SINC	7 
+# define ACT_THR        7
+
+# define END_GAME       42
 
 /* --- Structure --- */
 
@@ -81,6 +83,7 @@ typedef struct		s_client {
 /* aff.c */
 void	aff_start(void);
 void	aff_player(t_client *cl, int id);
+void aff_case(int x, int y, t_client *cl);
 int	aff_help(void);
 
 /* check_command.c */
@@ -171,6 +174,11 @@ int	receive_start_conf(t_client *cl, t_graph *fx);
 
 /* receive_time_unitu.c */
 int	receive_time_unity(t_client *cl, t_graph *fx);
+
+/* set_players_infos.c */
+void set_player_action(int p_id, int action, t_client *cl);
+void set_player_position(int p_id, int x, int y, int o, t_client *cl);
+void set_player_level(int p_id, int level, t_client *cl);
 
 /* start_client.c */
 int	start_client(t_client *cl);

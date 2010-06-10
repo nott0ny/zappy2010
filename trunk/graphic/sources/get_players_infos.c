@@ -17,20 +17,6 @@ int get_action_by_id(int p_id, t_client *cl)
   return (-1);
 }
 
-int   get_spell_by_id(int x, int y, t_client *cl)
-{
-  int i;
-
-  i = 0;
-  while (cl->fx->map[x][y]->players_id[i])
-    {
-      if (get_action_by_id(cl->fx->map[x][y]->players_id[i], cl) == ACT_SINC)
-	return (cl->fx->map[x][y]->players_id[i]);
-      i++;
-    }
-  return (-1);
-}
-
 int  getpos_by_id(int p_id, int opt, t_client *cl)
 {
   t_player *temp;

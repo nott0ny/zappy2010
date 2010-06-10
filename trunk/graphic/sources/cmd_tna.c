@@ -17,7 +17,10 @@ int	cmd_tna(char **params, t_client *cl)
     }
   else
     {
-      cl->team_name2 = params[1];
+      if (strcmp(cl->team_name1, params[1]) != 0)
+	cl->team_name2 = params[1];
+      else
+	return (-1);
       printf("team2: %s\n", cl->team_name2);
     }
   return (0);

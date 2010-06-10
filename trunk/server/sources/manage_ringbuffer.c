@@ -14,9 +14,10 @@
 #include <sys/stat.h>
 #include <stdio.h>
 #include <errno.h>
+
 #include "server.h"
 #include "ringbuffer.h"
-#include "x.h"
+#include "utils.h"
 
 int	rb_has_cmd(t_ringbuffer *rb)
 {

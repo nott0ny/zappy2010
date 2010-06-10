@@ -14,9 +14,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
 #include "server.h"
-#include "colors.h"
-#include "x.h"
+#include "utils.h"
 
 void			new_connection(t_env *e, int fd_conn)
 {

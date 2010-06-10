@@ -12,9 +12,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+
 #include "server.h"
-#include "colors.h"
-#include "x.h"
+#include "utils.h"
 
 static void	push_cmd_onstack(t_env *e, t_stack *newcmd)
 {

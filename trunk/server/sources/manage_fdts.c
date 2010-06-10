@@ -15,24 +15,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
 #include "server.h"
-#include "x.h"
+#include "utils.h"
 
 void		search_max_fd(t_network *e)
 {
   struct rlimit	rlp;
 
   X((void *)-1, (void *)getrlimit(RLIMIT_NOFILE,&rlp), "getrlimit");
-  if (e->op_flags & OP_U)
-    {
-      rlp.rlim_cur = rlp.rlim_max;
-      X((void *)-1, (void *)setrlimit(RLIMIT_NOFILE,(struct rlimit *)&rlp),
-	"setrlimit");
-    }
+  rlp.rlim_cur = rlp.rlim_max;
+  X((void *)-1, (void *)setrlimit(RLIMIT_NOFILE,(struct rlimit *)&rlp),
+    "setrlimit");
   X((void *)-1, (void *)getrlimit(RLIMIT_NOFILE, &rlp), "getrlimit");
   e->max_fd = rlp.rlim_cur;
-  if (e->op_flags & OP_V)
-    fprintf(stderr,"[verb: max fd = %d]\n",(int)rlp.rlim_cur);
 }
 
 void	alloc_fd(t_network *network, int fd)

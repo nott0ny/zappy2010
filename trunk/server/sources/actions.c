@@ -9,6 +9,7 @@
 */
 
 #include <string.h>
+
 #include "server.h"
 
 void	go_forward(t_env *e, t_players *player)

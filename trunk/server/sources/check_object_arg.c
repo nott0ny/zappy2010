@@ -10,6 +10,7 @@
 
 #include <string.h>
 #include <stdio.h>
+
 #include "server.h"
 
 static char	*cmd_object_retrieve(char *cmd)

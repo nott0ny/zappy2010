@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Mon Jun  7 16:03:33 2010 amine mouafik
+** Last update Thu Jun 10 19:30:00 2010 amine mouafik
 */
 
 #include <stdlib.h>
@@ -17,7 +17,7 @@
 static void	create_player_list(t_env *e, int fd)
 {
   t_players	*player;
-  
+
   player = Xmalloc(sizeof(*player));
   rb_init(&(player->wr_rb), BUF_SIZE);
   rb_init(&(player->rd_rb), BUF_SIZE);

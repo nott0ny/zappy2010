@@ -1,11 +1,11 @@
 /*
-** get_params.c for  in /u/all/roux_a/cu/rendu/c/zappy/zappy2010/serveur/sources
+** get_params.c for  in /u/all/roux_a/cu/rendu/c/zappy/zappy2010/server/sources
 ** 
 ** Made by alban roux
 ** Login   <roux_a@epitech.net>
 ** 
 ** Started on  Tue May  4 22:17:56 2010 alban roux
-** Last update Mon Jun  7 16:03:33 2010 amine mouafik
+** Last update Thu Jun 10 19:35:05 2010 amine mouafik
 */
 
 #include <sys/types.h>

@@ -1,11 +1,11 @@
 /*
-** manage_fdts.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server
+** manage_fdts.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
 ** 
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Mon Jun  7 14:48:48 2010 amine mouafik
-** Last update Mon Jun  7 16:33:07 2010 alban roux
+** Last update Thu Jun 10 19:33:06 2010 amine mouafik
 */
 
 #include <sys/types.h>

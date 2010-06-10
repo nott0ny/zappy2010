@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Fri May 14 19:32:42 2010 adrien veau-greiner
-** Last update Wed Jun  9 19:46:21 2010 adrien veau-greiner
+** Last update Thu Jun 10 13:02:11 2010 adrien veau-greiner
 */
 
 #include <string.h>
@@ -14,30 +14,32 @@
 
 #include "client.h"
 
-int		*get_ressource(char **params, int index)
+char		*get_ressource(char **params, int index)
 {
   int		i;
   int		j;
-  int		*mcase;
+  char		*mcase;
 
   i = 0;
   j = index;
-  mcase = xmalloc(sizeof(int*) * 7);
+  mcase = xmalloc(sizeof(char*) * 7);
   while (params[j])
-    mcase[i] = atoi(params[j++]);
+    mcase[i++] = params[j++][0];
+  mcase[i] = '\0';
   return (mcase); 
 }
 
 int		cmd_bct(char **params, t_client *cl)
 {
-  int pos_x;
-  int pos_y;
+  int x;
+  int y;
 
+  aff_tab(params);
   if (tablen(params) != 10)
     return (0);
-  pos_x = atoi(params[1]);
-  pos_y = atoi(params[2]);
-  cl->fx->map[pos_x][pos_y] = xmalloc(sizeof(t_case)); 
-  cl->fx->map[pos_x][pos_y]->ress = get_ressource(params, 3); 
+  x = atoi(params[1]);
+  y = atoi(params[2]);
+  cl->fx->map[x][y]->ress = get_ressource(params, 3);
+  /* aff_case(x, y, cl);*/
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 12:33:33 2010 adrien veau-greiner
-** Last update Wed Jun  9 20:10:18 2010 adrien veau-greiner
+** Last update Thu Jun 10 12:17:52 2010 adrien veau-greiner
 */
 
 #ifndef __CLIENT_H__
@@ -23,6 +23,7 @@
 /* ----- MACRO ----- */
 
 # define MAX_PORT	65535
+# define MAX_PLAYER	1024
 # define MAXCMD_LEN	256
 # define PROTO		"IP"
 # define NAME		"GRAPHIC\n"
@@ -35,7 +36,8 @@
 # define ACT_EXP	3
 # define ACT_LVL	4
 # define ACT_DIE	5
-# define ACT_FRK	6 
+# define ACT_FRK	6
+# define ACT_SINC	7 
 
 /* --- Structure --- */
 
@@ -48,7 +50,7 @@ typedef struct		s_player
   int			level;
   int			pos_x;
   int			pos_y;
-  int			*ress;
+  char			*ress;
   char			*team;
   char			*message;
   struct s_player	*next;
@@ -96,6 +98,7 @@ int	connect_server(t_client *cl);
 /* cmd_*.c */
 int     cmd_init(char **params, t_client *cl);
 int	cmd_bct(char **param, t_client *cl);
+char	*get_ressource(char **params, int index);
 int	cmd_tna(char **param, t_client *cl);
 int	cmd_msz(char **param, t_client *cl);
 int	cmd_sgt(char **param, t_client *cl);
@@ -130,6 +133,9 @@ char	*nerror(char *from);
 /* get_entry.c */
 int	get_entry(char **av, t_client *cl);
 
+/* get_pos.c */
+int getpos_by_id(int p_id, int opt, t_client *cl);
+
 /* init_cl.c */
 void    init_cl(t_client **cl);
 
@@ -144,6 +150,9 @@ void	init_graph(t_graph *fx);
 
 /* init_world */
 int	init_world(t_client *cl, t_graph *fx);
+
+/* manage_players_id.c */
+int player_is_in_case(int x, int y, int p_id, t_client *cl);
 
 /* my_select */
 void    my_select(t_client *cl);
@@ -174,12 +183,14 @@ char	*my_strcat(char *str1, char *str2);
 int	str_isnum(char *str);
 int	tablen(char **tab);
 void aff_tab(char **tab);
+void aff_int_tab(int *tab);
 
 /* xfunctions.c */
 void	xclose(int fd);
 int	xread(int fd, char *buf, int count);
 void	*xmemset(char *addr, char c, size_t size);
 void	*xmalloc(size_t size);
+int tab_int_len(int *tab);
 int	xerror(char *from);
 
 #endif

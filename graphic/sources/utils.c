@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 22:33:43 2010 adrien veau-greiner
-** Last update Mon Jun  7 18:57:39 2010 adrien veau-greiner
+** Last update Thu Jun 10 11:48:17 2010 adrien veau-greiner
 */
 
 #include <stdio.h>
@@ -63,6 +63,25 @@ int	tablen(char **tab)
   while (tab[i] != NULL)
     i++;
   return (i);
+}
+
+int	tab_int_len(int *tab)
+{
+  int	i;
+
+  i = 0;
+  while (tab[i])
+    i++;
+  return (i);
+}
+
+void aff_int_tab(int *tab)
+{
+  int i;
+
+  i = 0;
+  while (tab[i])
+    printf("%d ,", tab[i++]);
 }
 
 void aff_tab(char **tab)

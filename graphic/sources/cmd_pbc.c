@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "client.h"
 
@@ -9,10 +10,7 @@ int		cmd_pbc(char **params, t_client *cl)
 
   aff_tab(params);
   if (tablen(params) < 3)
-    {
-      printf("fail\n");
       return (0);
-    }
   temp = cl->plist;
   p_id = atoi(params[1]);
   while (temp)

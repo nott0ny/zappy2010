@@ -7,7 +7,6 @@ void		del_player_in_case(int x, int y, int p_id, t_client *cl)
 {
   int		i;
   int		j;
-  int		len;
 
   i = 0;
   j = 0;
@@ -56,8 +55,8 @@ int		cmd_ppo(char **params, t_client *cl)
   if (tablen(params) != 5)
     return (0);
   move_player_in_map(params, cl);
-  set_player_position(params[1], params[2],
-		      params[3], params[4], cl);
-  aff_player(cl, p_id);
+  set_player_position(atoi(params[1]), atoi(params[2]),
+		      atoi(params[3]), atoi(params[4]), cl);
+  aff_player(cl, atoi(params[1]));
   return (0);
 }

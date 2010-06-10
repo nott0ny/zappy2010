@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Wed Jun  9 22:10:30 2010 adrien veau-greiner
-** Last update Thu Jun 10 14:17:42 2010 adrien veau-greiner
+** Last update Thu Jun 10 16:02:54 2010 adrien veau-greiner
 */
 
 #include <stdlib.h>
@@ -16,7 +16,6 @@
 int		cmd_pie(char **params, t_client *cl)
 {
   t_player	*temp;
-  int		p_id;
   int		pos_x;
   int		pos_y;
 
@@ -26,6 +25,5 @@ int		cmd_pie(char **params, t_client *cl)
   temp = cl->plist;
   pos_x = atoi(params[1]);
   pos_y = atoi(params[2]);
-  p_id = get_spell_by_id(pos_x, pos_y, cl);
   return (0);
 }

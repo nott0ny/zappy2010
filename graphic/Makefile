@@ -5,7 +5,7 @@
 ## Login   <veau-g_a@epitech.net>
 ## 
 ## Started on  Thu May 13 12:21:33 2010 adrien veau-greiner
-## Last update Thu Jun 10 14:18:45 2010 adrien veau-greiner
+## Last update Thu Jun 10 15:06:31 2010 adrien veau-greiner
 ##
 
 CC	=	gcc
@@ -24,6 +24,7 @@ SRC	=	main.c \
 		manage_players_id.c \
 		start_client.c \
 		get_players_infos.c \
+		set_players_infos.c \
 		init_ringbuffer.c \
 		init_cl.c \
 		init_fd.c \

@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 23:22:28 2010 adrien veau-greiner
-** Last update Thu Jun 10 12:16:16 2010 adrien veau-greiner
+** Last update Thu Jun 10 16:12:17 2010 adrien veau-greiner
 */
 
 #ifndef __GRAPHICS_H__
@@ -21,6 +21,7 @@ typedef struct	s_case
 {
   char		*ress;
   int		players_id[MAX_PLAYER];
+  int           eggs_id;
   int		status;
 }		t_case;
 

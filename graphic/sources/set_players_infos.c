@@ -33,7 +33,7 @@ void set_player_position(int p_id, int x, int y, int o, t_client *cl)
     }
 }
 
-void set_player_level(int p_id, int level, t_clien *cl)
+void set_player_level(int p_id, int level, t_client *cl)
 {
   t_player *temp;
 

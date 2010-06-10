@@ -18,7 +18,6 @@ int		*get_list_id(char **params)
 
 int		cmd_pic(char **params, t_client *cl)
 {
-  t_player	*temp;
   int		*tab;
   int		i;
 
@@ -28,10 +27,7 @@ int		cmd_pic(char **params, t_client *cl)
   tab = get_list_id(params);
   while (tab[i])
     {
-      if (i == 0)
-	set_player_action(tab[i], ACT_SINC, cl);
-      else
-	set_player_action(tab[i], ACT_INC, cl);
+      set_player_action(tab[i], ACT_INC, cl);
       aff_player(cl, tab[i]);
       i++;
     }

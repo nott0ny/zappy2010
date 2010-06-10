@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Mon Jun  7 16:03:33 2010 amine mouafik
+** Last update Thu Jun 10 20:05:06 2010 amine mouafik
 */
 
 #include <string.h>
@@ -45,7 +45,8 @@ static t_incantation   	*check_incantation_have(t_env *e, t_players *player)
   init_incantation_have(have);
   while (players)
     {
-      if (players->posx == player->posx && players->posy == player->posy && players->level == player->level)
+      if (players->posx == player->posx && players->posy == player->posy
+	  && players->level == player->level)
 	{
 	  have->linemate += players->bag->linemate;
 	  have->deraumere += players->bag->deraumere;
@@ -60,7 +61,8 @@ static t_incantation   	*check_incantation_have(t_env *e, t_players *player)
   return (have);
 }
 
-static int	check_incantation_requirements(t_incantation *requirements, t_incantation *have, int i)
+static int	check_incantation_requirements(t_incantation *requirements,
+					       t_incantation *have, int i)
 {
   if (requirements[i].players == have->players)
     if (requirements[i].linemate == have->linemate)
@@ -75,6 +77,7 @@ static int	check_incantation_requirements(t_incantation *requirements, t_incanta
 
 int		check_incantation(t_env *e, t_players *player)
 {
+  int		i;
   t_incantation	*have;
   t_incantation	requirements[] = {
     {2, 1, 1, 0, 0, 0, 0, 0},
@@ -86,7 +89,6 @@ int		check_incantation(t_env *e, t_players *player)
     {8, 6, 2, 2, 2, 2, 2, 1},
     {0, 0, 0, 0, 0, 0, 0, 0}
   };
-  int		i;
 
   i = -1;
   have = check_incantation_have(e, player);

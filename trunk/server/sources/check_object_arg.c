@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Mon Jun  7 16:03:33 2010 amine mouafik
+** Last update Thu Jun 10 19:51:50 2010 amine mouafik
 */
 
 #include <string.h>
@@ -38,11 +38,8 @@ static int	cmd_object_exists(char *cmd)
   i = -1;
   object = cmd_object_retrieve(cmd);
   while (objects[++i])
-    {
-      printf("Comparing (%s) and (%s)\n", objects[i], object);
-      if (strcmp(objects[i], object) == 0)
-	return (0);
-    }
+    if (strcmp(objects[i], object) == 0)
+      return (0);
   return (-1);
 }
 
@@ -53,7 +50,7 @@ static int	cmd_object_count(char *cmd)
 
   i = -1;
   argc = 0;
-  while(cmd[++i])
+  while (cmd[++i])
     if (cmd[i] == ' ')
       argc++;
   return (argc);

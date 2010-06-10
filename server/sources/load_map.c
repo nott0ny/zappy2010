@@ -1,11 +1,11 @@
 /*
-** load_map.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/serveur/includes
+** load_map.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources/
 ** 
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Wed May  5 18:34:02 2010 amine mouafik
-** Last update Mon Jun  7 15:53:45 2010 amine mouafik
+** Last update Thu Jun 10 19:33:20 2010 amine mouafik
 */
 
 #include <sys/types.h>

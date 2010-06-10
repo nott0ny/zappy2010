@@ -1,11 +1,11 @@
 /*
-** check_params.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/serveur/sources
+** check_params.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
 ** 
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Tue May  4 23:39:46 2010 amine mouafik
-** Last update Mon Jun  7 22:19:04 2010 alban roux
+** Last update Thu Jun 10 19:34:47 2010 amine mouafik
 */
 
 #include <sys/types.h>

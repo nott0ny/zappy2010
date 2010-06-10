@@ -1,11 +1,11 @@
 /*
-** wait_clients.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/serveur/sources
+** wait_clients.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
 ** 
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Fri May  7 10:58:37 2010 amine mouafik
-** Last update Mon Jun  7 22:05:23 2010 alban roux
+** Last update Thu Jun 10 19:34:28 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -47,8 +47,8 @@ int	wait_clients(t_env *e)
       e->network->timeout.tv_sec = 1;
       e->network->timeout.tv_usec = 0;
       init_fds(e);
-      nfds = (int)_X((void *)-1, 
-		     (void *)select(e->network->max_fd_used + 1, 
+      nfds = (int)_X((void *)-1,
+		     (void *)select(e->network->max_fd_used + 1,
 				    &e->network->r, &e->network->w,
 				    0, &e->network->timeout), "select");
       if (nfds)

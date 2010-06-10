@@ -1,11 +1,11 @@
 /*
-** manage_ringbuffer.c for Zappy in /u/all/roux_a/cu/rendu/c/zappy/zappy2010/serveur/sources
+** manage_ringbuffer.c for Zappy in /u/all/roux_a/cu/rendu/c/zappy/zappy2010/server/sources
 ** 
 ** Made by alban roux
 ** Login   <roux_a@epitech.net>
 ** 
 ** Started on  Tue May  4 22:17:56 2010 alban roux
-** Last update Mon Jun  7 16:03:33 2010 amine mouafik
+** Last update Thu Jun 10 19:33:39 2010 amine mouafik
 */
 
 #include <stdlib.h>
@@ -40,7 +40,7 @@ int	rb_has_cmd(t_ringbuffer *rb)
     }
   if (j == 0)
     return (0);
-  if (i == rb->wr_pointer)           
+  if (i == rb->wr_pointer)
     return (-1);
   return (j + 1);
 }
@@ -49,7 +49,7 @@ int	rb_write (t_ringbuffer *rb, unsigned char * buf, int len)
 {
   int	total;
   int i;
-    
+
   total = rb_free(rb);
   if (len > total)
     len = total;
@@ -78,7 +78,7 @@ int	rb_read(t_ringbuffer *rb, unsigned char * buf, int max)
 {
   int total;
   int i;
-  
+
   total = rb_data_size(rb);
   if(max > total)
     max = total;

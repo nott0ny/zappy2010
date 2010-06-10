@@ -1,11 +1,11 @@
 /*
-** new_connection.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server
+** new_connection.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
 ** 
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Mon Jun  7 15:03:47 2010 amine mouafik
-** Last update Mon Jun  7 16:03:32 2010 amine mouafik
+** Last update Thu Jun 10 19:32:55 2010 amine mouafik
 */
 
 #include <sys/types.h>

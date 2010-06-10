@@ -1,11 +1,11 @@
 /*
-** main.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/serveur/sources
+** main.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
 ** 
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Tue May  4 20:55:54 2010 amine mouafik
-** Last update Mon Jun  7 15:56:53 2010 amine mouafik
+** Last update Thu Jun 10 19:35:30 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -30,7 +30,7 @@ static int	server(char **argv)
 int	main(int argc, char **argv)
 {
   if (argc == 1)
-    printf("Usage: ./serveur [-p port] [-x largeur] [-y hauteur] " \
+    printf("Usage: ./server [-p port] [-x largeur] [-y hauteur] " \
 	   "[-n equipe_1 equipe_2 (...)] [-c nombre de client] " \
 	   "[-t temps]\n");
   else

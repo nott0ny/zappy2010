@@ -9,7 +9,7 @@ void		display_stack(t_stack *execution)
   while (stack)
     {
       printf("[%d] Timestamp(%d) ", i++, (int)stack->timestamp.tv_sec);
-      printf("Id Commande (%s) FD Player (%d)\n", 
+      printf("Id Commande (%s) FD Player (%d)\n",
 	     stack->cmd, stack->fd_player);
       stack = stack->next;
     }

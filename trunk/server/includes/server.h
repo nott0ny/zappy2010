@@ -121,7 +121,7 @@ typedef struct		s_cmds {
 }			t_cmds;
 
 typedef struct		s_stack {
-  struct timeval     	timestamp;
+  int		     	timestamp;
   char			*cmd;
   int			fd_player;
   struct s_stack	*next;

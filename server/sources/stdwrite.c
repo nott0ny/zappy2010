@@ -14,10 +14,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "server.h"
 #include "ringbuffer.h"
-#include "colors.h"
-#include "x.h"
+#include "utils.h"
 
 void		stdwrite(t_env *e, int fd)
 {

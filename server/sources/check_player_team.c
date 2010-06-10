@@ -10,8 +10,9 @@
 
 #include <string.h>
 #include <stdio.h>
+
 #include "server.h"
-#include "colors.h"
+#include "utils.h"
 
 static int	check_team_exists(t_teams *teams, char *team)
 {

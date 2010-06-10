@@ -13,10 +13,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "server.h"
 #include "ringbuffer.h"
-#include "colors.h"
-#include "x.h"
+#include "utils.h"
 
 t_cmds	gl_cmds[] = {
   {0, "avance", go_forward, 7},

@@ -9,7 +9,9 @@
 */
 
 #include <string.h>
+
 #include "server.h"
+#include "check_player_cmd.h"
 
 int	check_player_cmd(t_env *e, t_players *player,
 			 char *cmd, int len, int id)

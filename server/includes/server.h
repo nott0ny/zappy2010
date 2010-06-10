@@ -16,20 +16,18 @@
 # define MSG_SUCCESS   	"ok\n"
 # define MSG_FAILURE	"ko\n"
 
-enum orientation {
-  UP = 1,
-  LEFT,
-  DOWN,
-  RIGHT
-};
-
 # define MAX(a,b)	( (a>b)?(a):(b) )
 # define READ_SIZE	2048
 # define STD_BACKLOG	5
 
+# define T_CONN	(1<<0)
+# define T_READ	(1<<1)
+# define T_WRITE	(1<<2)
+# define T_FREE	(1<<3)
+
 # include <sys/types.h>
-# include <netinet/in.h>
 # include <sys/select.h>
+# include <netinet/in.h>
 
 typedef struct		s_teams {
   char			*name;
@@ -62,18 +60,12 @@ typedef struct		s_msg {
 
 typedef struct		s_fdt {
   int			type;
-#define T_CONN	(1<<0)
-#define T_READ	(1<<1)
-#define T_WRITE	(1<<2)
-#define T_FREE	(1<<3)
   t_msg			in;
   t_msg			out;
 }			t_fdt;
 
 typedef struct		s_network {
   int			op_flags;
-#define OP_V    (1<<0)
-#define OP_U    (1<<1)
   int			port;
   int			max_fd_used;
   int			max_fd;
@@ -100,16 +92,22 @@ typedef struct		s_ringbuffer
     int			size;
 }			t_ringbuffer;
 
+enum direction {
+  UP = 1,
+  LEFT,
+  DOWN,
+  RIGHT
+};
 
 typedef struct		s_players {
   int			fd_associate;
   char			*team_name;
   int			level;
+  enum direction       	direction;
   int			life;
   t_bag			*bag;
   int			posx;
   int			posy;
-  short			direction;
   t_ringbuffer	       	*wr_rb;
   t_ringbuffer		*rd_rb;
   struct s_players	*next;
@@ -121,10 +119,6 @@ typedef struct		s_cmds {
   void			(*f)();
   int			duration;
 }			t_cmds;
-
-# define PRENDRE	5
-# define POSE		6
-# define INCANTATION	9
 
 typedef struct		s_stack {
   struct timeval     	timestamp;

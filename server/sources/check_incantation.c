@@ -9,8 +9,9 @@
 */
 
 #include <string.h>
+
 #include "server.h"
-#include "x.h"
+#include "utils.h"
 
 typedef struct	s_incantation {
   int   	elevation;

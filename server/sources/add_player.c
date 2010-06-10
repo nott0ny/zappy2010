@@ -10,9 +10,10 @@
 
 #include <stdlib.h>
 #include <string.h>
+
 #include "server.h"
 #include "ringbuffer.h"
-#include "x.h"
+#include "utils.h"
 
 static void	init_player_bag(t_bag *bag)
 {

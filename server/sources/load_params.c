@@ -11,10 +11,10 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <stdio.h>
+
 #include "server.h"
 #include "load_params.h"
-#include "colors.h"
-#include "x.h"
+#include "utils.h"
 
 static int	init_params(t_params *params)
 {

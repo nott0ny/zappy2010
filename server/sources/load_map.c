@@ -13,10 +13,10 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "server.h"
-#include "colors.h"
-#include "map.h"
-#include "x.h"
+#include "load_map.h"
+#include "utils.h"
 
 static int	generate()
 {

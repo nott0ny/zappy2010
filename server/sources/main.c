@@ -1,9 +1,9 @@
 /*
 ** main.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
-** 
+**
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
-** 
+**
 ** Started on  Tue May  4 20:55:54 2010 amine mouafik
 ** Last update Thu Jun 10 19:35:30 2010 amine mouafik
 */

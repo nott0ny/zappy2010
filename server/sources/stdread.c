@@ -1,9 +1,9 @@
 /*
 ** stdread.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
-** 
+**
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
-** 
+**
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
 ** Last update Thu Jun 10 19:44:11 2010 amine mouafik
 */

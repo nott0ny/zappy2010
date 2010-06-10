@@ -1,9 +1,9 @@
 /*
 ** server.h for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/serveur/includes
-** 
+**
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
-** 
+**
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
 ** Last update Mon Jun  7 21:48:51 2010 alban roux
 */
@@ -12,24 +12,24 @@
 # define __SERVER_H__
 
 # define CLIENT_GRAPHIC	"GRAPHIC"
-# define MSG_CO		"BIENVENUE\n"
-# define OK		"ok\n"
-# define KO		"ko\n"
+# define MSG_CONNECT	"BIENVENUE\n"
+# define MSG_SUCCESS   	"ok\n"
+# define MSG_FAILURE	"ko\n"
 
-# define DENSITY_HIGH	10
-# define DENSITY_LOW	30
+enum orientation {
+  UP = 1,
+  LEFT,
+  DOWN,
+  RIGHT
+};
 
-# define UP		1
-# define LEFT		2
-# define DOWN		3
-# define RIGHT		4
-
-#define MAX(a,b)	( (a>b)?(a):(b) )
-#define READ_SIZE	2048
-#define STD_BACKLOG	5
+# define MAX(a,b)	( (a>b)?(a):(b) )
+# define READ_SIZE	2048
+# define STD_BACKLOG	5
 
 # include <sys/types.h>
 # include <netinet/in.h>
+# include <sys/select.h>
 
 typedef struct		s_teams {
   char			*name;
@@ -69,8 +69,6 @@ typedef struct		s_fdt {
   t_msg			in;
   t_msg			out;
 }			t_fdt;
-
-#include <sys/select.h>
 
 typedef struct		s_network {
   int			op_flags;
@@ -154,6 +152,7 @@ void		expulse(t_env *e, t_players *player);
 void		broadcast(t_env *e, t_players *player);
 void		incantation(t_env *e, t_players *player);
 void		player_fork(t_env *e, t_players *player);
+
 void	       	add_player(t_env *e, int fd);
 int	       	check_params(t_params *params);
 int	       	init_connect_socket(t_network *network);
@@ -171,7 +170,6 @@ void	       	new_connection(t_env *e, int fd_conn);
 void	       	stdread(t_env *e,int fd);
 void	       	stdwrite(t_env *e,int fd);
 int	       	wait_clients(t_env *e);
-void	       	watch_fds(t_env *e);
 int	       	check_player_cmd(t_env *e, t_players *player, char *cmd, int len, int id);
 t_players      	*get_player_byfd(t_env *e, int fd);
 int	       	get_player_message(char **buf, int fd);

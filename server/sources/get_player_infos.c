@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Thu Jun 10 19:26:35 2010 amine mouafik
+** Last update Thu Jun 10 20:15:04 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -34,6 +34,6 @@ int	get_player_message(char **buf, int fd)
 
   *buf = Xmalloc(READ_SIZE * sizeof(*buf));
   X(NULL, memset(*buf, 0, READ_SIZE * sizeof(*buf)), "memset");
-  len = (int)X((void *)-1, (void *)recv(fd, *buf, READ_SIZE, 0), "recv");
+  len = recv(fd, *buf, READ_SIZE, 0);
   return (len);
 }

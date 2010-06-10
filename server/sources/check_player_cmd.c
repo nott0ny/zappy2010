@@ -5,13 +5,14 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Thu Jun 10 19:30:12 2010 amine mouafik
+** Last update Thu Jun 10 19:45:44 2010 amine mouafik
 */
 
 #include <string.h>
 #include "server.h"
 
-int	check_player_cmd(t_env *e, t_players *player, char *cmd, int len, int id)
+int	check_player_cmd(t_env *e, t_players *player,
+			 char *cmd, int len, int id)
 {
   if (id == PRENDRE || id == POSE)
     {

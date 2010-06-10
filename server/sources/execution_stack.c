@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Fri May  7 10:58:37 2010 amine mouafik
-** Last update Thu Jun 10 19:34:55 2010 amine mouafik
+** Last update Thu Jun 10 19:45:00 2010 amine mouafik
 */
 
 #include <sys/time.h>
@@ -28,7 +28,8 @@ static void	push_cmd_onstack(t_env *e, t_stack *newcmd)
   e->execution = newcmd;
 }
 
-void			add_cmd_onstack(t_env *e, int fd_player, char *cmd, int duration)
+void			add_cmd_onstack(t_env *e, int fd_player,
+					char *cmd, int duration)
 {
   float			durationtime;
   struct timeval	timestamp;

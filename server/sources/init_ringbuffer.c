@@ -5,7 +5,7 @@
 ** Login   <roux_a@epitech.net>
 ** 
 ** Started on  Tue May  4 22:17:56 2010 alban roux
-** Last update Thu Jun 10 19:35:14 2010 amine mouafik
+** Last update Thu Jun 10 20:19:42 2010 amine mouafik
 */
 
 #include <stdlib.h>
@@ -33,7 +33,7 @@ int		rb_init(t_ringbuffer **rb, int size)
     ring->size <<= 1;
   ring->rd_pointer = 0;
   ring->wr_pointer = 0;
-  ring->buffer = Xmalloc(sizeof(char) * (ring->size));
+  ring->buffer = Xmalloc((ring->size + 1) * sizeof(char));
   *rb = ring;
   return (1);
 }

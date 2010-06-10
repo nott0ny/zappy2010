@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Mon Jun  7 15:03:47 2010 amine mouafik
-** Last update Thu Jun 10 19:32:55 2010 amine mouafik
+** Last update Thu Jun 10 19:42:54 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -26,7 +26,8 @@ void			new_connection(t_env *e, int fd_conn)
   char			addr[4];
 
   namelen = sizeof(name);
-  fd = (int)X((void *)-1, (void *)accept(fd_conn, (struct sockaddr *)&name, &namelen),
+  fd = (int)X((void *)-1,
+	      (void *)accept(fd_conn, (struct sockaddr *)&name, &namelen),
 	      "accept");
   memcpy(&addr, &name.sin_addr.s_addr, sizeof(name.sin_addr.s_addr));
   alloc_fd(e->network, fd);

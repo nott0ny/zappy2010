@@ -5,7 +5,7 @@
 ** Login   <roux_a@epitech.net>
 ** 
 ** Started on  Tue May  4 22:17:56 2010 alban roux
-** Last update Thu Jun 10 19:33:39 2010 amine mouafik
+** Last update Thu Jun 10 19:44:38 2010 amine mouafik
 */
 
 #include <stdlib.h>
@@ -80,12 +80,12 @@ int	rb_read(t_ringbuffer *rb, unsigned char * buf, int max)
   int i;
 
   total = rb_data_size(rb);
-  if(max > total)
+  if (max > total)
     max = total;
   else
     total = max;
   i = rb->rd_pointer;
-  if(i + max > rb->size)
+  if (i + max > rb->size)
     {
       memcpy(buf, rb->buffer + i, rb->size - i);
       buf += rb->size - i;

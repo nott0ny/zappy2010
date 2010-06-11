@@ -1,16 +1,17 @@
-Fait :
-* Execution stack triée
-A faire :
-* Execute stack
-* Timeout set en fonction du 1er element de l'execution stack
-* Envoyé ko à toutes les commandes invalides
-* Envoyer ok / bonne reponse on success
-* Modifier check incantation (valeurs de retours)
-* Modifier incantation
-* Faire fork / broadcast
-* Gerer si client deco : 
-	- set fdt 0 
-	- set player first in eggs until death
-* Gerer proprement mort d'un joueur / oeuf (slots principal / slots oeuf)
-* Faire les frees
- 
+<h1>Fait :</h1>
+<p>
+Execution stack triée
+<h1>A faire :</h1>
+<p>
+ * Execute stack<br>
+ * Timeout set en fonction du 1er element de l'execution stack<br>
+ * Envoyé ko à toutes les commandes invalides<br>
+ * Envoyer ok / bonne reponse on success<br>
+ * Modifier check incantation (valeurs de retours)<br>
+ * Modifier incantation<br>
+ * Faire fork / broadcast<br>
+ * Gerer si client deco : <br>
+	# set fdt 0 <br>
+	# set player first in eggs until death<br>
+ * Gerer proprement mort d'un joueur / oeuf (slots principal / slots oeuf)<br>
+ * Faire les frees<br>

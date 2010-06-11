@@ -1,0 +1,14 @@
+[done] Execution stack triée
+Execute stack
+Timeout set en fonction du 1er element de l'execution stack
+Envoyé ko à toutes les commandes invalides
+Envoyer ok / bonne reponse on success
+Modifier check incantation (valeurs de retours)
+Modifier incantation
+Faire fork / broadcast
+Gerer si client deco : 
+	- set fdt 0 
+	- set player first in eggs until death
+Gerer proprement mort d'un joueur / oeuf (slots principal / slots oeuf)
+Faire les frees
+ 

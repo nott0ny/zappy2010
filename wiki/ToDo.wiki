@@ -1,6 +1,6 @@
 <h1>Fait :</h1>
 <p>
-Execution stack triée
+ * Execution stack triée
 <h1>A faire :</h1>
 <p>
  * Execute stack<br>
@@ -10,8 +10,6 @@ Execution stack triée
  * Modifier check incantation (valeurs de retours)<br>
  * Modifier incantation<br>
  * Faire fork / broadcast<br>
- * Gerer si client deco : <br>
-	# set fdt 0 <br>
-	# set player first in eggs until death<br>
+ * Gerer si client deco : set fdt 0 && set player first in eggs until death<br>
  * Gerer proprement mort d'un joueur / oeuf (slots principal / slots oeuf)<br>
  * Faire les frees<br>

@@ -1,4 +1,4 @@
-void		display_stack(t_stack *execution)
+void	display_stack(t_stack *execution)
 {
   t_stack	*stack;
   int		i;
@@ -8,7 +8,9 @@ void		display_stack(t_stack *execution)
   printf("--- Stack Begin ---\n");
   while (stack)
     {
-      printf("[%d] Timestamp(%d) ", i++, (int)stack->timestamp.tv_sec);
+      printf("[%d] Timestamp Sec(%d) Timestamp USec(%d)",
+	     i++, (int)stack->timestamp.tv_sec,
+	     (int)stack->timestamp.tv_usec);
       printf("Id Commande (%s) FD Player (%d)\n",
 	     stack->cmd, stack->fd_player);
       stack = stack->next;

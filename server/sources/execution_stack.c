@@ -17,83 +17,59 @@
 #include "server.h"
 #include "utils.h"
 
-static void	display_stack(t_stack *execution)
+static void	add_as_first(t_env *e, t_stack *newcmd)
 {
-  t_stack	*stack;
-  int		i;
-
-  i = 0;
-  stack = execution;
-  printf("--- Stack Begin ---\n");
-  while (stack)
-    {
-      printf("[%d] Timestamp(%d) ", i++, stack->timestamp);
-      printf("Id Commande (%s) FD Player (%d)\n", 
-	     stack->cmd, stack->fd_player);
-      stack = stack->next;
-    }
-  printf("--- Stack End ---\n");
+  newcmd->next = e->execution;
+  e->execution = newcmd;
 }
 
-static void	push_cmd_onstack(t_env *e, t_stack *newcmd)
+static void	add_as_sorted(t_stack *current, t_stack *newcmd)
 {
-  t_stack     	*current;
-  int		i;
+  newcmd->next = current->next;
+  current->next = newcmd;
+}
 
+static void	push_sorted_onstack(t_env *e, t_stack *newcmd)
+{
+  int		i;
+  t_stack     	*current;
+
+  i = -1;
+  current = e->execution;
   if (e->execution == NULL)
-    {
-      newcmd->next = NULL;
-      e->execution = newcmd;
-      printf("[debug] timestamp commande %d \n", (int)newcmd->timestamp); 
-    }
+    add_as_first(e, newcmd);
   else
     {
-      i = 0;
-      current = e->execution;
-      while (current->next && (current->next->timestamp - newcmd->timestamp < 0))
-	{
-	  i++;
-	  current = current->next;
-	}
-      if (i == 0)
-	{
-	  if ((current->timestamp - newcmd->timestamp) > 0)
-	    {
-	      newcmd->next = e->execution;
-	      e->execution = newcmd;
-	    }
-	  else
-	    {
-	      newcmd->next = current->next;
-	      current->next = newcmd;
-	    }
-	}
+      while (++i != -1 && current->next &&
+	     ((current->next->timestamp.tv_sec - newcmd->timestamp.tv_sec < 0) ||
+	      ((current->next->timestamp.tv_sec == newcmd->timestamp.tv_sec) &&
+	       current->next->timestamp.tv_usec - newcmd->timestamp.tv_usec <= 0)))
+	current = current->next;
+      if (i == 0 && (((current->timestamp.tv_sec - newcmd->timestamp.tv_sec > 0)) ||
+	  ((current->timestamp.tv_sec == newcmd->timestamp.tv_sec) &&
+	   current->timestamp.tv_usec - newcmd->timestamp.tv_usec >= 0)))
+	add_as_first(e, newcmd);
       else
-	{
-	  newcmd->next = current->next;
-	  current->next = newcmd;
-	}
-      printf("[debug] timestamp commande %d, timestamp prev %d // res %d \n", (int)newcmd->timestamp,(int)current->timestamp, (int)(- newcmd->timestamp + current->timestamp));
+	add_as_sorted(current, newcmd);
     }
 }
 
 void			add_cmd_onstack(t_env *e, int fd_player,
-					char *cmd, int duration)
+				char *cmd, int duration)
 {
   float			durationtime;
-  int			timestamp;
+  struct timeval	timestamp;
   t_stack		*newcmd;
 
-  timestamp = (int)time(NULL);
+  gettimeofday(&timestamp, NULL);
   newcmd = Xmalloc(sizeof(*newcmd));
   durationtime = (float)duration / (float)e->params->time;
-  durationtime = ceil(durationtime);
-  timestamp += durationtime;
+  timestamp.tv_sec += floor(durationtime);
+  timestamp.tv_usec += (int)(durationtime - (float)floor(durationtime)) * USEC;
   newcmd->timestamp = timestamp;
   newcmd->cmd = cmd;
   newcmd->fd_player = fd_player;
-  push_cmd_onstack(e, newcmd);
-  display_stack(e->execution);
+  push_sorted_onstack(e, newcmd);
   printf("%s[%d] Received command '%s'.%s\n",
 	 CYAN, fd_player, cmd, WHITE);
 }

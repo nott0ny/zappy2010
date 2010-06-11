@@ -20,6 +20,8 @@
 # define READ_SIZE	2048
 # define STD_BACKLOG	5
 
+# define USEC	100000
+
 # define T_CONN	(1<<0)
 # define T_READ	(1<<1)
 # define T_WRITE	(1<<2)
@@ -103,13 +105,13 @@ typedef struct		s_players {
   int			fd_associate;
   char			*team_name;
   int			level;
-  enum direction       	direction;
   int			life;
   t_bag			*bag;
   int			posx;
   int			posy;
   t_ringbuffer	       	*wr_rb;
   t_ringbuffer		*rd_rb;
+  enum direction       	direction;
   struct s_players	*next;
 }			t_players;
 
@@ -121,9 +123,9 @@ typedef struct		s_cmds {
 }			t_cmds;
 
 typedef struct		s_stack {
-  int		     	timestamp;
   char			*cmd;
   int			fd_player;
+  struct timeval	timestamp;
   struct s_stack	*next;
 }			t_stack;
 

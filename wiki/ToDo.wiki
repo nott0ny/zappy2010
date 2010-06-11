@@ -4,7 +4,7 @@
 <h1>A faire :</h1>
 <p>
  * Execute stack<br>
- * Timeout set en fonction du 1er element de l'execution stack<br>
+ * Timeout set en fonction du 1er element de l'execution stack (-1 si stack NULL)<br>
  * Envoyé ko à toutes les commandes invalides<br>
  * Envoyer ok / bonne reponse on success<br>
  * Modifier check incantation (valeurs de retours)<br>

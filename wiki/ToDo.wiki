@@ -1,6 +1,6 @@
 <h1>Fait :</h1>
 <p>
- * Execution stack triée<br/>
+ * Execution stack triée<br>
  * Modifier team_name dans players par id_team
 <h1>A faire :</h1>
 <p>

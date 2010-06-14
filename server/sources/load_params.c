@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Wed May  5 17:27:30 2010 amine mouafik
-** Last update Thu Jun 10 19:33:29 2010 amine mouafik
+** Last update Mon Jun 14 14:44:59 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -34,11 +34,14 @@ static int	view_params(t_params *params)
   teams = params->teams;
   printf("%sInitializing Zappy Server ...\n" \
 	 "Configuration : Max (%d) WorldX(%d) WorldY(%d) T(%d)\n" \
-	 "Teams :\n", GREEN, params->maxclient, params->width, params->height,
+	 "Teams :\n",
+	 GREEN, params->maxclient, params->width, params->height,
 	 params->time);
-  printf("\tName(%s) Max(%d)\n", teams->name, params->maxclient);
-  while ((teams = teams->next))
-    printf("\tName(%s) Max(%d)\n", teams->name, params->maxclient);
+  while (teams)
+    {
+      printf("\tName(%s) Max(%d)\n", teams->name, params->maxclient);
+      teams = teams->next;
+    }
   printf("%s", WHITE);
   return (0);
 }

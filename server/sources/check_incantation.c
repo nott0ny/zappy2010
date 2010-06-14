@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Thu Jun 10 20:05:06 2010 amine mouafik
+** Last update Mon Jun 14 13:08:31 2010 amine mouafik
 */
 
 #include <string.h>
@@ -95,10 +95,7 @@ int		check_incantation(t_env *e, t_players *player)
   have = check_incantation_have(e, player);
   while (requirements[++i].elevation)
     if ((i - 1) == player->level)
-      {
-	if (check_incantation_requirements(requirements, have, i) == 0)
-	  return (0);
-	return (-1);
-      }
+      if (check_incantation_requirements(requirements, have, i) == 0)
+	return (0);
   return (-1);
 }

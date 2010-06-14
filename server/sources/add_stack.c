@@ -1,11 +1,11 @@
 /*
-** execution_stack.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
+** add_stack.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
 **
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Fri May  7 10:58:37 2010 amine mouafik
-** Last update Thu Jun 10 19:45:00 2010 amine mouafik
+** Last update Mon Jun 14 14:53:19 2010 amine mouafik
 */
 
 #include <time.h>
@@ -54,7 +54,7 @@ static void	push_sorted_onstack(t_env *e, t_stack *newcmd)
     }
 }
 
-void			add_cmd_onstack(t_env *e, int fd_player,
+void			add_stack(t_env *e, int fd_player,
 				char *cmd, int duration)
 {
   float			durationtime;
@@ -70,7 +70,5 @@ void			add_cmd_onstack(t_env *e, int fd_player,
   newcmd->cmd = cmd;
   newcmd->fd_player = fd_player;
   push_sorted_onstack(e, newcmd);
-  printf("%s[%d] Received command '%s'.%s\n",
-	 CYAN, fd_player, cmd, WHITE);
 }
 

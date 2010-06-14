@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Mon Jun 14 12:29:46 2010 adrien veau-greiner
-** Last update Mon Jun 14 17:14:57 2010 adrien veau-greiner
+** Last update Mon Jun 14 17:40:44 2010 adrien veau-greiner
 */
 
 #include <SDL/SDL.h>
@@ -20,8 +20,10 @@ void		manage_event(t_client *cl)
   SDL_Event	e;
 
   if (SDL_PollEvent(&e) == 1)
-    if (e.type == SDL_QUIT)
-      cl->ingame = 1;
+    {
+      if (e.type == SDL_QUIT)
+	cl->ingame = 1;
+    }
 }
 
 void		create_game_window(t_ui *gui)
@@ -29,7 +31,7 @@ void		create_game_window(t_ui *gui)
   SDL_FreeSurface(gui->window);
   SDL_FreeSurface(gui->loading);
   gui->window =  SDL_SetVideoMode(GAME_WINDOW_X, GAME_WINDOW_Y,
-				  16, SDL_HWSURFACE);
+				  WINDOW_BPP, SDL_HWSURFACE);
   SDL_WM_SetCaption(GAME_WIN_TITLE, NULL);
   SDL_FillRect(gui->window, &gui->window->clip_rect,
 	       SDL_MapRGB(gui->window->format, 200, 200, 200));
@@ -58,7 +60,7 @@ void		load_map(t_client *cl)
       while (i <= cl->fx->size_y)
 	{
 	  pos_y.x -= (CASE_W / 2);
-	  pos_y.y += (CASE_H / 2) - 5;
+	  pos_y.y += (CASE_H / 2);
 	  SDL_BlitSurface(cl->fx->gui->scase, NULL, cl->fx->gui->window,
 			  &pos_y);
 	  i++;

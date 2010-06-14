@@ -7,10 +7,10 @@
 #include "client.h"
 #include "graphics.h"
 
-int		init_window(t_client *cl)
+int		loading_window(t_client *cl)
 {
   cl->fx->gui->window = SDL_SetVideoMode(INIT_WINDOW_X, INIT_WINDOW_Y,
-					 16, SDL_HWSURFACE);
+					 WINDOW_BPP, SDL_HWSURFACE);
   if (cl->fx->gui->window == NULL)
     return (-1);
   SDL_WM_SetCaption(INIT_WIN_TITLE, NULL);
@@ -33,7 +33,7 @@ int	init_display(t_client *cl)
       return (-1);
     }
   load_sprites(cl);
-  if (init_window(cl) == -1)
+  if (loading_window(cl) == -1)
     return (-1);
   return (0);
 }

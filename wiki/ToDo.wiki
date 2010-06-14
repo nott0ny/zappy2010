@@ -1,11 +1,11 @@
 <h1>Fait :</h1>
 <p>
  * Execution stack triée<br>
- * Modifier team_name dans players par id_team
+ * Modifier team_name dans players par id_team<br>
+ * Debug lié à la modification de team_name dans players par id_team
 <h1>A faire :</h1>
 <p>
- * Debug lié à la modification de team_name dans players par id_team
- * Ajout timer en fonction de la dernière action<br>
+ * Ajout timer en fonction de la dernière action du joueur<br>
  * Execute stack<br>
  * Timeout set en fonction du 1er element de l'execution stack (-1 si stack NULL)<br>
  * Envoyé ko à toutes les commandes invalides<br>

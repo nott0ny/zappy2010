@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Mon Jun 14 12:31:30 2010 amine mouafik
+** Last update Mon Jun 14 14:54:07 2010 amine mouafik
 */
 
 #ifndef __SERVER_H__
@@ -15,6 +15,7 @@
 # define MSG_CONNECT	"BIENVENUE\n"
 # define MSG_SUCCESS   	"ok\n"
 # define MSG_FAILURE	"ko\n"
+# define MSG_IGNORE	"ignore\n"
 
 # define MAX(a,b)	( (a>b)?(a):(b) )
 # define READ_SIZE	2048
@@ -170,7 +171,8 @@ int	       	wait_clients(t_env *e);
 int	       	check_player_cmd(t_env *e, t_players *player, char *cmd, int len, int id);
 t_players      	*get_player_byfd(t_env *e, int fd);
 int	       	get_player_message(char **buf, int fd);
-void	       	add_cmd_onstack(t_env *e, int fd_player, char *cmd, int duration);
+void	       	add_stack(t_env *e, int fd_player, char *cmd, int duration);
+void		execute_stack(t_env *e);
 int	       	check_player_team(t_env *e, t_players *player, char *cmd);
 int		check_object_arg(char *cmd);
 int		check_incantation(t_env *e, t_players *player);

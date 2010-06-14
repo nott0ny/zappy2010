@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Mon Jun 14 12:33:50 2010 amine mouafik
+** Last update Mon Jun 14 14:38:45 2010 amine mouafik
 */
 
 #include <string.h>
@@ -54,10 +54,11 @@ int	check_player_team(t_env *e, t_players *player, char *cmd)
   if (!player->id_team)
     if ((id_team = check_team_exists(e->params->teams, cmd)))
       if (check_team_slots(e->clients, e->params->maxclient, id_team))
-	player->id_team = id_team;
+	{
+	  player->id_team = id_team;
+	  return (0);
+	}
   if (!player->id_team)
     return (1);
-  printf("%s[%d] Joined team #%d.%s\n",
-	 YELLOW, player->fd_associate, id_team, WHITE);
   return (1);
 }

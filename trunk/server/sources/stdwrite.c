@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Mon Jun  7 16:03:31 2010 amine mouafik
+** Last update Mon Jun 14 14:59:13 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -19,19 +19,27 @@
 #include "ringbuffer.h"
 #include "utils.h"
 
+static void	stdwbose(char *stdwrite, int len, t_players *player)
+{
+  stdwrite[len - 1] = '\0';
+  printf("[->] Sent to #%d : %s%s%s\n",
+	 player->fd_associate, PURPLE, stdwrite, WHITE);
+}
+
 void		stdwrite(t_env *e, int fd)
 {
   t_players	*player;
-  char		send_cmd[256];
+  char		stdwrite[256];
   int		len;
 
   player = get_player_byfd(e, fd);
   if (player)
     {
-      if ((len = rb_has_cmd(player->wr_rb)) > 0)
+      while ((len = rb_has_cmd(player->wr_rb)) > 0)
 	{
-	  rb_read(player->wr_rb, (unsigned char *)send_cmd, len);
-	  X((void *)-1, (void *)write(fd, send_cmd, strlen(send_cmd)), "write");
+	  rb_read(player->wr_rb, (unsigned char *)stdwrite, len);
+	  X((void *)-1, (void *)write(fd, stdwrite, strlen(stdwrite)), "write");
+	  stdwbose(stdwrite, len, player);
 	}
       e->network->fdt[fd]->type |= T_READ;
     }

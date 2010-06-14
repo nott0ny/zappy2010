@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Fri May  7 10:58:37 2010 amine mouafik
-** Last update Thu Jun 10 19:34:28 2010 amine mouafik
+** Last update Mon Jun 14 14:53:48 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -16,7 +16,13 @@
 #include "server.h"
 #include "utils.h"
 
-static int	init_fds(t_env *e)
+static void	init_timeout(t_env *e)
+{
+  e->network->timeout.tv_sec = 1;
+  e->network->timeout.tv_usec = 0;
+}
+
+static void	init_fds(t_env *e)
 {
   int		cur;
 
@@ -36,7 +42,6 @@ static int	init_fds(t_env *e)
 	FD_SET(cur,&e->network->w);
       cur++;
     }
-  return (0);
 }
 
 static void	watch_fds(t_env *e)
@@ -65,8 +70,7 @@ int	wait_clients(t_env *e)
 
   while (42)
     {
-      e->network->timeout.tv_sec = 1;
-      e->network->timeout.tv_usec = 0;
+      init_timeout(e);
       init_fds(e);
       nfds = (int)_X((void *)-1,
 		     (void *)select(e->network->max_fd_used + 1,
@@ -74,6 +78,7 @@ int	wait_clients(t_env *e)
 				    0, &e->network->timeout), "select");
       if (nfds)
 	watch_fds(e);
+      execute_stack(e);
     }
   return (0);
 }

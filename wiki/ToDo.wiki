@@ -5,9 +5,9 @@
  * Debug lié à la modification de team_name dans players par id_team<br>
  * Envoyé ko à toutes les commandes invalides<br>
  * Modifier check incantation (valeurs de retours)<br>
+ * Ajout stack timer en fonction de la dernière action du joueur<br>
 <h1>A faire :</h1>
 <p>
- * Ajout timer en fonction de la dernière action du joueur<br>
  * Execute stack<br>
  * Timeout set en fonction du 1er element de l'execution stack (-1 si stack NULL)<br>
  * Envoyer ok / bonne reponse on success<br>

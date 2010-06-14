@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Mon Jun 14 14:58:04 2010 amine mouafik
+** Last update Mon Jun 14 15:33:01 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -54,7 +54,7 @@ static int	match_player_cmd(t_env *e, t_players *player, char *cmd, int i)
       id_cmd = gl_cmds[i].id;
       if (check_player_cmd(e, player, cmd, len_cmd, id_cmd) == -1)
 	return (0);
-      add_stack(e, player->fd_associate, cmd, gl_cmds[i].duration);
+      add_stack(e, player, cmd, gl_cmds[i].duration);
       return (1);
     }
   return (0);

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Mon Jun 14 14:54:07 2010 amine mouafik
+** Last update Mon Jun 14 15:33:57 2010 amine mouafik
 */
 
 #ifndef __SERVER_H__
@@ -103,6 +103,13 @@ enum direction {
   RIGHT
 };
 
+typedef struct		s_stack {
+  char			*cmd;
+  int			fd_player;
+  struct timeval	timestamp;
+  struct s_stack	*next;
+}			t_stack;
+
 typedef struct		s_players {
   int			fd_associate;
   int			id_team;
@@ -111,6 +118,7 @@ typedef struct		s_players {
   t_bag			*bag;
   int			posx;
   int			posy;
+  t_stack		*stacklast;
   t_ringbuffer	       	*wr_rb;
   t_ringbuffer		*rd_rb;
   enum direction       	direction;
@@ -123,13 +131,6 @@ typedef struct		s_cmds {
   void			(*f)();
   int			duration;
 }			t_cmds;
-
-typedef struct		s_stack {
-  char			*cmd;
-  int			fd_player;
-  struct timeval	timestamp;
-  struct s_stack	*next;
-}			t_stack;
 
 typedef struct		s_env {
   t_params		*params;
@@ -171,7 +172,7 @@ int	       	wait_clients(t_env *e);
 int	       	check_player_cmd(t_env *e, t_players *player, char *cmd, int len, int id);
 t_players      	*get_player_byfd(t_env *e, int fd);
 int	       	get_player_message(char **buf, int fd);
-void	       	add_stack(t_env *e, int fd_player, char *cmd, int duration);
+void	       	add_stack(t_env *e, t_players *player, char *cmd, int duration);
 void		execute_stack(t_env *e);
 int	       	check_player_team(t_env *e, t_players *player, char *cmd);
 int		check_object_arg(char *cmd);

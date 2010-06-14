@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Mon Jun 14 15:33:57 2010 amine mouafik
+** Last update Mon Jun 14 15:59:47 2010 amine mouafik
 */
 
 #ifndef __SERVER_H__
@@ -76,7 +76,7 @@ typedef struct		s_network {
   t_fdt			**fdt;
   fd_set		r;
   fd_set		w;
-  struct timeval	timeout;
+  struct timeval	*timeout;
 }			t_network;
 
 typedef struct		s_bag {

@@ -5,7 +5,7 @@
 ## Login   <mouafi_a@epitech.net>
 ##
 ## Started on  Tue May  4 20:55:10 2010 amine mouafik
-## Last update Mon Jun 14 14:49:30 2010 amine mouafik
+## Last update Mon Jun 14 16:26:59 2010 amine mouafik
 ##
 
 CC	=	cc
@@ -33,6 +33,7 @@ SRCS	=	sources/main.c			\
 		sources/add_stack.c		\
 		sources/execute_stack.c		\
 		sources/actions.c		\
+		sources/clean_exit.c		\
 		sources/x.c
 OBJS	=	$(SRCS:.c=.o)
 CFLAGS	=	-W -Wall -ansi -pedantic -o $@ $(IFLAGS) -g3

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Fri May  7 10:58:37 2010 amine mouafik
-** Last update Mon Jun 14 14:53:19 2010 amine mouafik
+** Last update Mon Jun 14 15:32:34 2010 amine mouafik
 */
 
 #include <time.h>
@@ -54,21 +54,25 @@ static void	push_sorted_onstack(t_env *e, t_stack *newcmd)
     }
 }
 
-void			add_stack(t_env *e, int fd_player,
+void			add_stack(t_env *e, t_players *player,
 				char *cmd, int duration)
 {
   float			durationtime;
   struct timeval	timestamp;
   t_stack		*newcmd;
 
-  gettimeofday(&timestamp, NULL);
+  if (player->stacklast)
+    timestamp = player->stacklast->timestamp;
+  else
+    gettimeofday(&timestamp, NULL);
   newcmd = Xmalloc(sizeof(*newcmd));
   durationtime = (float)duration / (float)e->params->time;
   timestamp.tv_sec += floor(durationtime);
   timestamp.tv_usec += (int)(durationtime - (float)floor(durationtime)) * USEC;
   newcmd->timestamp = timestamp;
   newcmd->cmd = cmd;
-  newcmd->fd_player = fd_player;
+  newcmd->fd_player = player->fd_associate;
+  player->stacklast = newcmd;
   push_sorted_onstack(e, newcmd);
 }
 

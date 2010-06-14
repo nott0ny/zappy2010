@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 16:05:56 2010 adrien veau-greiner
-** Last update Thu May 13 22:58:17 2010 adrien veau-greiner
+** Last update Mon Jun 14 15:24:40 2010 adrien veau-greiner
 */
 
 #include <stdlib.h>
@@ -20,5 +20,6 @@ int	disconnect(t_client *cl)
   if (shutdown(cl->sock, 2) == -1)
     return (error("shutdown()"));
   xclose(cl->sock);
+  printf("client disconnected from server. QUIT\n");
   return (0);
 }

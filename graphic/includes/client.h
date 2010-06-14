@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 12:33:33 2010 adrien veau-greiner
-** Last update Thu Jun 10 16:01:50 2010 adrien veau-greiner
+** Last update Mon Jun 14 16:07:11 2010 adrien veau-greiner
 */
 
 #ifndef __CLIENT_H__
@@ -26,6 +26,9 @@
 # define MAX_PORT	65535
 # define MAX_PLAYER	1024
 # define MAXCMD_LEN	256
+# define CL_INIT	0
+# define CL_LOAD	1
+# define CL_DISP	2
 # define PROTO		"IP"
 # define NAME		"GRAPHIC\n"
 # define CLEAN_SCREEN	"\033[H\033[2J"
@@ -64,6 +67,8 @@ typedef struct		s_client {
   int			sock;
   int                   f_send;
   int		        time_u;
+  int			ingame;
+  int			status;
   char			*team_name1;
   char			*team_name2;
   char                  cmd[MAXCMD_LEN];
@@ -72,7 +77,7 @@ typedef struct		s_client {
   t_ringbuffer          *read_buff;
   fd_set                rdfs;
   fd_set                wrfs;
-  t_graph               *fx;                
+  t_graph               *fx;
   socklen_t		addrlen;
   struct sockaddr_in	sin;
   struct protoent	*proto;
@@ -84,14 +89,14 @@ typedef struct		s_client {
 /* aff.c */
 void	aff_start(void);
 void	aff_player(t_client *cl, int id);
-void aff_case(int x, int y, t_client *cl);
+void	aff_case(int x, int y, t_client *cl);
 int	aff_help(void);
 
 /* check_command.c */
 int	check_command(t_client *cl);
 
 /* check_fd.c */
-void  check_fd(t_client *cl);
+void	check_fd(t_client *cl);
 
 /* client_handler.c */
 int	client_handler(t_client *cl);
@@ -127,6 +132,9 @@ int	cmd_smg(char **param, t_client *cl);
 int	cmd_suc(char **param, t_client *cl);
 int	cmd_sbp(char **param, t_client *cl);
 
+/* destruct_cl.c */
+void	destruct_cl(t_client *cl);
+
 /* disconnect.c */
 int	disconnect(t_client *cl);
 
@@ -138,13 +146,16 @@ char	*nerror(char *from);
 int	get_entry(char **av, t_client *cl);
 
 /* get_pos.c */
-int getpos_by_id(int p_id, int opt, t_client *cl);
+int	getpos_by_id(int p_id, int opt, t_client *cl);
 
 /* init_cl.c */
 void    init_cl(t_client **cl);
 
 /* init_client.c */
 int    init_client(t_client *cl);
+
+/* init_display.c */
+int	init_display(t_client *cl);
 
 /* init_fd.c */
 void   init_fd(t_client *cl);
@@ -155,8 +166,11 @@ void	init_graph(t_graph *fx);
 /* init_world */
 int	init_world(t_client *cl, t_graph *fx);
 
+/* manage_display.c */
+void	manage_display(t_client *cl);
+
 /* manage_players_id.c */
-int player_is_in_case(int x, int y, int p_id, t_client *cl);
+int	player_is_in_case(int x, int y, int p_id, t_client *cl);
 
 /* my_select */
 void    my_select(t_client *cl);

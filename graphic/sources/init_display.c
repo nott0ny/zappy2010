@@ -9,21 +9,20 @@
 
 int		init_window(t_client *cl)
 {
-  SDL_Surface	*fond;
-  SDL_Surface	*temp;
-
-  cl->fx->gui->window = SDL_SetVideoMode(640, 400, 16, SDL_HWSURFACE);
+  cl->fx->gui->window = SDL_SetVideoMode(INIT_WINDOW_X, INIT_WINDOW_Y,
+					 16, SDL_HWSURFACE);
   if (cl->fx->gui->window == NULL)
     return (-1);
-  SDL_WM_SetCaption("Zappy-Bibicy FX", NULL);
-  if ((temp = IMG_Load(LOADING_IMAGE)) != NULL)
-    {
-      fond = SDL_DisplayFormat(temp);
-      SDL_FreeSurface(temp);
-    }
-  SDL_BlitSurface(fond, NULL, cl->fx->gui->window, NULL);
-  SDL_Flip(cl->fx->gui-window);
+  SDL_WM_SetCaption(INIT_WIN_TITLE, NULL);
+  SDL_BlitSurface(cl->fx->gui->loading, NULL, cl->fx->gui->window, NULL);
+  SDL_Flip(cl->fx->gui->window);
   return (0);
+}
+
+void	load_sprites(t_client *cl)
+{
+  cl->fx->gui->loading = IMG_Load(IMG_LOAD);
+  cl->fx->gui->scase = IMG_Load(IMG_CASE);
 }
 
 int	init_display(t_client *cl)
@@ -33,9 +32,8 @@ int	init_display(t_client *cl)
       error(SDL_GetError());
       return (-1);
     }
-  atexit(SDL_Quit);
+  load_sprites(cl);
   if (init_window(cl) == -1)
     return (-1);
-  SDL_Delay(3000);
   return (0);
 }

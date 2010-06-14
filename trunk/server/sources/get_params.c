@@ -5,7 +5,7 @@
 ** Login   <roux_a@epitech.net>
 **
 ** Started on  Tue May  4 22:17:56 2010 alban roux
-** Last update Thu Jun 10 19:35:05 2010 amine mouafik
+** Last update Mon Jun 14 12:30:50 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -20,6 +20,7 @@ static void	get_teams_name(char **av, int *i, t_params *server)
 {
   int		size;
   t_teams	*elem;
+  static int	id_team = 1;
 
   size = 1;
   while (av[++(*i)] && strcmp(av[(*i)], "-p") && strcmp(av[(*i)], "-x")
@@ -27,6 +28,7 @@ static void	get_teams_name(char **av, int *i, t_params *server)
 	 && strcmp(av[(*i)], "-c") && strcmp(av[(*i)], "-t"))
     {
       elem = Xmalloc(sizeof(t_teams));
+      elem->id_team = id_team++;
       elem->name = X(NULL, (void *)strdup(av[(*i)]), "strdup");
       elem->next = server->teams;
       server->teams = elem;

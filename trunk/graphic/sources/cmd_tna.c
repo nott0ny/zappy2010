@@ -22,6 +22,7 @@ int	cmd_tna(char **params, t_client *cl)
       else
 	return (-1);
       printf("team2: %s\n", cl->team_name2);
+      cl->status = CL_LOAD;
     }
   return (0);
 }

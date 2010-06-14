@@ -6,11 +6,9 @@
 
 #include "client.h"
 
-#define WELCOME "BIENVENUE\n"
-
-void check_fd(t_client *cl)
+void	check_fd(t_client *cl)
 {
-  int check;
+  int	check;
 
   if (FD_ISSET(cl->sock, &cl->rdfs))
     {
@@ -26,7 +24,6 @@ void check_fd(t_client *cl)
     {
       printf("Client send to server: %s", cl->send_buff);
       write(cl->sock, cl->send_buff, strlen(cl->send_buff));
-      cl->f_send = 0; 
+      cl->f_send = 0;
     }
 }
- 

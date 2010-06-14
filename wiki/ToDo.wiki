@@ -12,7 +12,7 @@
  * Modifier clean cmd (more nc friendly)<br>
  * Piste du clean exit sur ERINT select
  * Restore init_timeout quand execution stack vide au fur et a mesure<br>
- * xmalloc qui disconnect fd appelant si fail<br>
+ * Xmalloc qui disconnect fd appelant si fail<br>
  * Execute stack<br>
  * Envoyer ok / bonne reponse on success<br>
  * Faire fork / broadcast<br>

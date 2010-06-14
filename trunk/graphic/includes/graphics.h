@@ -5,7 +5,7 @@
 ** Login   <veau-g_a@epitech.net>
 ** 
 ** Started on  Thu May 13 23:22:28 2010 adrien veau-greiner
-** Last update Thu Jun 10 16:12:17 2010 adrien veau-greiner
+** Last update Mon Jun 14 11:22:45 2010 adrien veau-greiner
 */
 
 #ifndef __GRAPHICS_H__
@@ -25,9 +25,15 @@ typedef struct	s_case
   int		status;
 }		t_case;
 
+typedef struct	s_ui
+{
+  SDL_Surface	*window;
+}
+
 typedef struct	s_graphics
 {
   t_case	***map;
+  t_ui		*gui;
   int		size;
   int		size_x;
   int		size_y;

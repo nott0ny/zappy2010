@@ -9,6 +9,7 @@
 <h1>A faire :</h1>
 <p>
  * Modifier clean cmd (more nc friendly)<br>
+ * Piste du clean exit sur ERINT select
  * Restore init_timeout quand execution stack vide au fur et a mesure<br>
  * xmalloc qui disconnect fd appelant si fail<br>
  * Execute stack<br>

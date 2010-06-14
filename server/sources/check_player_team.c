@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Mon Jun  7 16:03:31 2010 amine mouafik
+** Last update Mon Jun 14 12:33:50 2010 amine mouafik
 */
 
 #include <string.h>
@@ -22,13 +22,13 @@ static int	check_team_exists(t_teams *teams, char *team)
   while (current)
     {
       if (strcmp(team, current->name) == 0)
-	return (0);
+	return (current->id_team);
       current = current->next;
     }
-  return (-1);
+  return (0);
 }
 
-static int	check_team_slots(t_players *clients, int maxclient, char *team)
+static int	check_team_slots(t_players *clients, int maxclient, int id_team)
 {
   t_players	*current;
   int		slots;
@@ -37,25 +37,27 @@ static int	check_team_slots(t_players *clients, int maxclient, char *team)
   current = clients;
   while (current)
     {
-      if (current->team_name)
-	if (strcmp(team, current->team_name) == 0)
+      if (id_team)
+	if (id_team == current->id_team)
 	  slots++;
       current = current->next;
     }
   if (slots < maxclient)
-    return (0);
-  return (-1);
+    return (1);
+  return (0);
 }
 
 int	check_player_team(t_env *e, t_players *player, char *cmd)
 {
-  if (player->team_name == NULL)
-    if (check_team_exists(e->params->teams, cmd) == 0)
-      if (check_team_slots(e->clients, e->params->maxclient, cmd) == 0)
-	player->team_name = (char *)strdup(cmd);
-  if (player->team_name == NULL)
+  int	id_team;
+
+  if (!player->id_team)
+    if ((id_team = check_team_exists(e->params->teams, cmd)))
+      if (check_team_slots(e->clients, e->params->maxclient, id_team))
+	player->id_team = id_team;
+  if (!player->id_team)
     return (1);
-  printf("%s[%d] Joined team '%s'.%s\n",
-	 YELLOW, player->fd_associate, cmd, WHITE);
+  printf("%s[%d] Joined team #%d.%s\n",
+	 YELLOW, player->fd_associate, id_team, WHITE);
   return (1);
 }

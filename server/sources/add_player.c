@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Thu Jun 10 20:01:57 2010 amine mouafik
+** Last update Mon Jun 14 12:32:50 2010 amine mouafik
 */
 
 #include <stdlib.h>
@@ -30,14 +30,15 @@ static void	create_player_list(t_env *e, int fd)
   t_players	*player;
 
   player = Xmalloc(sizeof(t_players));
+  player->bag = Xmalloc(sizeof(t_bag));
+  init_player_bag(player->bag);
   rb_init(&(player->wr_rb), BUF_SIZE);
   rb_init(&(player->rd_rb), BUF_SIZE);
   player->fd_associate = fd;
-  rb_write(player->wr_rb, (unsigned char *)MSG_CONNECT, strlen(MSG_CONNECT));
-  player->bag = Xmalloc(sizeof(t_bag));
-  init_player_bag(player->bag);
+  player->id_team = 0;
   player->next = NULL;
   e->clients = player;
+  rb_write(player->wr_rb, (unsigned char *)MSG_CONNECT, strlen(MSG_CONNECT));
 }
 
 static void	add_player_tolist(t_env *e, int fd)
@@ -45,13 +46,15 @@ static void	add_player_tolist(t_env *e, int fd)
   t_players	*player;
 
   player = Xmalloc(sizeof(t_players));
+  player->bag = Xmalloc(sizeof(t_bag));
+  init_player_bag(player->bag);
   rb_init(&player->wr_rb, BUF_SIZE);
   rb_init(&player->rd_rb, BUF_SIZE);
   player->fd_associate = fd;
-  rb_write(player->wr_rb, (unsigned char *)MSG_CONNECT, strlen(MSG_CONNECT));
-  player->bag = Xmalloc(sizeof(t_bag));
+  player->id_team = 0;
   player->next = e->clients;
   e->clients = player;
+  rb_write(player->wr_rb, (unsigned char *)MSG_CONNECT, strlen(MSG_CONNECT));
 }
 
 void	add_player(t_env *e, int fd)

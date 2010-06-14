@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Thu Jun 10 19:44:11 2010 amine mouafik
+** Last update Mon Jun 14 12:31:50 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -37,8 +37,9 @@ static char	*clean_player_cmd(char *cmd)
 {
   int		len;
 
-  len = strlen(cmd);
-  cmd[len - 2] = '\0';
+  len = -1;
+  while (cmd[++len] >= 32 && cmd[len] <= 126);
+  cmd[len] = '\0';
   return (cmd);
 }
 
@@ -68,7 +69,7 @@ static void	manage_player_cmd(t_env *e, t_players *player, int cmdlen)
   cmd = Xmalloc((cmdlen + 1) * sizeof(char));
   rb_read(player->rd_rb, (unsigned char *)cmd, cmdlen);
   cmd = clean_player_cmd(cmd);
-  if (!player->team_name)
+  if (!player->id_team)
     if (check_player_team(e, player, cmd))
       return ;
   while (gl_cmds[++i].id != -1)

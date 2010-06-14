@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Mon Jun  7 21:48:51 2010 alban roux
+** Last update Mon Jun 14 12:31:30 2010 amine mouafik
 */
 
 #ifndef __SERVER_H__
@@ -20,18 +20,19 @@
 # define READ_SIZE	2048
 # define STD_BACKLOG	5
 
-# define USEC	100000
-
-# define T_CONN	(1<<0)
-# define T_READ	(1<<1)
+# define T_CONN		(1<<0)
+# define T_READ		(1<<1)
 # define T_WRITE	(1<<2)
-# define T_FREE	(1<<3)
+# define T_FREE		(1<<3)
+
+# define USEC		100000
 
 # include <sys/types.h>
 # include <sys/select.h>
 # include <netinet/in.h>
 
 typedef struct		s_teams {
+  int			id_team;
   char			*name;
   struct s_teams	*next;
 }			t_teams;
@@ -103,7 +104,7 @@ enum direction {
 
 typedef struct		s_players {
   int			fd_associate;
-  char			*team_name;
+  int			id_team;
   int			level;
   int			life;
   t_bag			*bag;

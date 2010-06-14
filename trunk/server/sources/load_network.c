@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Fri May  7 10:55:53 2010 amine mouafik
-** Last update Thu Jun 10 19:33:24 2010 amine mouafik
+** Last update Mon Jun 14 15:59:24 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -29,8 +29,6 @@ static t_network	*init_network(t_params *params)
   network = Xmalloc(sizeof(*network));
   X(NULL, memset(network, 0, sizeof(*network)), "memset");
   network->port = params->port;
-  network->timeout.tv_sec = 0;
-  network->timeout.tv_usec = 0;
   return (network);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Mon Jun 14 14:59:13 2010 amine mouafik
+** Last update Mon Jun 14 16:57:08 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -38,7 +38,7 @@ void		stdwrite(t_env *e, int fd)
       while ((len = rb_has_cmd(player->wr_rb)) > 0)
 	{
 	  rb_read(player->wr_rb, (unsigned char *)stdwrite, len);
-	  X((void *)-1, (void *)write(fd, stdwrite, strlen(stdwrite)), "write");
+	  X((void *)-1, (void *)send(fd, stdwrite, strlen(stdwrite), 0), "send");
 	  stdwbose(stdwrite, len, player);
 	}
       e->network->fdt[fd]->type |= T_READ;

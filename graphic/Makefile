@@ -5,7 +5,7 @@
 ## Login   <veau-g_a@epitech.net>
 ## 
 ## Started on  Thu May 13 12:21:33 2010 adrien veau-greiner
-## Last update Thu Jun 10 15:06:31 2010 adrien veau-greiner
+## Last update Mon Jun 14 11:20:10 2010 adrien veau-greiner
 ##
 
 CC	=	gcc
@@ -26,6 +26,7 @@ SRC	=	main.c \
 		get_players_infos.c \
 		set_players_infos.c \
 		init_ringbuffer.c \
+		init_display.c \
 		init_cl.c \
 		init_fd.c \
 		utils.c \
@@ -64,11 +65,11 @@ VPATH	=	./sources:./includes
 
 OBJ	=	$(SRC:.c=.o)
 
-INCLUDE	=	-I./includes/
+INCLUDE	=	-I./includes/ -lSDL
 
-CFLAGS	=	-W -Wall -ansi -pedantic -g3 $(INCLUDE)
+CFLAGS	=	-W -Wall -ansi -pedantic -g3 `sdl-config --cflags` $(INCLUDE)
 
-LDFLAGS	=
+LDFLAGS	=	`sdl-config --libs` -lSDL_image
 
 $(NAME): $(OBJ)
 	$(CC) $(LDFLAGS) -o $(NAME) $(OBJ)

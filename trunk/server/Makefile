@@ -26,6 +26,7 @@ SRCS	=	sources/main.c			\
 		sources/check_player_team.c	\
 		sources/check_player_cmd.c	\
 		sources/check_object_arg.c	\
+		sources/get_object.c		\
 		sources/check_incantation.c	\
 		sources/stdwrite.c		\
 		sources/init_ringbuffer.c	\
@@ -34,8 +35,10 @@ SRCS	=	sources/main.c			\
 		sources/execute_stack.c		\
 		sources/actions.c		\
 		sources/moves.c			\
+		sources/take.c			\
+		sources/drop.c			\
+		sources/expulse.c		\
 		sources/clean_exit.c		\
-		sources/str_to_wordtab.c	\
 		sources/x.c
 OBJS	=	$(SRCS:.c=.o)
 CFLAGS	=	-W -Wall -ansi -pedantic -o $@ $(IFLAGS) -g3

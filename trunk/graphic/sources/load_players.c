@@ -25,8 +25,8 @@ void		blit_player(t_graph *fx, t_player *temp)
   printf("blit players on case %d %d\n", temp->pos_x, temp->pos_y);
   pos.x = fx->map[temp->pos_x][temp->pos_y]->pos_x;
   pos.y = fx->map[temp->pos_x][temp->pos_y]->pos_y;
-  pos.x += (CASE_W / 2) - 10;
-  pos.y += (CASE_H / 2) - 20;
+  pos.x += (CASE_W / 2) - 20;
+  pos.y += (CASE_H / 2) - 30;
   SDL_BlitSurface(fx->gui->player, NULL, fx->gui->window, &pos);
 }
 

@@ -9,7 +9,7 @@
 
 int		loading_window(t_client *cl)
 {
-  cl->fx->gui->window = SDL_SetVideoMode(INIT_WINDOW_X, INIT_WINDOW_Y,
+  cl->fx->gui->window = SDL_SetVideoMode(GAME_WINDOW_X, GAME_WINDOW_Y,
 					 WINDOW_BPP, SDL_HWSURFACE);
   if (cl->fx->gui->window == NULL)
     return (-1);
@@ -24,6 +24,7 @@ void	load_sprites(t_client *cl)
   cl->fx->gui->loading = IMG_Load(IMG_LOAD);
   cl->fx->gui->background = IMG_Load(IMG_BACK);
   cl->fx->gui->scase = IMG_Load(IMG_CASE);
+  cl->fx->gui->player = IMG_Load(IMG_PLYR);
   cl->fx->gui->food = IMG_Load(IMG_FOOD);
   cl->fx->gui->linemate = IMG_Load(IMG_STO1);
   cl->fx->gui->deraumere = IMG_Load(IMG_STO2);

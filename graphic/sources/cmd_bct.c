@@ -41,6 +41,6 @@ int		cmd_bct(char **params, t_client *cl)
   cl->fx->map[x][y]->ress = get_ressource(params, 3);
   cl->fx->map[x][y]->pos_x = 0;
   cl->fx->map[x][y]->pos_y = 0;
-  /* aff_case(x, y, cl);*/
+  /*  aff_case(x, y, cl);*/
   return (0);
 }

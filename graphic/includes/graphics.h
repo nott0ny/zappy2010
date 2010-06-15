@@ -24,14 +24,15 @@
 # define GAME_WINDOW_X  800
 # define GAME_WINDOW_Y	600
 # define GRASS_SIZE	256
-# define CASE_H		50
-# define CASE_W		87
+# define CASE_H		69
+# define CASE_W		114
 
 /* -- Sprite -- */
 
 # define IMG_LOAD	"images/loading_zappy.jpg"
 # define IMG_CASE	"images/case.png"
 # define IMG_FOOD	"images/food.png"
+# define IMG_PLYR	"images/player.gif"
 # define IMG_STO1	"images/stone_1.png"
 # define IMG_STO2	"images/stone_2.png"
 # define IMG_STO3	"images/stone_3.png"
@@ -39,6 +40,7 @@
 # define IMG_STO5	"images/stone_5.png"
 # define IMG_STO6	"images/stone_6.png"
 # define IMG_BACK	"images/grass.png"
+
 
 /* --- Structures --- */
 
@@ -57,6 +59,7 @@ typedef struct	s_ui
   SDL_Surface	event;
   SDL_Surface	*window;
   SDL_Surface	*loading;
+  SDL_Surface	*player;
   SDL_Surface	*background;
   SDL_Surface	*food;
   SDL_Surface	*linemate;

@@ -1,0 +1,8 @@
+
+#include <SDL/SDL.h>
+#include <stdlib.h>
+
+void	update_display()
+{
+  
+}

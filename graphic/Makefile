@@ -32,6 +32,8 @@ SRC	=	main.c \
 		init_cl.c \
 		init_fd.c \
 		load_map.c \
+		load_players.c \
+		load_ressource.c \
 		load_back.c \
 		utils.c \
 		check_command.c \

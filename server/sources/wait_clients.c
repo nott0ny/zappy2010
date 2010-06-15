@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Fri May  7 10:58:37 2010 amine mouafik
-** Last update Mon Jun 14 17:09:24 2010 amine mouafik
+** Last update Mon Jun 14 18:22:10 2010 amine mouafik
 */
 
 #include <sys/time.h>
@@ -28,6 +28,14 @@ static void		init_timeout(t_env *e)
     {
       gettimeofday(timestamp, NULL);
       timestamp->tv_sec = e->execution->timestamp.tv_sec - timestamp->tv_sec;
+      if (timestamp->tv_usec - e->execution->timestamp.tv_usec < 0)
+	{
+	  timestamp->tv_sec--;
+	  timestamp->tv_usec = USEC - e->execution->timestamp.tv_usec;
+	}
+      else
+	timestamp->tv_usec -= e->execution->timestamp.tv_usec;
+      timestamp = NULL;
     }
   else
     timestamp = NULL;

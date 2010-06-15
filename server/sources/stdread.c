@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Mon Jun 14 16:53:49 2010 amine mouafik
+** Last update Tue Jun 15 12:07:34 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -37,9 +37,8 @@ static char	*clean_player_cmd(char *cmd)
 {
   int		len;
 
-  len = -1;
-  while (cmd[++len] >= 32 && cmd[len] <= 126);
-  cmd[len] = '\0';
+  len = strlen(cmd);
+  cmd[len - 1] = '\0';
   return (cmd);
 }
 
@@ -82,17 +81,18 @@ static int	manage_player_cmd(t_env *e, t_players *player, int cmdlen)
   return (-2);
 }
 
-static void	stdrbose(char *stdread, int len, t_players *player, t_env *e, int answer)
+static void	stdrbose(char *stdread, t_players *player, t_env *e, int ret)
 {
-  stdread[len - 1] = '\0';
-  if (answer == -2)
+  stdread = clean_player_cmd(stdread);
+  if (ret == -2)
     rb_write(player->wr_rb, (unsigned char *)MSG_FAILURE, strlen(MSG_FAILURE));
-  else if (answer == -1)
+  else if (ret == -1)
     rb_write(player->wr_rb, (unsigned char *)MSG_IGNORE, strlen(MSG_IGNORE));
-  else if (answer == 0)
+  else if (ret == 0)
     rb_write(player->wr_rb, (unsigned char *)MSG_SUCCESS, strlen(MSG_SUCCESS));
   printf("[<-] Received from #%d : %s%s%s\n",
 	 player->fd_associate, CYAN, stdread, WHITE);
+  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }
 
 void		stdread(t_env *e,int fd)
@@ -110,7 +110,7 @@ void		stdread(t_env *e,int fd)
       while ((len = rb_has_cmd(player->rd_rb)) > 0)
 	{
 	  verbose = manage_player_cmd(e, player, len);
-	  stdrbose(buf, len, player, e, verbose);
+	  stdrbose(buf, player, e, verbose);
 	}
     }
   free(buf);

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Fri May  7 10:58:37 2010 amine mouafik
-** Last update Mon Jun 14 15:41:21 2010 amine mouafik
+** Last update Tue Jun 15 12:06:19 2010 amine mouafik
 */
 
 #include <time.h>
@@ -32,25 +32,25 @@ static void	add_as_sorted(t_stack *current, t_stack *newcmd)
 static void	push_sorted_onstack(t_env *e, t_stack *newcmd)
 {
   int		i;
-  t_stack     	*current;
+  t_stack     	*cur;
 
   i = -1;
-  current = e->execution;
+  cur = e->execution;
   if (e->execution == NULL)
     add_as_first(e, newcmd);
   else
     {
-      while (++i != -1 && current->next &&
-	     ((current->next->timestamp.tv_sec - newcmd->timestamp.tv_sec < 0) ||
-	      ((current->next->timestamp.tv_sec == newcmd->timestamp.tv_sec) &&
-	       current->next->timestamp.tv_usec - newcmd->timestamp.tv_usec <= 0)))
-	current = current->next;
-      if (i == 0 && (((current->timestamp.tv_sec - newcmd->timestamp.tv_sec > 0)) ||
-	  ((current->timestamp.tv_sec == newcmd->timestamp.tv_sec) &&
-	   current->timestamp.tv_usec - newcmd->timestamp.tv_usec >= 0)))
+      while (++i != -1 && cur->next &&
+	     ((cur->next->timestamp.tv_sec - newcmd->timestamp.tv_sec < 0) || 
+	      ((cur->next->timestamp.tv_sec == newcmd->timestamp.tv_sec) &&
+	       cur->next->timestamp.tv_usec - newcmd->timestamp.tv_usec <= 0)))
+	cur = cur->next;
+      if (i == 0 && (((cur->timestamp.tv_sec - newcmd->timestamp.tv_sec > 0)) ||
+		     ((cur->timestamp.tv_sec == newcmd->timestamp.tv_sec) &&
+		      cur->timestamp.tv_usec - newcmd->timestamp.tv_usec >= 0)))
 	add_as_first(e, newcmd);
       else
-	add_as_sorted(current, newcmd);
+	add_as_sorted(cur, newcmd);
     }
 }
 

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Thu Jun 10 19:32:30 2010 amine mouafik
+** Last update Mon Jun 14 17:18:43 2010 amine mouafik
 */
 
 #include <errno.h>
@@ -47,7 +47,7 @@ void	*xmalloc(int size, char *file, int line)
 
   if (!(p = malloc(size)))
     {
-      fprintf(stderr, "Can't alloc memory() (in %s, line %d) : %s\n",
+      fprintf(stderr, "Error with malloc (in %s, line %d): %s\n",
 	      file, line, strerror(errno));
       exit(EXIT_FAILURE);
     }

@@ -101,10 +101,10 @@ typedef struct		s_ringbuffer
 }			t_ringbuffer;
 
 enum direction {
-  UP = 1,
-  LEFT,
   DOWN,
-  RIGHT
+  RIGHT,
+  UP,
+  LEFT
 };
 
 typedef struct		s_stack {

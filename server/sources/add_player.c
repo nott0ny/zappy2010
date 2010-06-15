@@ -47,12 +47,15 @@ static void	create_player_list(t_env *e, ushort fd)
   rb_init(&(player->rd_rb), BUF_SIZE);
   player->fd_associate = fd;
   player->id_team = 0;
+  player->level = 1;
   player->posx = generate(e->params->width);
   player->posy = generate(e->params->height);
   player->direction = generate(4);
+  printf("Direction : %d\n", player->direction);
   player->stacklast = NULL;
   player->next = NULL;
   e->clients = player;
+  e->map[player->posx][player->posy].nb_player++;
   rb_write(player->wr_rb, MSG_CONNECT, strlen(MSG_CONNECT));
 }
 
@@ -68,12 +71,14 @@ static void	add_player_tolist(t_env *e, ushort fd)
   rb_init(&player->rd_rb, BUF_SIZE);
   player->fd_associate = fd;
   player->id_team = 0;
+  player->level = 1;
   player->posx = generate(e->params->width);
   player->posy = generate(e->params->height);
   player->direction = generate(4);
   player->stacklast = NULL;
   player->next = e->clients;
   e->clients = player;
+  e->map[player->posx][player->posy].nb_player++;
   rb_write(player->wr_rb, MSG_CONNECT, strlen(MSG_CONNECT));
 }
 

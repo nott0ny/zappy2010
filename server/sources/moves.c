@@ -15,32 +15,35 @@
 
 void	go_forward(t_env *e, t_players *player)
 {
-  e = e;
+  e->map[player->posx][player->posy].nb_player--;
   if (player->direction == UP)
-    player->posx = (--player->posx < 0) ? e->params->width - 1 : player->posx;
+    player->posy = (--player->posy < 0) ? e->params->height - 1 : player->posy;
   else if (player->direction == DOWN)
-    player->posx = (++player->posx >=  e->params->width) ? 0 : player->posx;
+    player->posy = (++player->posy >=  e->params->height) ? 0 : player->posy;
   else if (player->direction == RIGHT)
-    player->posx = (--player->posy < 0) ? e->params->height - 1 : player->posx;
+    player->posx = (++player->posx >= e->params->width) ? 0 : player->posx;
   else if (player->direction == LEFT)
-    player->posx = (++player->posy >=  e->params->height) ? 0 : player->posx;
+    player->posx = (--player->posx < 0) ? e->params->width - 1 : player->posx;
+  e->map[player->posx][player->posy].nb_player++;
   rb_write(player->wr_rb, MSG_SUCCESS, strlen(MSG_SUCCESS));
 }
 
 void	rotate_right(t_env *e, t_players *player)
 {
   e = e;
-  player->direction++;
-  if (player->direction > RIGHT)
-    player->direction = UP;
+  if (player->direction == DOWN)
+    player->direction = LEFT;
+  else
+    player->direction--;
   rb_write(player->wr_rb, MSG_SUCCESS, strlen(MSG_SUCCESS));
 }
 
 void	rotate_left(t_env *e, t_players *player)
 {
   e = e;
-  player->direction--;
-  if (player->direction < UP)
-    player->direction = RIGHT;
+  if (player->direction == LEFT)
+    player->direction = DOWN;
+  else
+    player->direction++;
   rb_write(player->wr_rb, MSG_SUCCESS, strlen(MSG_SUCCESS));
 }

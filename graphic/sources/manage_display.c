@@ -30,6 +30,8 @@ void		manage_event(t_client *cl)
 
 void		manage_display(t_client *cl, int what)
 {
+  static int	i = 0;
+
   manage_event(cl);
   if (cl->status == CL_LOAD && what == 0)
     {

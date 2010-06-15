@@ -33,7 +33,9 @@ SRCS	=	sources/main.c			\
 		sources/add_stack.c		\
 		sources/execute_stack.c		\
 		sources/actions.c		\
+		sources/moves.c			\
 		sources/clean_exit.c		\
+		sources/str_to_wordtab.c	\
 		sources/x.c
 OBJS	=	$(SRCS:.c=.o)
 CFLAGS	=	-W -Wall -ansi -pedantic -o $@ $(IFLAGS) -g3

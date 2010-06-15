@@ -86,6 +86,7 @@ typedef struct		s_bag {
   int			mendiane;
   int			phiras;
   int			thystame;
+  int			food;
 }			t_bag;
 
 typedef struct		s_ringbuffer
@@ -177,5 +178,8 @@ void		execute_stack(t_env *e);
 int	       	check_player_team(t_env *e, t_players *player, char *cmd);
 int		check_object_arg(char *cmd);
 int		check_incantation(t_env *e, t_players *player);
+void		remove_player_stack(t_stack *execution, t_players *player);
+void		clean_exit(t_env *e);
+char		**str_to_wordtab(char *str, char dif);
 
 #endif

@@ -15,6 +15,14 @@
 #include "ringbuffer.h"
 #include "utils.h"
 
+static int	generate(int limit)
+{
+  int		nb;
+
+  nb = rand() % limit;
+  return (nb);
+}
+
 static void	init_player_bag(t_bag *bag)
 {
   bag->linemate = 0;
@@ -23,12 +31,14 @@ static void	init_player_bag(t_bag *bag)
   bag->mendiane = 0;
   bag->phiras = 0;
   bag->thystame = 0;
+  bag->food = 0;
 }
 
 static void	create_player_list(t_env *e, int fd)
 {
   t_players	*player;
 
+  srand(time(NULL));
   player = Xmalloc(sizeof(t_players));
   player->bag = Xmalloc(sizeof(t_bag));
   init_player_bag(player->bag);
@@ -36,6 +46,9 @@ static void	create_player_list(t_env *e, int fd)
   rb_init(&(player->rd_rb), BUF_SIZE);
   player->fd_associate = fd;
   player->id_team = 0;
+  player->posx = generate(e->params->width);
+  player->posy = generate(e->params->height);
+  player->direction = generate(4);
   player->stacklast = NULL;
   player->next = NULL;
   e->clients = player;
@@ -46,6 +59,7 @@ static void	add_player_tolist(t_env *e, int fd)
 {
   t_players	*player;
 
+  srand(time(NULL));
   player = Xmalloc(sizeof(t_players));
   player->bag = Xmalloc(sizeof(t_bag));
   init_player_bag(player->bag);
@@ -53,6 +67,9 @@ static void	add_player_tolist(t_env *e, int fd)
   rb_init(&player->rd_rb, BUF_SIZE);
   player->fd_associate = fd;
   player->id_team = 0;
+  player->posx = generate(e->params->width);
+  player->posy = generate(e->params->height);
+  player->direction = generate(4);
   player->stacklast = NULL;
   player->next = e->clients;
   e->clients = player;

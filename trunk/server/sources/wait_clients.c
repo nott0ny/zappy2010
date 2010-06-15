@@ -13,6 +13,7 @@
 #include <sys/socket.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <signal.h>
 #include <errno.h>
 
 #include "server.h"
@@ -84,12 +85,20 @@ static void	watch_fds(t_env *e)
     }
 }
 
+int	gl_running = 1;
+
+void	sighandler()
+{
+  gl_running = 0;
+}
+
 int	wait_clients(t_env *e)
 {
   int  	nfds;
 
-  while (42)
+  while (gl_running)
     {
+      signal(SIGINT, sighandler);
       init_timeout(e);
       init_fds(e);
       nfds = (int)_X((void *)-1,
@@ -98,6 +107,11 @@ int	wait_clients(t_env *e)
 				    0, e->network->timeout), "select");
       if (nfds)
 	watch_fds(e);
+      else if (nfds == EINTR)
+	{
+	  clean_exit(e);
+	  return (0);
+	}
       execute_stack(e);
     }
   return (0);

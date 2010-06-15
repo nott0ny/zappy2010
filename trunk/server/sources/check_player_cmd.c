@@ -13,8 +13,8 @@
 #include "server.h"
 #include "check_player_cmd.h"
 
-int	check_player_cmd(t_env *e, t_players *player,
-			 char *cmd, int len, int id)
+ushort	check_player_cmd(t_env *e, t_players *player,
+			 char *cmd, ushort len, ushort id)
 {
   if (id == PRENDRE || id == POSE)
     {
@@ -27,9 +27,9 @@ int	check_player_cmd(t_env *e, t_players *player,
 	if (check_incantation(e, player) == 0)
 	  return (0);
 	else
-	  return (-1);
+	  return (1);
       else
 	return (0);
     }
-  return (-1);
+  return (1);
 }

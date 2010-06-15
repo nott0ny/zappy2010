@@ -19,28 +19,26 @@
 #include "server.h"
 #include "utils.h"
 
-static int		create_bind_socket(int port)
+static ushort		create_bind_socket(int port)
 {
   struct sockaddr_in	host;
-  int			dum;
-  int			fd;
+  int       		dum;
+  ushort       		fd;
 
-  fd = (int)X((void *)-1, (void *)socket(PF_INET,SOCK_STREAM,0), "socket");
+  fd = (int)X(-1, socket(PF_INET,SOCK_STREAM,0), "socket");
   dum = 1;
-  X((void *)-1, (void *)setsockopt(fd, IPPROTO_IP, IP_TOS, &dum, sizeof(dum)),
-    "setsockopt");
+  X(-1, setsockopt(fd, IPPROTO_IP, IP_TOS, &dum, sizeof(dum)), "setsockopt");
   host.sin_family = PF_INET;
   host.sin_port = htons(port);
   host.sin_addr.s_addr = htonl(INADDR_ANY);
-  X((void *)-1, (void *)bind(fd, (struct sockaddr *)&host, sizeof(host)),
-    "bind");
-  X((void *)-1, (void *)listen(fd,STD_BACKLOG), "listen");
+  X(-1, bind(fd, (struct sockaddr *)&host, sizeof(host)), "bind");
+  X(-1, listen(fd,STD_BACKLOG), "listen");
   return (fd);
 }
 
-int	init_connect_socket(t_network *network)
+ushort		init_connect_socket(t_network *network)
 {
-  int	fd;
+  ushort	fd;
 
   fd = create_bind_socket(network->port);
   alloc_fd(network, fd);

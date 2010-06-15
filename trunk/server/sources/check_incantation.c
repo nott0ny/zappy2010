@@ -62,8 +62,8 @@ static t_incantation   	*check_incantation_have(t_env *e, t_players *player)
   return (have);
 }
 
-static int	check_incantation_requirements(t_incantation *requirements,
-					       t_incantation *have, int i)
+static ushort	check_incantation_requirements(t_incantation *requirements,
+					       t_incantation *have, ushort i)
 {
   if (requirements[i].players == have->players)
     if (requirements[i].linemate == have->linemate)
@@ -76,9 +76,9 @@ static int	check_incantation_requirements(t_incantation *requirements,
   return (-1);
 }
 
-int		check_incantation(t_env *e, t_players *player)
+ushort		check_incantation(t_env *e, t_players *player)
 {
-  int		i;
+  ushort		i;
   t_incantation	*have;
   t_incantation	requirements[] = {
     {2, 1, 1, 0, 0, 0, 0, 0},

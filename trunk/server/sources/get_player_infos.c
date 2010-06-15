@@ -16,7 +16,7 @@
 #include "server.h"
 #include "utils.h"
 
-t_players	*get_player_byfd(t_env *e, int fd)
+t_players	*get_player_byfd(t_env *e, ushort fd)
 {
   t_players	*player;
 
@@ -29,7 +29,7 @@ t_players	*get_player_byfd(t_env *e, int fd)
   return (player);
 }
 
-int	get_player_message(char **buf, int fd)
+ushort	get_player_message(char **buf, ushort fd)
 {
   int	len;
 

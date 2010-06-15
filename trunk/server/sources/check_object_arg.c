@@ -13,23 +13,9 @@
 
 #include "server.h"
 
-static char	*cmd_object_retrieve(char *cmd)
+static ushort	cmd_object_exists(char *cmd)
 {
-  int		i;
-  char		*object;
-
-  i = -1;
-  object = cmd;
-  while (*(object + ++i))
-    if (*(object + i) == ' ')
-      break;
-  object = (char *)(object + i + 1);
-  return (object);
-}
-
-static int	cmd_object_exists(char *cmd)
-{
-  int		i;
+  ushort       	i;
   char		*object;
   char		*objects[] = {
     "food", "linemate", "deraumere", "sibur", "mendiane",
@@ -37,17 +23,17 @@ static int	cmd_object_exists(char *cmd)
   };
 
   i = -1;
-  object = cmd_object_retrieve(cmd);
+  object = get_object(cmd);
   while (objects[++i])
     if (strcmp(objects[i], object) == 0)
       return (0);
   return (-1);
 }
 
-static int	cmd_object_count(char *cmd)
+static ushort	cmd_object_count(char *cmd)
 {
-  int		argc;
-  int		i;
+  ushort       	argc;
+  ushort       	i;
 
   i = -1;
   argc = 0;
@@ -57,7 +43,7 @@ static int	cmd_object_count(char *cmd)
   return (argc);
 }
 
-int		check_object_arg(char *cmd)
+ushort		check_object_arg(char *cmd)
 {
   if (cmd_object_count(cmd) == 1)
     if (cmd_object_exists(cmd) == 0)

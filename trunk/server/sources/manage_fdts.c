@@ -23,15 +23,15 @@ void		search_max_fd(t_network *e)
 {
   struct rlimit	rlp;
 
-  X((void *)-1, (void *)getrlimit(RLIMIT_NOFILE,&rlp), "getrlimit");
+  X(-1, getrlimit(RLIMIT_NOFILE,&rlp), "getrlimit");
   rlp.rlim_cur = rlp.rlim_max;
-  X((void *)-1, (void *)setrlimit(RLIMIT_NOFILE,(struct rlimit *)&rlp),
+  X(-1, setrlimit(RLIMIT_NOFILE,(struct rlimit *)&rlp),
     "setrlimit");
-  X((void *)-1, (void *)getrlimit(RLIMIT_NOFILE, &rlp), "getrlimit");
+  X(-1, getrlimit(RLIMIT_NOFILE, &rlp), "getrlimit");
   e->max_fd = rlp.rlim_cur;
 }
 
-void	alloc_fd(t_network *network, int fd)
+void	alloc_fd(t_network *network, ushort fd)
 {
   network->fdt[fd] = Xmalloc(sizeof(*network->fdt[fd]));
   X(NULL, memset(network->fdt[fd], 0, sizeof(*network->fdt[fd])), "memset");
@@ -44,13 +44,13 @@ void	alloc_fdt(t_network *network)
     "memset");
 }
 
-void	close_fd(t_network *network, int fd)
+void		close_fd(t_network *network, ushort fd)
 {
-  int	cur;
+  ushort	cur;
 
   free(network->fdt[fd]);
   network->fdt[fd] = 0;
-  X((void *)-1, (void *)close(fd), "close");
+  X(-1, close(fd), "close");
   if (network->max_fd_used == fd)
     {
       cur = fd - 1;

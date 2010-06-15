@@ -19,7 +19,7 @@
 #include "ringbuffer.h"
 #include "utils.h"
 
-int		rb_init(t_ringbuffer **rb, int size)
+ushort		rb_init(t_ringbuffer **rb, ushort size)
 {
   t_ringbuffer	*ring;
 
@@ -39,7 +39,7 @@ int		rb_init(t_ringbuffer **rb, int size)
   return (1);
 }
 
-int	rb_clear(t_ringbuffer *rb)
+ushort	rb_clear(t_ringbuffer *rb)
 {
   memset(rb->buffer, 0, rb->size);
   rb->rd_pointer = 0;

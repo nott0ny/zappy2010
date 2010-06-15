@@ -41,7 +41,7 @@ static void	push_sorted_onstack(t_env *e, t_stack *newcmd)
   else
     {
       while (++i != -1 && cur->next &&
-	     ((cur->next->timestamp.tv_sec - newcmd->timestamp.tv_sec < 0) || 
+	     ((cur->next->timestamp.tv_sec - newcmd->timestamp.tv_sec < 0) ||
 	      ((cur->next->timestamp.tv_sec == newcmd->timestamp.tv_sec) &&
 	       cur->next->timestamp.tv_usec - newcmd->timestamp.tv_usec <= 0)))
 	cur = cur->next;
@@ -55,20 +55,23 @@ static void	push_sorted_onstack(t_env *e, t_stack *newcmd)
 }
 
 void			add_stack(t_env *e, t_players *player,
-				char *cmd, int duration)
+				char *cmd, ushort duration)
 {
   float			durationtime;
   struct timeval	timestamp;
+  struct timeval	exist;
   t_stack		*newcmd;
 
-  if (player->stacklast)
-    timestamp = player->stacklast->timestamp;
-  else
-    gettimeofday(&timestamp, NULL);
-  newcmd = Xmalloc(sizeof(*newcmd));
+  gettimeofday(&timestamp, NULL);
   durationtime = (float)duration / (float)e->params->time;
   timestamp.tv_sec += floor(durationtime);
+  if (player->stacklast)
+    exist = player->stacklast->timestamp;
+  else
+    gettimeofday(&exist, NULL);
+  timestamp.tv_sec += (timestamp.tv_sec - exist.tv_sec);
   timestamp.tv_usec += (int)(durationtime - (float)floor(durationtime)) * USEC;
+  newcmd = Xmalloc(sizeof(*newcmd));
   newcmd->timestamp = timestamp;
   newcmd->cmd = cmd;
   newcmd->fd_player = player->fd_associate;

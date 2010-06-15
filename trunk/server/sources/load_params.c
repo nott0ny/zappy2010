@@ -16,7 +16,7 @@
 #include "load_params.h"
 #include "utils.h"
 
-static int	init_params(t_params *params)
+static ushort	init_params(t_params *params)
 {
   params->port = DEFAULT_PORT;
   params->width = DEFAULT_WIDTH;
@@ -27,7 +27,7 @@ static int	init_params(t_params *params)
   return (0);
 }
 
-static int	view_params(t_params *params)
+static ushort	view_params(t_params *params)
 {
   t_teams	*teams;
 

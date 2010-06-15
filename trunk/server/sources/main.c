@@ -15,7 +15,7 @@
 #include "server.h"
 #include "utils.h"
 
-static int	server(char **argv)
+static ushort	server(char **argv)
 {
   t_env		*e;
 

@@ -18,9 +18,9 @@
 #include "load_map.h"
 #include "utils.h"
 
-static int	generate()
+static ushort	generate()
 {
-  int		nb;
+  ushort       	nb;
 
   nb = rand() % 100;
   if (nb < DENSITY_HIGH)

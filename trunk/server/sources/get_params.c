@@ -18,7 +18,7 @@
 
 static void	get_teams_name(char **av, int *i, t_params *server)
 {
-  int		size;
+  ushort       	size;
   t_teams	*elem;
   static int	id_team = 1;
 

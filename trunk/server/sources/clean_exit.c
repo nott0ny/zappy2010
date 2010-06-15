@@ -45,7 +45,7 @@ static void	free_clients(t_players *clients)
 
 static void	free_background(t_params *params, t_map **map, t_network *fdts)
 {
-  int		i;
+  ushort       	i;
   t_teams	*flush;
 
   flush = params->teams;
@@ -57,19 +57,19 @@ static void	free_background(t_params *params, t_map **map, t_network *fdts)
       free(params->teams);
     }
   free(params);
-  i = -1;
-  while (map[++i])
-    free(map[i]);
+  i = 0;
+  while (map[i])
+    free(map[i++]);
   free(map);
-  i = -1;
-  while (fdts->fdt[++i])
-    free(fdts->fdt[i]);
+  i = 0;
+  while (fdts->fdt[i])
+    free(fdts->fdt[i++]);
   free(fdts->fdt);
 }
 
 static void	close_connections(t_network *network)
 {
-  int		cur;
+  ushort       	cur;
 
   cur = 0;
   while(cur < network->max_fd_used + 1)

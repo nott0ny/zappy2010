@@ -32,8 +32,11 @@
 # include <sys/select.h>
 # include <netinet/in.h>
 
+# define ushort unsigned short
+# define uchar	unsigned char
+
 typedef struct		s_teams {
-  int			id_team;
+  ushort       		id_team;
   char			*name;
   struct s_teams	*next;
 }			t_teams;
@@ -48,14 +51,14 @@ typedef struct		s_params {
 }			t_params;
 
 typedef struct		s_map {
-  int			nb_player;
-  int			food;
-  int			linemate;
-  int			deraumere;
-  int			sibur;
-  int			mendiane;
-  int			phiras;
-  int			thystame;
+  ushort       		nb_player;
+  ushort       		food;
+  ushort       		linemate;
+  ushort       		deraumere;
+  ushort       		sibur;
+  ushort       		mendiane;
+  ushort		phiras;
+  ushort       		thystame;
 }			t_map;
 
 typedef struct		s_msg {
@@ -63,16 +66,16 @@ typedef struct		s_msg {
 }			t_msg;
 
 typedef struct		s_fdt {
-  int			type;
+  ushort       		type;
   t_msg			in;
   t_msg			out;
 }			t_fdt;
 
 typedef struct		s_network {
-  int			op_flags;
+  ushort       		op_flags;
   int			port;
-  int			max_fd_used;
-  int			max_fd;
+  ushort       		max_fd_used;
+  ushort       		max_fd;
   t_fdt			**fdt;
   fd_set		r;
   fd_set		w;
@@ -80,21 +83,21 @@ typedef struct		s_network {
 }			t_network;
 
 typedef struct		s_bag {
-  int			linemate;
-  int			deraumere;
-  int			sibur;
-  int			mendiane;
-  int			phiras;
-  int			thystame;
-  int			food;
+  ushort       		linemate;
+  ushort       		deraumere;
+  ushort       		sibur;
+  ushort       		mendiane;
+  ushort       		phiras;
+  ushort       		thystame;
+  ushort       		food;
 }			t_bag;
 
 typedef struct		s_ringbuffer
 {
     char       		*buffer;
-    int			wr_pointer;
-    int			rd_pointer;
-    int			size;
+    ushort     		wr_pointer;
+    ushort     		rd_pointer;
+    ushort     		size;
 }			t_ringbuffer;
 
 enum direction {
@@ -106,16 +109,16 @@ enum direction {
 
 typedef struct		s_stack {
   char			*cmd;
-  int			fd_player;
+  ushort       		fd_player;
   struct timeval	timestamp;
   struct s_stack	*next;
 }			t_stack;
 
 typedef struct		s_players {
-  int			fd_associate;
-  int			id_team;
-  int			level;
-  int			life;
+  ushort       		fd_associate;
+  ushort       		id_team;
+  ushort       		level;
+  ushort       		life;
   t_bag			*bag;
   int			posx;
   int			posy;
@@ -127,10 +130,10 @@ typedef struct		s_players {
 }			t_players;
 
 typedef struct		s_cmds {
-  int			id;
+  short       		id;
   char			*cmd;
   void			(*f)();
-  int			duration;
+  ushort       		duration;
 }			t_cmds;
 
 typedef struct		s_env {
@@ -153,33 +156,33 @@ void		broadcast(t_env *e, t_players *player);
 void		incantation(t_env *e, t_players *player);
 void		player_fork(t_env *e, t_players *player);
 
-void	       	add_player(t_env *e, int fd);
-int	       	check_params(t_params *params);
-int	       	init_connect_socket(t_network *network);
+void	       	add_player(t_env *e, ushort fd);
+ushort	       	check_params(t_params *params);
+ushort	       	init_connect_socket(t_network *network);
 void	       	get_params(char **av, t_params *server);
 t_map	       	**load_map(t_params *params);
 t_network      	*load_network(t_params *params);
 t_params       	*load_params(char **argv);
 int	       	main(int argc, char **argv);
 void	       	search_max_fd(t_network *e);
-void	       	alloc_fd(t_network *network, int fd);
+void	       	alloc_fd(t_network *network, ushort fd);
 void	       	alloc_fdt(t_network *network);
-void	       	set_max_fd(t_network *network, int fd);
-void	       	close_fd(t_network *network, int fd);
-void	       	new_connection(t_env *e, int fd_conn);
-void	       	stdread(t_env *e,int fd);
-void	       	stdwrite(t_env *e,int fd);
-int	       	wait_clients(t_env *e);
-int	       	check_player_cmd(t_env *e, t_players *player, char *cmd, int len, int id);
-t_players      	*get_player_byfd(t_env *e, int fd);
-int	       	get_player_message(char **buf, int fd);
-void	       	add_stack(t_env *e, t_players *player, char *cmd, int duration);
+void	       	set_max_fd(t_network *network, ushort fd);
+void	       	close_fd(t_network *network, ushort fd);
+void	       	new_connection(t_env *e, ushort fd_conn);
+void	       	stdread(t_env *e, ushort fd);
+void	       	stdwrite(t_env *e, ushort fd);
+ushort	       	wait_clients(t_env *e);
+ushort	       	check_player_cmd(t_env *e, t_players *player, char *cmd, ushort len, ushort id);
+t_players      	*get_player_byfd(t_env *e, ushort fd);
+ushort	       	get_player_message(char **buf, ushort fd);
+void	       	add_stack(t_env *e, t_players *player, char *cmd, ushort duration);
 void		execute_stack(t_env *e);
-int	       	check_player_team(t_env *e, t_players *player, char *cmd);
-int		check_object_arg(char *cmd);
-int		check_incantation(t_env *e, t_players *player);
+ushort	       	check_player_team(t_env *e, t_players *player, char *cmd);
+ushort		check_object_arg(char *cmd);
+ushort		check_incantation(t_env *e, t_players *player);
 void		remove_player_stack(t_stack *execution, t_players *player);
 void		clean_exit(t_env *e);
-char		**str_to_wordtab(char *str, char dif);
+char		*get_object(char *cmd);
 
 #endif

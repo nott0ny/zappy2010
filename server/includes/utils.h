@@ -22,8 +22,8 @@
 # define GREY  	"\033[1;37m"
 
 # define Xmalloc(size)		(xmalloc(size, __FILE__, __LINE__))
-# define X(err, res, str)	(x(err, res, str, __FILE__, __LINE__))
-# define _X(err, res, str)	(_x(err, res, str, __FILE__, __LINE__))
+# define X(err, res, str)	(x((void *)err, (void *)res, str, __FILE__, __LINE__))
+# define _X(err, res, str)	(_x((void *)err, (void *)res, str, __FILE__, __LINE__))
 # define _XW(str)		(_xw(str))
 
 void  	*x(void *err, void *res, char *str, char *file, int line);

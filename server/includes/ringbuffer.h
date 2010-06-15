@@ -13,12 +13,12 @@
 
 # define BUF_SIZE	256
 
-int	rb_init (t_ringbuffer **, int);
-int	rb_write (t_ringbuffer *, unsigned char *, int);
-int	rb_free (t_ringbuffer *);
-int	rb_read (t_ringbuffer *, unsigned char *, int);
-int	rb_has_cmd(t_ringbuffer *);
-int	rb_data_size (t_ringbuffer *);
-int	rb_clear (t_ringbuffer *);
+ushort	rb_init (t_ringbuffer **, ushort);
+ushort	rb_write (t_ringbuffer *, char *, ushort);
+ushort	rb_free (t_ringbuffer *);
+ushort	rb_read (t_ringbuffer *, char *, ushort);
+ushort	rb_has_cmd(t_ringbuffer *);
+ushort	rb_data_size (t_ringbuffer *);
+ushort	rb_clear (t_ringbuffer *);
 
 #endif

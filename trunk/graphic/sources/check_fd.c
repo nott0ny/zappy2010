@@ -18,6 +18,11 @@ void	check_fd(t_client *cl)
 	  memset(cl->cmd, 0, MAXCMD_LEN);
 	  rb_read(cl->read_buff, (unsigned char*)cl->cmd, check);
 	  check_command(cl);
+	  if (cl->status != CL_INIT)
+	    {
+	      cl->status = CL_LOAD;
+	      manage_display(cl, 0);
+	    }
 	}
     }
   if (FD_ISSET(cl->sock, &cl->wrfs) && cl->f_send == 1)

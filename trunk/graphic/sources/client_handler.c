@@ -25,7 +25,7 @@ int client_handler(t_client *cl)
       init_fd(cl);
       my_select(cl);
       check_fd(cl);
-      manage_display(cl);
+      manage_display(cl, 1);
     }
   return (0);
 }

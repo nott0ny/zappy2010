@@ -23,32 +23,22 @@ void		manage_event(t_client *cl)
     {
       if (e.type == SDL_QUIT)
 	cl->ingame = 1;
+      if (e.type == SDL_MOUSEBUTTONUP)
+	printf("molette:");
     }
 }
 
-void		create_game_window(t_ui *gui)
-{
-  SDL_FreeSurface(gui->window);
-  SDL_FreeSurface(gui->loading);
-  gui->window =  SDL_SetVideoMode(GAME_WINDOW_X, GAME_WINDOW_Y,
-				  WINDOW_BPP, SDL_HWSURFACE);
-  SDL_WM_SetCaption(GAME_WIN_TITLE, NULL);
-}
-
-void		manage_display(t_client *cl)
+void		manage_display(t_client *cl, int what)
 {
   manage_event(cl);
-  if (cl->status == CL_LOAD)
+  if (cl->status == CL_LOAD && what == 0)
     {
-      create_game_window(cl->fx->gui);
-      printf("Loading Map...\n");
       load_background(cl->fx);
       load_map(cl);
-      printf("Map Loaded\n");
-      cl->status = CL_DISP;
-    }
-  if (cl->status == CL_DISP)
-    {
+      load_ressource(cl);
+      load_players(cl);
+      SDL_WM_SetCaption(GAME_WIN_TITLE, NULL);
+      printf("display\n");
       SDL_Flip(cl->fx->gui->window);
     }
 }

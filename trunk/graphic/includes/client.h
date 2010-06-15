@@ -173,7 +173,7 @@ void	load_background(t_graph *fx);
 void	load_map(t_client *cl);
 
 /* manage_display.c */
-void	manage_display(t_client *cl);
+void	manage_display(t_client *cl, int what);
 
 /* manage_players_id.c */
 int	player_is_in_case(int x, int y, int p_id, t_client *cl);

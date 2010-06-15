@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Tue May  4 20:55:54 2010 amine mouafik
-** Last update Mon Jun 14 16:28:28 2010 amine mouafik
+** Last update Mon Jun 14 17:53:48 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -16,16 +16,10 @@
 #include "server.h"
 #include "utils.h"
 
-static void     sighandler(int signal)
-{
-  printf("%sShutting down server ... done%s\n", GREEN, WHITE);
-}
-
 static int	server(char **argv)
 {
   t_env		*e;
 
-  signal(SIGINT, sighandler);
   e = Xmalloc(sizeof(t_env));
   if ((e->params = load_params(argv)))
     if ((e->map = load_map(e->params)))

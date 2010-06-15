@@ -37,8 +37,7 @@ void		manage_display(t_client *cl, int what)
       load_map(cl);
       load_ressource(cl);
       load_players(cl);
-      SDL_WM_SetCaption(GAME_WIN_TITLE, NULL);
-      printf("display\n");
+      /*load_box_info(cl);*/
       SDL_Flip(cl->fx->gui->window);
     }
 }

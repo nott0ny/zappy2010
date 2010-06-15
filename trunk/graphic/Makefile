@@ -28,9 +28,11 @@ SRC	=	main.c \
 		get_players_infos.c \
 		set_players_infos.c \
 		init_ringbuffer.c \
+		init_sprite_action.c \
 		init_display.c \
 		init_cl.c \
 		init_fd.c \
+		load_box.c \
 		load_map.c \
 		load_players.c \
 		load_ressource.c \

@@ -17,13 +17,13 @@ static ushort	expulse_player(t_env *e, t_players *player, t_players *cur)
 {
   static ushort	i;
 
-  if (player->direction == UP)
+  if (player->direction == LEFT)
     cur->posx = (--cur->posx < 0) ? e->params->width - 1 : cur->posx;
-  else if (player->direction == DOWN)
-    cur->posx = (++cur->posx >=  e->params->width) ? 0 : cur->posx;
   else if (player->direction == RIGHT)
+    cur->posx = (++cur->posx >=  e->params->width) ? 0 : cur->posx;
+  else if (player->direction == UP)
     cur->posy = ((--cur->posy) < 0) ? e->params->height - 1 : cur->posy;
-  else if (player->direction == LEFT)
+  else if (player->direction == DOWN)
     cur->posy = ((++cur->posy) >=  e->params->height) ? 0 : cur->posy;
   return (i++);
 }

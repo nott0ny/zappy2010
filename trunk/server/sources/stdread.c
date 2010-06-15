@@ -93,6 +93,8 @@ static void	stdrbose(char *stdread, t_players *player, t_env *e, int ret)
     rb_write(player->wr_rb, MSG_IGNORE, strlen(MSG_IGNORE));
   printf("[<-] Received from #%d : %s%s%s\n",
 	 player->fd_associate, CYAN, stdread, WHITE);
+  printf("|-> PosX : %s%d%s -> PosY : %s%d%s\n\n",
+	 CYAN, player->posx, WHITE, CYAN, player->posy, WHITE);
   e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }
 

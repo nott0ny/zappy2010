@@ -30,6 +30,32 @@ static ushort	generate()
   return (0);
 }
 
+void	view_map(t_map **map, t_params *params)
+{
+  int	i;
+  int	j;
+
+  i = -1;
+  while (++i < params->height)
+    {
+      j = -1;
+      while (++j < params->width)
+	{
+	  printf("[%d][%d] food(%d) %slinemate(%d) %sderaumere(%d) " \
+		 "%ssibur(%d) %smendiane(%d) %sphiras(%d) %sthystame(%d)%s\n",
+		 j, i,
+		 map[i][j].food, YELLOW,
+		 map[i][j].linemate, BLUE,
+		 map[i][j].deraumere, PURPLE,
+		 map[i][j].sibur, CYAN,
+		 map[i][j].mendiane, GREY,
+		 map[i][j].phiras, RED,
+		 map[i][j].thystame, WHITE);
+	}
+    }
+  return ;
+}
+
 t_map	**load_map(t_params *params)
 {
   t_map	**map;
@@ -55,5 +81,6 @@ t_map	**load_map(t_params *params)
 	}
     }
   printf("%sGenerating world ... done%s\n", GREEN, WHITE);
+  view_map(map, params);
   return (map);
 }

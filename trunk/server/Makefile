@@ -38,6 +38,7 @@ SRCS	=	sources/main.c			\
 		sources/take.c			\
 		sources/drop.c			\
 		sources/expulse.c		\
+		sources/explore.c		\
 		sources/clean_exit.c		\
 		sources/x.c
 OBJS	=	$(SRCS:.c=.o)

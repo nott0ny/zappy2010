@@ -1,0 +1,21 @@
+<h1>Fait :</h1>
+<p>
+ * Execution stack triée<br>
+ * Modifier team_name dans players par id_team<br>
+ * Debug lié à la modification de team_name dans players par id_team<br>
+ * Envoyé ko à toutes les commandes invalides<br>
+ * Modifier check incantation (valeurs de retours)<br>
+ * Ajout stack timer en fonction de la dernière action du joueur<br>
+ * Timeout set en fonction du 1er element de l'execution stack (-1 si stack NULL)<br>
+<h1>A faire :</h1>
+<p>
+ * Modifier clean cmd (more nc friendly)<br>
+ * Piste du clean exit sur ERINT select
+ * Restore init_timeout quand execution stack vide au fur et a mesure<br>
+ * Xmalloc qui disconnect fd appelant si fail<br>
+ * Execute stack<br>
+ * Envoyer ok / bonne reponse on success<br>
+ * Faire fork / broadcast<br>
+ * Gerer si client deco : set fdt 0 && set player first in eggs until death<br>
+ * Gerer proprement mort d'un joueur / oeuf (slots principal / slots oeuf)<br>
+ * Faire les frees<br>

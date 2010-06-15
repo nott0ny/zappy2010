@@ -31,6 +31,8 @@ SRC	=	main.c \
 		init_display.c \
 		init_cl.c \
 		init_fd.c \
+		load_map.c \
+		load_back.c \
 		utils.c \
 		check_command.c \
 		cmd_init.c \

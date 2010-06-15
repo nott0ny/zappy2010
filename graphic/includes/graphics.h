@@ -23,12 +23,22 @@
 # define INIT_WINDOW_Y	400
 # define GAME_WINDOW_X  800
 # define GAME_WINDOW_Y	600
-# define CASE_H		44
-# define CASE_W		85
+# define GRASS_SIZE	256
+# define CASE_H		50
+# define CASE_W		87
+
+/* -- Sprite -- */
 
 # define IMG_LOAD	"images/loading_zappy.jpg"
 # define IMG_CASE	"images/case.png"
-# define IMG_BACK	""
+# define IMG_FOOD	"images/food.png"
+# define IMG_STO1	"images/stone_1.png"
+# define IMG_STO2	"images/stone_2.png"
+# define IMG_STO3	"images/stone_3.png"
+# define IMG_STO4	"images/stone_4.png"
+# define IMG_STO5	"images/stone_5.png"
+# define IMG_STO6	"images/stone_6.png"
+# define IMG_BACK	"images/grass.png"
 
 /* --- Structures --- */
 
@@ -38,6 +48,8 @@ typedef struct	s_case
   int		players_id[MAX_PLAYER];
   int           eggs_id;
   int		status;
+  int		pos_x;
+  int		pos_y;
 }		t_case;
 
 typedef struct	s_ui
@@ -46,6 +58,13 @@ typedef struct	s_ui
   SDL_Surface	*window;
   SDL_Surface	*loading;
   SDL_Surface	*background;
+  SDL_Surface	*food;
+  SDL_Surface	*linemate;
+  SDL_Surface	*deraumere;
+  SDL_Surface	*sibur;
+  SDL_Surface	*mendiane;
+  SDL_Surface	*phiras;
+  SDL_Surface	*thystame;
   SDL_Surface	*scase;
   SDL_Rect	*pos;
 }		t_ui;

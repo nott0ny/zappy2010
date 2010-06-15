@@ -15,7 +15,7 @@
 #include "server.h"
 #include "utils.h"
 
-static int	init_fdt(t_network *network)
+static ushort	init_fdt(t_network *network)
 {
   search_max_fd(network);
   alloc_fdt(network);

@@ -45,7 +45,7 @@ static void		init_timeout(t_env *e)
 
 static void	init_fds(t_env *e)
 {
-  int		cur;
+  ushort       	cur;
 
   cur = 0;
   FD_ZERO(&e->network->r);
@@ -67,7 +67,7 @@ static void	init_fds(t_env *e)
 
 static void	watch_fds(t_env *e)
 {
-  int		cur;
+  ushort       	cur;
 
   cur = 0;
   while (cur < e->network->max_fd_used + 1)
@@ -85,26 +85,25 @@ static void	watch_fds(t_env *e)
     }
 }
 
-int	gl_running = 1;
+ushort	gl_running = 1;
 
 void	sighandler()
 {
   gl_running = 0;
 }
 
-int	wait_clients(t_env *e)
+ushort		wait_clients(t_env *e)
 {
-  int  	nfds;
+  ushort 	nfds;
 
   while (gl_running)
     {
       signal(SIGINT, sighandler);
       init_timeout(e);
       init_fds(e);
-      nfds = (int)_X((void *)-1,
-		     (void *)select(e->network->max_fd_used + 1,
-				    &e->network->r, &e->network->w,
-				    0, e->network->timeout), "select");
+      nfds = (int)_X(-1, select(e->network->max_fd_used + 1,
+				&e->network->r, &e->network->w,
+				0, e->network->timeout), "select");
       if (nfds)
 	watch_fds(e);
       else if (nfds == EINTR)

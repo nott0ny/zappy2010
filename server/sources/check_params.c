@@ -16,7 +16,7 @@
 #include "check_params.h"
 #include "utils.h"
 
-static int	check_limits(int nb, int a, int b)
+static ushort	check_limits(int nb, int a, int b)
 {
   if (b)
     if (nb < a || nb > b)
@@ -27,7 +27,7 @@ static int	check_limits(int nb, int a, int b)
   return (0);
 }
 
-static int	check_teams_reserved(t_teams *teams)
+static ushort	check_teams_reserved(t_teams *teams)
 {
   t_teams	*current;
 
@@ -41,21 +41,21 @@ static int	check_teams_reserved(t_teams *teams)
   return (0);
 }
 
-static int	check_teams_minimum(t_teams *teams)
+static ushort	check_teams_minimum(t_teams *teams)
 {
   t_teams	*current;
-  int		i;
+  ushort       	i;
 
   i = 0;
   current = teams;
-  while (current && ++i)
+  while (current && i++ < 2)
     current = current->next;
   if (i < 2)
     return (1);
   return (0);
 }
 
-static int	check_teams_uniqueness(t_teams *teams)
+static ushort	check_teams_uniqueness(t_teams *teams)
 {
   t_teams	*begin;
   t_teams	*steps;
@@ -77,7 +77,7 @@ static int	check_teams_uniqueness(t_teams *teams)
   return (0);
 }
 
-int	check_params(t_params *params)
+ushort	check_params(t_params *params)
 {
   if (!check_limits(params->width, 1, 0) &&
       !check_limits(params->height, 1, 0))

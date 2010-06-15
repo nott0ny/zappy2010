@@ -8,6 +8,7 @@
 ** Last update Mon Jun 14 15:31:54 2010 amine mouafik
 */
 
+#include <time.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -34,7 +35,7 @@ static void	init_player_bag(t_bag *bag)
   bag->food = 0;
 }
 
-static void	create_player_list(t_env *e, int fd)
+static void	create_player_list(t_env *e, ushort fd)
 {
   t_players	*player;
 
@@ -52,10 +53,10 @@ static void	create_player_list(t_env *e, int fd)
   player->stacklast = NULL;
   player->next = NULL;
   e->clients = player;
-  rb_write(player->wr_rb, (unsigned char *)MSG_CONNECT, strlen(MSG_CONNECT));
+  rb_write(player->wr_rb, MSG_CONNECT, strlen(MSG_CONNECT));
 }
 
-static void	add_player_tolist(t_env *e, int fd)
+static void	add_player_tolist(t_env *e, ushort fd)
 {
   t_players	*player;
 
@@ -73,10 +74,10 @@ static void	add_player_tolist(t_env *e, int fd)
   player->stacklast = NULL;
   player->next = e->clients;
   e->clients = player;
-  rb_write(player->wr_rb, (unsigned char *)MSG_CONNECT, strlen(MSG_CONNECT));
+  rb_write(player->wr_rb, MSG_CONNECT, strlen(MSG_CONNECT));
 }
 
-void	add_player(t_env *e, int fd)
+void	add_player(t_env *e, ushort fd)
 {
   if (e->clients == NULL)
     create_player_list(e, fd);

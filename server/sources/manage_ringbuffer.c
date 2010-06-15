@@ -19,10 +19,10 @@
 #include "ringbuffer.h"
 #include "utils.h"
 
-int	rb_has_cmd(t_ringbuffer *rb)
+ushort		rb_has_cmd(t_ringbuffer *rb)
 {
-  int	i;
-  int	j;
+  ushort	i;
+  ushort	j;
 
   if (rb->buffer[rb->rd_pointer] != '\n')
     i = rb->rd_pointer;
@@ -46,10 +46,10 @@ int	rb_has_cmd(t_ringbuffer *rb)
   return (j + 1);
 }
 
-int	rb_write (t_ringbuffer *rb, unsigned char * buf, int len)
+ushort		rb_write (t_ringbuffer *rb, char *buf, ushort len)
 {
-  int	total;
-  int i;
+  ushort	total;
+  int		i;
 
   total = rb_free(rb);
   if (len > total)
@@ -69,16 +69,15 @@ int	rb_write (t_ringbuffer *rb, unsigned char * buf, int len)
   return (total);
 }
 
-int	rb_free(t_ringbuffer *rb)
+ushort	rb_free(t_ringbuffer *rb)
 {
   return (rb->size - 1 - rb_data_size(rb));
 }
 
-
-int	rb_read(t_ringbuffer *rb, unsigned char * buf, int max)
+ushort		rb_read(t_ringbuffer *rb, char * buf, ushort max)
 {
-  int total;
-  int i;
+  ushort	total;
+  int		i;
 
   total = rb_data_size(rb);
   if (max > total)
@@ -99,7 +98,7 @@ int	rb_read(t_ringbuffer *rb, unsigned char * buf, int max)
   return (total);
 }
 
-int	rb_data_size(t_ringbuffer *rb)
+ushort	rb_data_size(t_ringbuffer *rb)
 {
   return ((rb->wr_pointer - rb->rd_pointer) & (rb->size - 1));
 }

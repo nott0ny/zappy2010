@@ -1,9 +1,9 @@
 /*
 ** execute_stack.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server
-** 
+**
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
-** 
+**
 ** Started on  Mon Jun 14 14:52:14 2010 amine mouafik
 ** Last update Mon Jun 14 15:34:09 2010 amine mouafik
 */
@@ -34,8 +34,12 @@ void		remove_player_stack(t_stack *execution, t_players *player)
 static void	remove_cmd_stack(t_env *e)
 {
   t_stack	*tmp;
+  t_players	*player;
 
   tmp = e->execution;
+  player = get_player_byfd(e, e->execution->fd_player);
+  if (player->stacklast == e->execution)
+    player->stacklast = NULL;
   e->execution = e->execution->next;
   free(tmp->cmd);
   free(tmp);
@@ -54,7 +58,6 @@ static void	execute_cmd_stack(t_env *e, t_stack *stack)
     while (gl_cmds[++i].id != -1)
       {
 	if (strncmp(e->execution->cmd, gl_cmds[i].cmd, strlen(gl_cmds[i].cmd)) == 0)
-
 	  {
 	    gl_cmds[i].f(e, player);
 	    return ;
@@ -64,7 +67,7 @@ static void	execute_cmd_stack(t_env *e, t_stack *stack)
 
 void			execute_stack(t_env *e)
 {
-  struct timeval	timestamp;  
+  struct timeval	timestamp;
   t_stack		*tmp;
 
   gettimeofday(&timestamp, NULL);

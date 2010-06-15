@@ -14,7 +14,7 @@
 #include "server.h"
 #include "utils.h"
 
-static int	check_team_exists(t_teams *teams, char *team)
+static ushort	check_team_exists(t_teams *teams, char *team)
 {
   t_teams	*current;
 
@@ -28,10 +28,10 @@ static int	check_team_exists(t_teams *teams, char *team)
   return (0);
 }
 
-static int	check_team_slots(t_players *clients, int maxclient, int id_team)
+static ushort	check_team_slots(t_players *clients, int maxclient, int id_team)
 {
   t_players	*current;
-  int		slots;
+  ushort       	slots;
 
   slots = 0;
   current = clients;
@@ -47,9 +47,9 @@ static int	check_team_slots(t_players *clients, int maxclient, int id_team)
   return (0);
 }
 
-int	check_player_team(t_env *e, t_players *player, char *cmd)
+ushort		check_player_team(t_env *e, t_players *player, char *cmd)
 {
-  int	id_team;
+  ushort	id_team;
 
   if (!player->id_team)
     if ((id_team = check_team_exists(e->params->teams, cmd)))

@@ -1,4 +1,4 @@
-void	display_stack(t_stack *execution)
+void		display_stack(t_stack *execution)
 {
   t_stack	*stack;
   int		i;

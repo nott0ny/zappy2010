@@ -84,7 +84,7 @@ typedef struct		s_client {
   struct hostent	*host;
 }		t_client;
 
-/* ----------------- */
+/* ---- Function ---- */
 
 /* aff.c */
 void	aff_start(void);
@@ -163,11 +163,17 @@ void   init_fd(t_client *cl);
 /* init_graph.c */
 void	init_graph(t_graph *fx);
 
-/* init_world */
-int	init_world(t_client *cl, t_graph *fx);
+/* init_sprite_action.c */
+void	init_sprite_action_nord(t_ui *gui, int lvl, int action);
+void	init_sprite_action_south(t_ui *gui, int lvl, int action);
+void	init_sprite_action_west(t_ui *gui, int lvl, int action);
+void	init_sprite_action_east(t_ui *gui, int lvl, int action);
 
 /* load_back.c */
 void	load_background(t_graph *fx);
+
+/* load_box.c */
+void	load_box_info(t_client *cl);
 
 /* load_map */
 void	load_map(t_client *cl);

@@ -13,24 +13,37 @@
 
 # include <SDL/SDL.h>
 
-/* ------ MACRO ------*/
+/* ***** MACRO ***** */
+
+/* ----- Window ---- */
 
 # define MAX_PLAYER	1024
 # define INIT_WIN_TITLE	"Loading - Zappy FX"
-# define GAME_WIN_TITLE	"InGame - Zappy FX"
+# define GAME_WIN_TITLE	"- Zappy FX"
 # define WINDOW_BPP	16
+# define TO_CREAT	0
+# define TO_DISP	1
 # define INIT_WINDOW_X	640
 # define INIT_WINDOW_Y	400
-# define GAME_WINDOW_X  800
-# define GAME_WINDOW_Y	600
+# define GAME_WINDOW_X  900
+# define GAME_WINDOW_Y	700
 # define GRASS_SIZE	256
 # define CASE_H		69
 # define CASE_W		114
+# define BOX_H		150
+
+/* -- orientation -- */
+
+# define NORD		1
+# define EAST		2
+# define SOUTH		3
+# define WEST		4
 
 /* -- Sprite -- */
 
 # define IMG_LOAD	"images/loading_zappy.jpg"
 # define IMG_CASE	"images/case.png"
+# define IMG_BOX	"images/box.jpg"
 # define IMG_FOOD	"images/food.png"
 # define IMG_PLYR	"images/player.gif"
 # define IMG_STO1	"images/stone_1.png"
@@ -42,7 +55,7 @@
 # define IMG_BACK	"images/grass.png"
 
 
-/* --- Structures --- */
+/* *** Structures *** */
 
 typedef struct	s_case
 {

@@ -34,12 +34,13 @@ int		cmd_bct(char **params, t_client *cl)
   int x;
   int y;
 
-  aff_tab(params);
   if (tablen(params) != 10)
     return (0);
   x = atoi(params[1]);
   y = atoi(params[2]);
   cl->fx->map[x][y]->ress = get_ressource(params, 3);
+  cl->fx->map[x][y]->pos_x = 0;
+  cl->fx->map[x][y]->pos_y = 0;
   /* aff_case(x, y, cl);*/
   return (0);
 }

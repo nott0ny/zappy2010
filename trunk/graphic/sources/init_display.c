@@ -22,7 +22,15 @@ int		loading_window(t_client *cl)
 void	load_sprites(t_client *cl)
 {
   cl->fx->gui->loading = IMG_Load(IMG_LOAD);
+  cl->fx->gui->background = IMG_Load(IMG_BACK);
   cl->fx->gui->scase = IMG_Load(IMG_CASE);
+  cl->fx->gui->food = IMG_Load(IMG_FOOD);
+  cl->fx->gui->linemate = IMG_Load(IMG_STO1);
+  cl->fx->gui->deraumere = IMG_Load(IMG_STO2);
+  cl->fx->gui->sibur = IMG_Load(IMG_STO3);
+  cl->fx->gui->mendiane = IMG_Load(IMG_STO4);
+  cl->fx->gui->phiras = IMG_Load(IMG_STO5);
+  cl->fx->gui->thystame = IMG_Load(IMG_STO6);
 }
 
 int	init_display(t_client *cl)

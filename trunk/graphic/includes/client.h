@@ -166,6 +166,12 @@ void	init_graph(t_graph *fx);
 /* init_world */
 int	init_world(t_client *cl, t_graph *fx);
 
+/* load_back.c */
+void	load_background(t_graph *fx);
+
+/* load_map */
+void	load_map(t_client *cl);
+
 /* manage_display.c */
 void	manage_display(t_client *cl);
 
@@ -213,7 +219,7 @@ void	xclose(int fd);
 int	xread(int fd, char *buf, int count);
 void	*xmemset(char *addr, char c, size_t size);
 void	*xmalloc(size_t size);
-int tab_int_len(int *tab);
+int	tab_int_len(int *tab);
 int	xerror(char *from);
 
 #endif

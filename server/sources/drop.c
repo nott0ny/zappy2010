@@ -18,7 +18,7 @@ void	drop_object(t_env *e, t_players *player)
 {
   char	*object;
 
-  object = get_object(e->execution->cmd);
+  object = get_args(e->execution->cmd);
   if ((strcmp(object, "nourriture") == 0) && player->bag->food)
     {
       e->world->map[player->posx][player->posy].food++;
@@ -63,4 +63,5 @@ void	drop_object(t_env *e, t_players *player)
     }
   else
     rb_write(player->wr_rb, FAILURE, FAILURE_LEN);
+  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }

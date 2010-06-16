@@ -61,6 +61,7 @@ ushort		check_player_team(t_env *e, t_players *player, char *cmd)
 	  player->id_team = id_team;
 	  sprintf(buff, "%d\n%d\n", player->posx, player->posy);
 	  rb_write(player->wr_rb, buff, strlen(buff));
+	  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 	  return (0);
 	}
   if (!player->id_team)

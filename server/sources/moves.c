@@ -27,6 +27,7 @@ void	go_forward(t_env *e, t_players *player)
     player->posy = (++player->posy >= e->params->height) ? 0 : player->posy;
   e->world->map[player->posx][player->posy].nb_player++;
   rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
+  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }
 
 void	rotate_left(t_env *e, t_players *player)
@@ -37,6 +38,7 @@ void	rotate_left(t_env *e, t_players *player)
   else
     player->direction--;
   rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
+  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }
 
 void	rotate_right(t_env *e, t_players *player)
@@ -47,4 +49,5 @@ void	rotate_right(t_env *e, t_players *player)
   else
     player->direction++;
   rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
+  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }

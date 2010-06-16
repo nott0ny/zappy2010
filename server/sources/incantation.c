@@ -35,6 +35,7 @@ void		incantation(t_env *e, t_players *player)
 	  players->level++;
 	  sprintf(buff, "niveau actuel : %d\n", players->level);
 	  rb_write(players->wr_rb, buff, strlen(buff));
+	  e->network->fdt[players->fd_associate]->type |= T_WRITE;
 	}
       players = players->next;
     }

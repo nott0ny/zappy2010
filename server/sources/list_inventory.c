@@ -25,4 +25,5 @@ void	list_inventory(t_env *e, t_players *player)
 	  player->bag->sibur, player->bag->mendiane, player->bag->phiras,
 	  player->bag->thystame);
   rb_write(player->wr_rb, buff, strlen(buff));
+  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }

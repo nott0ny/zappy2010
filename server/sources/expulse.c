@@ -41,4 +41,5 @@ void		expulse(t_env *e, t_players *player)
       cur = cur->next;
     }
   rb_write(player->wr_rb, FAILURE, FAILURE_LEN);
+  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }

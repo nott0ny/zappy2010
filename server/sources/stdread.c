@@ -26,7 +26,7 @@ t_cmds	gl_cmds[] = {
   {5, "prend", take_object, 7},
   {6, "pose", drop_object, 7},
   {7, "expulse", expulse, 7},
-  {8, "broatcast", broadcast, 7},
+  {8, "broadcast", broadcast, 7},
   {9, "incantation", incantation, 300},
   {10, "fork", player_fork, 42},
   {-1, 0, 0, 0}

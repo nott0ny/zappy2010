@@ -17,17 +17,13 @@ ushort	check_player_cmd(t_env *e, t_players *player,
 			 char *cmd, ushort len, ushort id)
 {
   if (id == PRENDRE || id == POSE)
-    {
-      if (check_object_arg(cmd) == 0)
-	return (0);
-    }
+    return (check_object_args(cmd));
+  else if (id == BROADCAST)
+    return (check_msg_args(cmd));
   else if (len == (int)strlen(cmd))
     {
       if (id == INCANTATION)
-	if (check_incantation(e, player) == 0)
-	  return (0);
-	else
-	  return (1);
+	return(check_incantation(e, player));
       else
 	return (0);
     }

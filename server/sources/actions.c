@@ -13,12 +13,6 @@
 
 #define CMD_SIZE	512;
 
-void	broadcast(t_env *e, t_players *player)
-{
-  e = e;
-  player = player;
-}
-
 void	player_fork(t_env *e, t_players *player)
 {
   e = e;

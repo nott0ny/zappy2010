@@ -13,7 +13,7 @@
 #include "server.h"
 #include "ringbuffer.h"
 
-t_map	*get_case_front(t_env *e, t_players *player, int level, int cx)
+static t_map	*get_case_front(t_env *e, t_players *player, int level, int cx)
 {
   int  	x;
   int  	y;
@@ -33,7 +33,7 @@ t_map	*get_case_front(t_env *e, t_players *player, int level, int cx)
   return (&(e->world->map[x][y]));
 }
 
-void	write_case_content(t_players *player, t_map *c, int i)
+static void	write_case_content(t_env *e, t_players *player, t_map *c, int i)
 {
   i = c->food;
   while (i--)
@@ -59,6 +59,7 @@ void	write_case_content(t_players *player, t_map *c, int i)
   i = c->thystame;
   while (i--)
     rb_write(player->wr_rb, " thystame", strlen(" thystame"));
+  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }
 
 void	explore(t_env *e, t_players *player)
@@ -69,7 +70,7 @@ void	explore(t_env *e, t_players *player)
 
   i = 0;
   rb_write(player->wr_rb, "{", 1);
-  write_case_content(player, &(e->world->map[player->posx][player->posy]), i);
+  write_case_content(e, player, &(e->world->map[player->posx][player->posy]), i);
   rb_write(player->wr_rb, ",", 1);
   while (i < player->level)
     {
@@ -77,11 +78,12 @@ void	explore(t_env *e, t_players *player)
       nb = 3 + (i * 2);
       while (j < nb)
 	{
-	  write_case_content(player, get_case_front(e, player, i + 1, j++), i);
+	  write_case_content(e, player, get_case_front(e, player, i + 1, j++), i);
 	  if (!(j == nb && (i + 1) == player->level))
 	    rb_write(player->wr_rb, ",", 1);
 	}
       i++;
     }
   rb_write(player->wr_rb, "}\n", 2);
+  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }

@@ -26,7 +26,7 @@ static void	stdwbose(char *stdwrite, ushort len, t_players *player)
 	 player->fd_associate, PURPLE, stdwrite, WHITE);
 }
 
-void		stdwrite(t_env *e, ushort fd)
+void		stdwrite(t_env *e, int fd)
 {
   t_players	*player;
   char		stdwrite[256];

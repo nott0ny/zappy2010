@@ -17,14 +17,14 @@
 # define MSG_FAILURE	"ko\n"
 # define MSG_IGNORE	"ignore\n"
 
-# define MAX(a,b)	( (a>b)?(a):(b) )
+# define MAX(a,b)	((a>b) ? (a) : (b))
 # define READ_SIZE	2048
 # define STD_BACKLOG	5
 
-# define T_CONN		(1<<0)
-# define T_READ		(1<<1)
-# define T_WRITE	(1<<2)
-# define T_FREE		(1<<3)
+# define T_CONN		(1 << 0)
+# define T_READ		(1 << 1)
+# define T_WRITE	(1 << 2)
+# define T_FREE		(1 << 3)
 
 # define USEC		100000
 
@@ -169,9 +169,9 @@ void	       	alloc_fd(t_network *network, ushort fd);
 void	       	alloc_fdt(t_network *network);
 void	       	set_max_fd(t_network *network, ushort fd);
 void	       	close_fd(t_network *network, ushort fd);
-void	       	new_connection(t_env *e, ushort fd_conn);
-void	       	stdread(t_env *e, ushort fd);
-void	       	stdwrite(t_env *e, ushort fd);
+void	       	new_connection(t_env *e, int fd_conn);
+void	       	stdread(t_env *e, int fd);
+void	       	stdwrite(t_env *e, int fd);
 ushort	       	wait_clients(t_env *e);
 ushort	       	check_player_cmd(t_env *e, t_players *player, char *cmd, ushort len, ushort id);
 t_players      	*get_player_byfd(t_env *e, ushort fd);

@@ -18,15 +18,15 @@
 #include "server.h"
 #include "utils.h"
 
-void			new_connection(t_env *e, ushort fd_conn)
+void			new_connection(t_env *e, int fd_conn)
 {
   struct sockaddr_in	name;
   socklen_t		namelen;
-  ushort       		fd;
+  int       		fd;
   char			addr[4];
 
   namelen = sizeof(name);
-  fd = (int)X(-1, accept((int)fd_conn, (struct sockaddr *)&name, &namelen),
+  fd = (int)X(-1, accept(fd_conn, (struct sockaddr *)&name, &namelen),
 	      "accept");
   memcpy(&addr, &name.sin_addr.s_addr, sizeof(name.sin_addr.s_addr));
   alloc_fd(e->network, fd);

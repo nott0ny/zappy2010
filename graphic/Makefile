@@ -77,7 +77,7 @@ INCLUDE	=	-I./includes/
 
 CFLAGS	=	-W -Wall -ansi -pedantic -g3 `sdl-config --cflags` $(INCLUDE)
 
-LDFLAGS	=	`sdl-config --libs` -lSDL -lSDL_image
+LDFLAGS	=	`sdl-config --libs` -lSDL -lSDL_image -lSDL_ttf
 
 $(NAME): $(OBJ)
 	$(CC) $(LDFLAGS) -o $(NAME) $(OBJ)

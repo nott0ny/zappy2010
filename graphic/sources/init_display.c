@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <SDL/SDL.h>
 #include <SDL/SDL_gfxPrimitives.h>
+#include <SDL/SDL_ttf.h>
 #include <SDL/SDL_image.h>
 
 #include "client.h"
@@ -40,6 +41,8 @@ int	init_display(t_client *cl)
       error(SDL_GetError());
       return (-1);
     }
+  if (TTF_Init() == -1)
+    return (-1);
   load_sprites(cl);
   if (loading_window(cl) == -1)
     return (-1);

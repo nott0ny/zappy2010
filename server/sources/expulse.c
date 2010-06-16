@@ -8,10 +8,9 @@
 ** Last update Mon Jun 14 15:31:54 2010 amine mouafik
 */
 
-#include <string.h>
-
 #include "server.h"
 #include "ringbuffer.h"
+#include "answers.h"
 
 static ushort	expulse_player(t_env *e, t_players *player, t_players *cur)
 {
@@ -38,9 +37,8 @@ void		expulse(t_env *e, t_players *player)
       if (cur->posx == player->posx && cur->posy == player ->posy
 	  && player->fd_associate != cur->fd_associate)
 	if (expulse_player(e, player, cur) == 1)
-	  rb_write(player->wr_rb, MSG_SUCCESS,
-		   strlen(MSG_SUCCESS));
+	  rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
       cur = cur->next;
     }
-  rb_write(player->wr_rb, MSG_FAILURE, strlen(MSG_FAILURE));
+  rb_write(player->wr_rb, FAILURE, FAILURE_LEN);
 }

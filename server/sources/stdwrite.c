@@ -8,11 +8,8 @@
 ** Last update Tue Jun 15 11:50:50 2010 amine mouafik
 */
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <unistd.h>
 #include <stdio.h>
-#include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 
 #include "server.h"

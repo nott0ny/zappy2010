@@ -39,6 +39,8 @@ SRCS	=	sources/main.c			\
 		sources/drop.c			\
 		sources/expulse.c		\
 		sources/explore.c		\
+		sources/list_inventory.c	\
+		sources/incantation.c		\
 		sources/clean_exit.c		\
 		sources/x.c
 OBJS	=	$(SRCS:.c=.o)

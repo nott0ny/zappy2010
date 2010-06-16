@@ -8,14 +8,13 @@
 ** Last update Tue Jun 15 12:07:34 2010 amine mouafik
 */
 
-#include <sys/types.h>
-#include <sys/socket.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "server.h"
 #include "ringbuffer.h"
+#include "answers.h"
 #include "utils.h"
 
 t_cmds	gl_cmds[] = {
@@ -86,15 +85,13 @@ static void	stdrbose(char *stdread, t_players *player, t_env *e, int ret)
   stdread = clean_player_cmd(stdread);
   if (ret == 2)
     {
-      rb_write(player->wr_rb, MSG_FAILURE, strlen(MSG_FAILURE));
+      rb_write(player->wr_rb, FAILURE, FAILURE_LEN);
       remove_player_stack(e->execution, player);
     }
   else if (ret == 1)
-    rb_write(player->wr_rb, MSG_IGNORE, strlen(MSG_IGNORE));
+    rb_write(player->wr_rb, IGNORE, IGNORE_LEN);
   printf("[<-] Received from #%d : %s%s%s\n",
 	 player->fd_associate, CYAN, stdread, WHITE);
-  printf("|-> PosX : %s%d%s -> PosY : %s%d%s\n\n",
-	 CYAN, player->posx, WHITE, CYAN, player->posy, WHITE);
   e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }
 

@@ -8,9 +8,9 @@
 ** Last update Mon Jun 14 13:08:31 2010 amine mouafik
 */
 
-#include <string.h>
-
 #include "server.h"
+#include "ringbuffer.h"
+#include "answers.h"
 #include "utils.h"
 
 typedef struct	s_incantation {
@@ -78,7 +78,7 @@ static ushort	check_incantation_requirements(t_incantation *requirements,
 
 ushort		check_incantation(t_env *e, t_players *player)
 {
-  ushort		i;
+  ushort       	i;
   t_incantation	*have;
   t_incantation	requirements[] = {
     {2, 1, 1, 0, 0, 0, 0, 0},
@@ -94,8 +94,11 @@ ushort		check_incantation(t_env *e, t_players *player)
   i = -1;
   have = check_incantation_have(e, player);
   while (requirements[++i].elevation)
-    if ((i - 1) == player->level)
+    if ((requirements[i].elevation - 1) == player->level)
       if (check_incantation_requirements(requirements, have, i) == 0)
-	return (0);
-  return (-1);
+	{
+	  rb_write(player->wr_rb, ELEVATION, ELEVATION_LEN);
+	  return (0);
+	}
+  return (1);
 }

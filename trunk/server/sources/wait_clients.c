@@ -12,9 +12,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include <signal.h>
-#include <errno.h>
 
 #include "server.h"
 #include "utils.h"
@@ -106,12 +104,8 @@ ushort		wait_clients(t_env *e)
 				0, e->network->timeout), "select");
       if (nfds)
 	watch_fds(e);
-      else if (nfds == EINTR)
-	{
-	  clean_exit(e);
-	  return (0);
-	}
       execute_stack(e);
     }
+  clean_exit(e);
   return (0);
 }

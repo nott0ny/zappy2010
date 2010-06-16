@@ -12,12 +12,8 @@
 # define __SERVER_H__
 
 # define CLIENT_GRAPHIC	"GRAPHIC"
-# define MSG_CONNECT	"BIENVENUE\n"
-# define MSG_SUCCESS   	"ok\n"
-# define MSG_FAILURE	"ko\n"
-# define MSG_IGNORE	"ignore\n"
 
-# define MAX(a,b)	((a>b) ? (a) : (b))
+
 # define READ_SIZE	2048
 # define STD_BACKLOG	5
 
@@ -26,9 +22,10 @@
 # define T_WRITE	(1 << 2)
 # define T_FREE		(1 << 3)
 
+# define MAX(a,b)	((a>b) ? (a) : (b))
+
 # define USEC		100000
 
-# include <sys/types.h>
 # include <sys/select.h>
 # include <netinet/in.h>
 

@@ -8,10 +8,8 @@
 ** Last update Tue Jun 15 12:06:19 2010 amine mouafik
 */
 
-#include <time.h>
 #include <sys/time.h>
 #include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 
 #include "server.h"

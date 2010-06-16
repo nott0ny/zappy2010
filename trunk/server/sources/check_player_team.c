@@ -8,8 +8,8 @@
 ** Last update Mon Jun 14 14:38:45 2010 amine mouafik
 */
 
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "server.h"
 #include "ringbuffer.h"
@@ -50,17 +50,17 @@ static int	check_team_slots(t_players *clients, int maxclient, int id_team)
 
 ushort		check_player_team(t_env *e, t_players *player, char *cmd)
 {
+  char		buff[512];
   ushort	id_team;
   int		slots;
-  char		buf[256];
 
   if (!player->id_team)
     if ((id_team = check_team_exists(e->params->teams, cmd)))
       if ((slots = check_team_slots(e->clients, e->params->maxclient, id_team)))
 	{
 	  player->id_team = id_team;
-	  sprintf(buf, "%d\n%d %d\n", slots, player->posx, player->posy);
-	  rb_write(player->wr_rb, buf, strlen(buf));
+	  sprintf(buff, "%d\n%d\n", player->posx, player->posy);
+	  rb_write(player->wr_rb, buff, strlen(buff));
 	  return (0);
 	}
   if (!player->id_team)

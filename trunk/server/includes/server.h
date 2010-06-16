@@ -177,10 +177,11 @@ ushort	       	get_player_message(char **buf, ushort fd);
 void	       	add_stack(t_env *e, t_players *player, char *cmd, ushort duration);
 void		execute_stack(t_env *e);
 ushort	       	check_player_team(t_env *e, t_players *player, char *cmd);
-ushort		check_object_arg(char *cmd);
+ushort		check_object_args(char *cmd);
+ushort		check_msg_args(char *cmd);
 ushort		check_incantation(t_env *e, t_players *player);
 void		remove_player_stack(t_stack *execution, t_players *player);
 void		clean_exit(t_env *e);
-char		*get_object(char *cmd);
+char		*get_args(char *cmd);
 
 #endif

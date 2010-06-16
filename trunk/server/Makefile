@@ -25,8 +25,8 @@ SRCS	=	sources/main.c			\
 		sources/get_player_infos.c	\
 		sources/check_player_team.c	\
 		sources/check_player_cmd.c	\
-		sources/check_object_arg.c	\
-		sources/get_object.c		\
+		sources/check_args.c	\
+		sources/get_args.c		\
 		sources/check_incantation.c	\
 		sources/stdwrite.c		\
 		sources/init_ringbuffer.c	\
@@ -41,6 +41,7 @@ SRCS	=	sources/main.c			\
 		sources/explore.c		\
 		sources/list_inventory.c	\
 		sources/incantation.c		\
+		sources/broadcast.c		\
 		sources/clean_exit.c		\
 		sources/x.c
 OBJS	=	$(SRCS:.c=.o)

@@ -25,6 +25,7 @@ void		remove_player_stack(t_stack *execution, t_players *player)
     {
       if (tmp->fd_player == player->fd_associate)
 	{
+	  /* CONTINUE */
 	}
       tmp = tmp->next;
     }
@@ -56,13 +57,12 @@ static void	execute_cmd_stack(t_env *e, t_stack *stack)
   i = -1;
   if (player != NULL)
     while (gl_cmds[++i].id != -1)
-      {
-	if (strncmp(e->execution->cmd, gl_cmds[i].cmd, strlen(gl_cmds[i].cmd)) == 0)
-	  {
-	    gl_cmds[i].f(e, player);
-	    return ;
-	  }
-      }
+      if (strncmp(e->execution->cmd, gl_cmds[i].cmd,
+		  strlen(gl_cmds[i].cmd)) == 0)
+	{
+	  gl_cmds[i].f(e, player);
+	  return ;
+	}
 }
 
 void			execute_stack(t_env *e)

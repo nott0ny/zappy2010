@@ -13,6 +13,7 @@
 
 # define PRENDRE	5
 # define POSE		6
+# define BROADCAST	8
 # define INCANTATION	9
 
 #endif

@@ -73,7 +73,7 @@ static ushort	check_incantation_requirements(t_incantation *requirements,
 	    if (requirements[i].phiras == have->phiras)
 	      if (requirements[i].thystame == have->thystame)
 		return (0);
-  return (-1);
+  return (1);
 }
 
 ushort		check_incantation(t_env *e, t_players *player)
@@ -98,6 +98,7 @@ ushort		check_incantation(t_env *e, t_players *player)
       if (check_incantation_requirements(requirements, have, i) == 0)
 	{
 	  rb_write(player->wr_rb, ELEVATION, ELEVATION_LEN);
+	  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 	  return (0);
 	}
   return (1);

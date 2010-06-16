@@ -98,7 +98,7 @@ static void	stdrbose(char *stdread, t_players *player, t_env *e, int ret)
   e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }
 
-void		stdread(t_env *e,ushort fd)
+void		stdread(t_env *e, int fd)
 {
   t_players	*player;
   char		*buf;

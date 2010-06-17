@@ -6,16 +6,18 @@
  * Envoyé ko à toutes les commandes invalides<br>
  * Modifier check incantation (valeurs de retours)<br>
  * Ajout stack timer en fonction de la dernière action du joueur<br>
- * Timeout set en fonction du 1er element de l'execution stack (-1 si stack NULL)<br>
+ * Modifier clean cmd (more nc friendly)<br>
+ * Execute stack<br>
+ * Faire broadcast<br>
+ * Envoyer ok / bonne reponse on success<br>
+ * Faire les frees<br>
+ * Recheck les moves / avance / gauche / droite mais surtout voir
 <h1>A faire :</h1>
 <p>
- * Modifier clean cmd (more nc friendly)<br>
  * Piste du clean exit sur ERINT select
- * Restore init_timeout quand execution stack vide au fur et a mesure<br>
+ * Timeout set en fonction du 1er element de l'execution stack (NULL si stack NULL)<br>
  * Xmalloc qui disconnect fd appelant si fail<br>
- * Execute stack<br>
- * Envoyer ok / bonne reponse on success<br>
- * Faire fork / broadcast<br>
+ * Faire fork
+ * Faire random map
  * Gerer si client deco : set fdt 0 && set player first in eggs until death<br>
  * Gerer proprement mort d'un joueur / oeuf (slots principal / slots oeuf)<br>
- * Faire les frees<br>

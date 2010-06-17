@@ -8,14 +8,16 @@
  * Ajout stack timer en fonction de la dernière action du joueur<br>
  * Modifier clean cmd (more nc friendly)<br>
  * Execute stack<br>
- * Faire broadcast<br>
  * Envoyer ok / bonne reponse on success<br>
  * Faire les frees<br>
  * Recheck les moves / avance / gauche / droite mais surtout voir
+<h1>En cours :</h1>
+<p>
+ * Debug K broadcast<br>
+ * Timeout set en fonction du 1er element de l'execution stack (NULL si stack NULL)<br>
 <h1>A faire :</h1>
 <p>
  * Piste du clean exit sur ERINT select
- * Timeout set en fonction du 1er element de l'execution stack (NULL si stack NULL)<br>
  * Xmalloc qui disconnect fd appelant si fail<br>
  * Faire fork
  * Faire random map

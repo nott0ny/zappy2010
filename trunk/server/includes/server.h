@@ -120,6 +120,7 @@ typedef struct		s_players {
   t_bag			*bag;
   int			posx;
   int			posy;
+  int			stacksize;
   t_stack		*stacklast;
   t_ringbuffer	       	*wr_rb;
   t_ringbuffer		*rd_rb;
@@ -183,5 +184,6 @@ ushort		check_incantation(t_env *e, t_players *player);
 void		remove_player_stack(t_stack *execution, t_players *player);
 void		clean_exit(t_env *e);
 char		*get_args(char *cmd);
+t_stack		*get_player_stacklast_byfd(t_env *e, ushort fd);
 
 #endif

@@ -63,6 +63,7 @@ void	add_player(t_env *e, ushort fd)
   player->posx = generate(e->params->width);
   player->posy = generate(e->params->height);
   player->direction = generate(4);
+  player->stacksize = 0;
   player->stacklast = NULL;
   if (e->clients == NULL)
     create_player_list(e, player);

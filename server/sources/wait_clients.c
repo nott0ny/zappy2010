@@ -27,14 +27,6 @@ static void		init_timeout(t_env *e)
     {
       gettimeofday(timestamp, NULL);
       timestamp->tv_sec = e->execution->timestamp.tv_sec - timestamp->tv_sec;
-      if (timestamp->tv_usec - e->execution->timestamp.tv_usec < 0)
-	{
-	  timestamp->tv_sec--;
-	  timestamp->tv_usec = USEC - e->execution->timestamp.tv_usec;
-	}
-      else
-	timestamp->tv_usec -= e->execution->timestamp.tv_usec;
-      timestamp = NULL;
     }
   else
     timestamp = NULL;
@@ -90,6 +82,25 @@ void	sighandler()
   gl_running = 0;
 }
 
+void		display_stack(t_stack *execution)
+{
+  t_stack	*stack;
+  int		i;
+
+  i = 0;
+  stack = execution;
+  if (stack)
+    printf("--- Stack Begin ---\n");
+  while (stack)
+    {
+      printf("Player stack : cmd(%s) timestamp(%d)\n",
+	     stack->cmd, (int)stack->timestamp.tv_sec);
+      stack = stack->next;
+    }
+  if (stack)
+    printf("--- Stack End ---\n");
+}
+
 ushort		wait_clients(t_env *e)
 {
   ushort 	nfds;
@@ -105,6 +116,7 @@ ushort		wait_clients(t_env *e)
       if (nfds)
 	watch_fds(e);
       execute_stack(e);
+      display_stack(e->execution);
     }
   clean_exit(e);
   return (0);

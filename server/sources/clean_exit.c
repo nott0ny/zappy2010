@@ -66,6 +66,7 @@ static void	free_background(t_params *params, t_map *world, t_network *fdts)
   while (fdts->fdt[i])
     free(fdts->fdt[i++]);
   free(fdts->fdt);
+  free(fdts->timeout);
 }
 
 static void	close_connections(t_network *network)

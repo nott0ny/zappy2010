@@ -16,6 +16,20 @@
 #include "server.h"
 #include "utils.h"
 
+t_stack		*get_player_stacklast_byfd(t_env *e, ushort fd)
+{
+  t_stack      	*stack;
+
+  stack = e->execution;
+  while (stack)
+    {
+      if (stack->fd_player == fd)
+	return (stack);
+      stack = stack->next;
+    }
+  return (NULL);
+}
+
 t_players	*get_player_byfd(t_env *e, ushort fd)
 {
   t_players	*player;

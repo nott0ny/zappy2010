@@ -12,6 +12,7 @@
  * Faire les frees<br>
  * Recheck les moves / avance / gauche / droite mais surtout voir
  * Timeout set en fonction du 1er element de l'execution stack (NULL si stack NULL)<br>
+ * Quand KO, clean action planifiée après KO
 <h1>En cours :</h1>
 <p>
  * Debug K broadcast<br>

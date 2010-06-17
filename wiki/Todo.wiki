@@ -11,14 +11,15 @@
  * Envoyer ok / bonne reponse on success<br>
  * Faire les frees<br>
  * Recheck les moves / avance / gauche / droite mais surtout voir
+ * Timeout set en fonction du 1er element de l'execution stack (NULL si stack NULL)<br>
 <h1>En cours :</h1>
 <p>
  * Debug K broadcast<br>
- * Timeout set en fonction du 1er element de l'execution stack (NULL si stack NULL)<br>
 <h1>A faire :</h1>
 <p>
  * Piste du clean exit sur ERINT select
  * Xmalloc qui disconnect fd appelant si fail<br>
+ * Limiter stack execution à 10
  * Faire fork
  * Faire random map
  * Gerer si client deco : set fdt 0 && set player first in eggs until death<br>

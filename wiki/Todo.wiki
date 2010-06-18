@@ -25,3 +25,4 @@
  * Faire random map
  * Gerer si client deco : set fdt 0 && set player first in eggs until death<br>
  * Gerer proprement mort d'un joueur / oeuf (slots principal / slots oeuf)<br>
+ * Makefile

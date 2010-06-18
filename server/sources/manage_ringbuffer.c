@@ -19,31 +19,27 @@
 #include "ringbuffer.h"
 #include "utils.h"
 
-ushort		rb_has_cmd(t_ringbuffer *rb)
+short		rb_has_cmd(t_ringbuffer *rb)
 {
   ushort	i;
   ushort	j;
 
-  if (rb->buffer[rb->rd_pointer] != '\n')
-    i = rb->rd_pointer;
-  else
-    i = rb->rd_pointer + 1;
-  j = 0;
+  j = 1;
+  if (rb->rd_pointer == rb->wr_pointer)
+    return (0);
+  i = rb->rd_pointer;
   while (i != rb->wr_pointer && rb->buffer[i] != '\n')
     {
+      i++;
+      j++;
       if (i >= rb->size)
 	i = 0;
-      else
-	{
-	  i++;
-	  j++;
-	}
     }
-  if (j == 0)
-    return (0);
-  if (i == rb->wr_pointer)
+  if (rb->buffer[i] == '\n')
+    return (j);
+  else if (i == rb->wr_pointer && j == rb->size - 1)
     return (-1);
-  return (j + 1);
+  return (0);
 }
 
 ushort		rb_write (t_ringbuffer *rb, char *buf, ushort len)

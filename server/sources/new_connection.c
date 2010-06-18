@@ -14,6 +14,7 @@
 
 #include "server.h"
 #include "utils.h"
+#include "new_connection.h"
 
 void			new_connection(t_env *e, int fd_conn)
 {

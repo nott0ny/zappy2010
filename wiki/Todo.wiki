@@ -15,6 +15,7 @@
  * Quand KO, clean action planifiée après KO
  * Connect_nbr
  * Clean_player when dead
+ * Makefile
 <h1>En cours :</h1>
 <p>
  * Debug K broadcast<br>
@@ -27,4 +28,3 @@
  * Faire random map
  * Gerer si client deco : set fdt 0 && set player first in eggs until death<br>
  * Gerer proprement mort d'un joueur / oeuf (slots principal / slots oeuf)<br>
- * Makefile

@@ -32,6 +32,7 @@ t_cmds	gl_cmds[] = {
   {8, "broadcast", broadcast, BROADCAST_T},
   {9, "incantation", incantation, INCANTATION_T},
   {10, "fork", player_fork, FORK_T},
+  {11, "connect_nbr", connect_nbr, CONNECT_NBR_T},
   {-1, 0, 0, 0}
 };
 

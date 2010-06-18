@@ -24,5 +24,6 @@
 # define BROADCAST_T		7
 # define INCANTATION_T		300
 # define FORK_T			42
+# define CONNECT_NBR_T		0
 
 #endif

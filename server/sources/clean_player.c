@@ -23,7 +23,7 @@ void		clean_player(t_env *e, t_players *player)
   shutdown(player->fd_associate, SHUT_RDWR);
   close_fd(e->network, player->fd_associate);
   player->stacklast = NULL;
-  /*  remove_player_stack(e->execution, player); */
+  remove_player_stack(e->execution, player);
   flush = player;
   current = e->clients;
   if (current != flush)

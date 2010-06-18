@@ -25,7 +25,7 @@ SRCS	=	sources/main.c			\
 		sources/get_player_infos.c	\
 		sources/check_player_team.c	\
 		sources/check_player_cmd.c	\
-		sources/check_args.c	\
+		sources/check_args.c		\
 		sources/get_args.c		\
 		sources/check_incantation.c	\
 		sources/stdwrite.c		\
@@ -42,6 +42,7 @@ SRCS	=	sources/main.c			\
 		sources/incantation.c		\
 		sources/broadcast.c		\
 		sources/fork.c			\
+		sources/connect_nbr.c		\
 		sources/healthcare.c		\
 		sources/clean_player.c		\
 		sources/clean_exit.c		\

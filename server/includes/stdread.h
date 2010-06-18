@@ -22,6 +22,7 @@ void		expulse(t_env *e, t_players *player);
 void		broadcast(t_env *e, t_players *player);
 void		incantation(t_env *e, t_players *player);
 void		player_fork(t_env *e, t_players *player);
+void		connect_nbr(t_env *e, t_players *player);
 void		remove_player_stack(t_stack *execution, t_players *player);
 t_players	*get_player_byfd(t_env *e, ushort fd);
 ushort		get_player_message(char **buf, ushort fd);

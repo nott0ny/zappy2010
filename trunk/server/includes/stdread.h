@@ -1,5 +1,5 @@
 /*
-** answers.h for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/serveur/includes
+** stdread.h for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/serveur/includes
 **
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>

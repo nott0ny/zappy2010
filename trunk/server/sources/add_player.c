@@ -12,11 +12,9 @@
 #include <stdlib.h>
 
 #include "types.h"
-#include "stack.h"
 #include "ringbuffer.h"
 #include "answers.h"
 #include "utils.h"
-#include "add_player.h"
 
 static int	generate(int limit)
 {
@@ -73,5 +71,4 @@ void	add_player(t_env *e, ushort fd)
     add_player_tolist(e, player);
   e->world->map[player->posx][player->posy].nb_player++;
   rb_write(player->wr_rb, CONNECT, CONNECT_LEN);
-  add_stack_healthcare(e, player, HEALTHCARE, HEALTHCARE_T);
 }

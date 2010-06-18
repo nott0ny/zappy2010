@@ -37,11 +37,14 @@ t_players	*get_player_byfd(t_env *e, ushort fd)
   t_players	*player;
 
   player = e->clients;
-  if (fd == player->fd_associate)
-    return (player);
-  while ((player = player->next))
-    if (fd == player->fd_associate)
-      break;
+  if (player)
+    {
+      if (fd == player->fd_associate)
+	return (player);
+      while ((player = player->next))
+	if (fd == player->fd_associate)
+	  break;
+    }
   return (player);
 }
 

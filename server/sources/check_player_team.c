@@ -11,7 +11,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
+#include "fdts.h"
 #include "ringbuffer.h"
 #include "utils.h"
 

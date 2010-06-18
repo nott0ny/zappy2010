@@ -10,9 +10,11 @@
 
 #include <sys/types.h>
 #include <sys/socket.h>
+#include <netinet/in.h>
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
+#include "fdts.h"
 #include "utils.h"
 #include "new_connection.h"
 

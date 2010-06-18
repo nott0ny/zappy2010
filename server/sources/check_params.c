@@ -12,7 +12,8 @@
 #include <sys/socket.h>
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
+#include "graphic.h"
 #include "check_params.h"
 #include "utils.h"
 

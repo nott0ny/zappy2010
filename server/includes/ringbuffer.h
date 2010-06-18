@@ -11,7 +11,8 @@
 #ifndef __RINGBUFFER_H__
 # define __RINGBUFFER_H__
 
-# define BUF_SIZE	256
+# define READ_SIZE	4096
+# define BUF_SIZE	1024
 
 ushort	rb_init (t_ringbuffer **, ushort);
 ushort	rb_write (t_ringbuffer *, char *, ushort);

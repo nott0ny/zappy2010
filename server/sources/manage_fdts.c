@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
 #include "utils.h"
 
 void		search_max_fd(t_network *e)

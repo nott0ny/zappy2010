@@ -12,23 +12,26 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
+#include "fdts.h"
+#include "stack.h"
 #include "ringbuffer.h"
 #include "answers.h"
 #include "utils.h"
+#include "stdread.h"
 
 t_cmds	gl_cmds[] = {
-  {0, "avance", go_forward, 7},
-  {1, "droite", rotate_right, 7},
-  {2, "gauche", rotate_left, 7},
-  {3, "voir", explore, 7},
-  {4, "inventaire", list_inventory, 1},
-  {5, "prend", take_object, 7},
-  {6, "pose", drop_object, 7},
-  {7, "expulse", expulse, 7},
-  {8, "broadcast", broadcast, 7},
-  {9, "incantation", incantation, 300},
-  {10, "fork", player_fork, 42},
+  {0, "avance", go_forward, GO_FORWARD_T},
+  {1, "droite", rotate_right, ROTATE_RIGHT_T},
+  {2, "gauche", rotate_left, ROTATE_LEFT_T},
+  {3, "voir", explore, EXPLORE_T},
+  {4, "inventaire", list_inventory, LIST_INVENTORY_T},
+  {5, "prend", take_object, TAKE_OBJECT_T},
+  {6, "pose", drop_object, DROP_OBJECT_T},
+  {7, "expulse", expulse, EXPULSE_T},
+  {8, "broadcast", broadcast, BROADCAST_T},
+  {9, "incantation", incantation, INCANTATION_T},
+  {10, "fork", player_fork, FORK_T},
   {-1, 0, 0, 0}
 };
 

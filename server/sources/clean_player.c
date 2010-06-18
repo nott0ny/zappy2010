@@ -11,7 +11,7 @@
 #include <sys/socket.h>
 #include <stdlib.h>
 
-#include "server.h"
+#include "types.h"
 #include "clean_player.h"
 
 void		clean_player(t_env *e, t_players *player)

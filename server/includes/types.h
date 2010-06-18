@@ -1,5 +1,5 @@
 /*
-** server.h for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/serveur/includes
+** types.h for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/serveur/includes
 **
 ** Made by amine mouafik
 ** Login   <mouafi_a@epitech.net>
@@ -8,23 +8,10 @@
 ** Last update Mon Jun 14 15:59:47 2010 amine mouafik
 */
 
-#ifndef __SERVER_H__
-# define __SERVER_H__
+#include <sys/select.h>
 
-# define CLIENT_GRAPHIC	"GRAPHIC"
-# define READ_SIZE	2048
-# define STD_BACKLOG	5
-# define HEALTHCARE	"healthcare"
-# define HEALTHCARE_T	126
-# define T_CONN		(1 << 0)
-# define T_READ		(1 << 1)
-# define T_WRITE	(1 << 2)
-# define T_FREE		(1 << 3)
-# define MAX(a,b)	((a>b) ? (a) : (b))
-# define USEC		100000
-
-# include <sys/select.h>
-# include <netinet/in.h>
+#ifndef __TYPES_H__
+# define __TYPES_H__
 
 # define ushort unsigned short
 # define uchar	unsigned char
@@ -139,17 +126,5 @@ typedef struct		s_env {
   t_players		*clients;
   t_stack		*execution;
 }			t_env;
-
-void		go_forward(t_env *e, t_players *player);
-void		rotate_right(t_env *e, t_players *player);
-void		rotate_left(t_env *e, t_players *player);
-void		explore(t_env *e, t_players *player);
-void		list_inventory(t_env *e, t_players *player);
-void		take_object(t_env *e, t_players *player);
-void		drop_object(t_env *e, t_players *player);
-void		expulse(t_env *e, t_players *player);
-void		broadcast(t_env *e, t_players *player);
-void		incantation(t_env *e, t_players *player);
-void		player_fork(t_env *e, t_players *player);
 
 #endif

@@ -8,12 +8,10 @@
 ** Last update Mon Jun 14 15:59:47 2010 amine mouafik
 */
 
-#ifndef __NEW_CONNECTION_H__
-# define __NEW_CONNECTION_H__
+#ifndef __ADD_PLAYER_H__
+# define __ADD_PLAYER_H__
 
-void   	stdread(t_env *e, int fd);
-void   	stdwrite(t_env *e, int fd);
-void	alloc_fd(t_network *network, ushort fd);
-void	add_player(t_env *e, ushort fd);
+void	add_stack_healthcare(t_env *e, t_players *player,
+			     char *cmd, ushort duration);
 
 #endif

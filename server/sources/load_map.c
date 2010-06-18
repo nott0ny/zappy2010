@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
 #include "load_map.h"
 #include "utils.h"
 

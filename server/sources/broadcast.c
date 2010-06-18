@@ -11,9 +11,11 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
+#include "fdts.h"
 #include "ringbuffer.h"
 #include "answers.h"
+#include "broadcast.h"
 
 static void	get_first_case(t_env *e, t_players *dest, int *cx, int *cy)
 {

@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <errno.h>
 
-#include "server.h"
+#include "types.h"
 #include "ringbuffer.h"
 #include "utils.h"
 

@@ -10,7 +10,8 @@
 
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
+#include "fdts.h"
 #include "ringbuffer.h"
 
 static t_map	*get_case_front(t_env *e, t_players *player, int level, int cx)

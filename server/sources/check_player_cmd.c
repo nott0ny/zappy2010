@@ -10,7 +10,7 @@
 
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
 #include "check_player_cmd.h"
 
 ushort	check_player_cmd(t_env *e, t_players *player,

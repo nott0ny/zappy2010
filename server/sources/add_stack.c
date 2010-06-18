@@ -12,8 +12,9 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include "server.h"
+#include "types.h"
 #include "utils.h"
+#include "add_stack.h"
 
 static void	add_as_first(t_env *e, t_stack *newcmd)
 {

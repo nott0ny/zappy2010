@@ -11,7 +11,8 @@
 #include <sys/socket.h>
 #include <stdlib.h>
 
-#include "server.h"
+#include "types.h"
+#include "fdts.h"
 
 static void	free_stack(t_stack *execution)
 {

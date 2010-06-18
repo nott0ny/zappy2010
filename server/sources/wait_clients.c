@@ -75,32 +75,6 @@ static void	watch_fds(t_env *e)
     }
 }
 
-ushort	gl_running = 1;
-
-void	sighandler()
-{
-  gl_running = 0;
-}
-
-void		display_stack(t_stack *execution)
-{
-  t_stack	*stack;
-  int		i;
-
-  i = 0;
-  stack = execution;
-  if (stack)
-    printf("--- Stack Begin ---\n");
-  while (stack)
-    {
-      printf("Player stack : cmd(%s) timestamp(%d)\n",
-	     stack->cmd, (int)stack->timestamp.tv_sec);
-      stack = stack->next;
-    }
-  if (stack)
-    printf("--- Stack End ---\n");
-}
-
 ushort		wait_clients(t_env *e)
 {
   ushort 	nfds;

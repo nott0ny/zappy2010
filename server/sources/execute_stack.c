@@ -20,21 +20,8 @@ extern t_cmds gl_cmds[11];
 
 void		remove_player_stack(t_stack *execution, t_players *player)
 {
-  t_stack	*tmp;
-  t_stack	*flush;
-
-  tmp = (player->stacklast) ? player->stacklast->next : execution;
-  while (tmp)
-    {
-      if (tmp->fd_player == player->fd_associate)
-	{
-	  flush = tmp;
-	  tmp = (tmp->next) ? tmp->next : NULL;
-	  free(flush);
-	}
-      tmp = (tmp->next) ? tmp->next : NULL;
-    }
-  player->stacklast = NULL;
+  execution = execution;
+  player = player;
 }
 
 static void	remove_cmd_stack(t_env *e)
@@ -45,10 +32,13 @@ static void	remove_cmd_stack(t_env *e)
   flush = e->execution;
   player = get_player_byfd(e, e->execution->fd_player);
   e->execution = e->execution->next;
-  if (e->execution)
-    player->stacklast = get_player_stacklast_byfd(e, player->fd_associate);
-  else
-    player->stacklast = NULL;
+  if (player)
+    {
+      if (e->execution)
+	player->stacklast = get_player_stacklast_byfd(e, player->fd_associate);
+      else
+	player->stacklast = NULL;
+    }
   free(flush);
 }
 

@@ -27,8 +27,11 @@ void		clean_player(t_env *e, t_players *player)
   flush = player;
   current = e->clients;
   if (current != flush)
-    while (current->next && current->next != flush)
-      current = current->next;
+    {
+      while (current->next && current->next != flush)
+	current = current->next;
+      current = flush->next;
+    }
   else
     e->clients = flush->next;
   free(flush->wr_rb->buffer);

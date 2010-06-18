@@ -15,7 +15,7 @@
  * Quand KO, clean action planifiée après KO
  * Connect_nbr
  * Clean_player when dead
- * Makefile
+ * Makefile : fix 'is up-to-date' (see .PHONY)
 <h1>En cours :</h1>
 <p>
  * Debug K broadcast<br>

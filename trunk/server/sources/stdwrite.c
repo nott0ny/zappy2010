@@ -5,10 +5,11 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Tue Jun 15 11:50:50 2010 amine mouafik
+** Last update Fri Jun 18 23:31:28 2010 amine mouafik
 */
 
 #include <netinet/in.h>
+#include <sys/socket.h>
 #include <stdio.h>
 #include <string.h>
 

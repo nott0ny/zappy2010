@@ -17,4 +17,7 @@
 # define DEFAULT_CLIENT 1
 # define DEFAULT_TIME	100
 
+void	get_params(char **av, t_params *server);
+ushort	check_params(t_params *params);
+
 #endif

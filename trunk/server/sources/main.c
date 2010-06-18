@@ -12,6 +12,7 @@
 
 #include "server.h"
 #include "utils.h"
+#include "main.h"
 
 static ushort	server(char **argv)
 {

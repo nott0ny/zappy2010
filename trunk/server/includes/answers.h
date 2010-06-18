@@ -14,7 +14,6 @@
 # define CONNECT	"BIENVENUE\n"
 # define SUCCESS   	"ok\n"
 # define FAILURE	"ko\n"
-# define IGNORE		"ignore\n"
 # define ELEVATION	"elevation en cours\n"
 # define DEAD		"mort\n"
 

@@ -86,13 +86,11 @@ static ushort	manage_player_cmd(t_env *e, t_players *player, int cmdlen)
 static void	stdrbose(char *stdread, t_players *player, t_env *e, int ret)
 {
   stdread = clean_player_cmd(stdread);
-  if (ret == 2)
+  if (ret > 0)
     {
       rb_write(player->wr_rb, FAILURE, FAILURE_LEN);
       remove_player_stack(e->execution, player);
     }
-  else if (ret == 1)
-    rb_write(player->wr_rb, IGNORE, IGNORE_LEN);
   printf("[<-] Received from #%d : %s%s%s\n",
 	 player->fd_associate, CYAN, stdread, WHITE);
   e->network->fdt[player->fd_associate]->type |= T_WRITE;

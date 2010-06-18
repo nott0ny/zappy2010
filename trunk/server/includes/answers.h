@@ -16,11 +16,13 @@
 # define FAILURE	"ko\n"
 # define IGNORE		"ignore\n"
 # define ELEVATION	"elevation en cours\n"
+# define DEAD		"mort\n"
 
 # define CONNECT_LEN	10
 # define SUCCESS_LEN	3
 # define FAILURE_LEN	3
 # define IGNORE_LEN	7
 # define ELEVATION_LEN	19
+# define DEAD_LEN	5
 
 #endif

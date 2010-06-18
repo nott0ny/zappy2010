@@ -52,6 +52,24 @@ static void	push_sorted_onstack(t_env *e, t_stack *newcmd)
     }
 }
 
+void			add_stack_healthcare(t_env *e, t_players *player,
+					     char *cmd, ushort duration)
+{
+  float			durationtime;
+  struct timeval	timestamp;
+  t_stack		*newcmd;
+
+  gettimeofday(&timestamp, NULL);
+  durationtime = (float)duration / (float)e->params->time;
+  timestamp.tv_sec += floor(durationtime);
+  timestamp.tv_usec += (int)(durationtime - (float)floor(durationtime)) * USEC;
+  newcmd = Xmalloc(sizeof(*newcmd));
+  newcmd->timestamp = timestamp;
+  newcmd->cmd = cmd;
+  newcmd->fd_player = player->fd_associate;
+  push_sorted_onstack(e, newcmd);
+}
+
 void			add_stack(t_env *e, t_players *player,
 				char *cmd, ushort duration)
 {
@@ -73,4 +91,3 @@ void			add_stack(t_env *e, t_players *player,
   player->stacklast = newcmd;
   push_sorted_onstack(e, newcmd);
 }
-

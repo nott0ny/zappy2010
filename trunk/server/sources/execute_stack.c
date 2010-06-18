@@ -28,7 +28,6 @@ void		remove_player_stack(t_stack *execution, t_players *player)
 	{
 	  flush = tmp;
 	  tmp = (tmp->next) ? tmp->next : NULL;
-	  free(flush->cmd);
 	  free(flush);
 	}
       tmp = (tmp->next) ? tmp->next : NULL;
@@ -48,7 +47,6 @@ static void	remove_cmd_stack(t_env *e)
     player->stacklast = get_player_stacklast_byfd(e, player->fd_associate);
   else
     player->stacklast = NULL;
-  free(flush->cmd);
   free(flush);
 }
 
@@ -61,7 +59,7 @@ static void	execute_cmd_stack(t_env *e, t_stack *stack)
   while (player && player->fd_associate != stack->fd_player)
     player = player->next;
   i = -1;
-  if (player != NULL)
+  if (player)
     while (gl_cmds[++i].id != -1)
       if (strncmp(e->execution->cmd, gl_cmds[i].cmd,
 		  strlen(gl_cmds[i].cmd)) == 0)
@@ -69,6 +67,8 @@ static void	execute_cmd_stack(t_env *e, t_stack *stack)
 	  gl_cmds[i].f(e, player);
 	  return ;
 	}
+  if (player && strncmp(e->execution->cmd, HEALTHCARE, strlen(HEALTHCARE)) == 0)
+    healthcare(e, player);
 }
 
 void			execute_stack(t_env *e)

@@ -53,10 +53,10 @@ IFLAGS	=	-I./includes
 LFLAGS	=	-lm
 RM	=	rm -rf
 
-$(NAME)	: 	$(OBJS)
+$(NAME)	: $(OBJS)
 		$(CC) -o $(NAME) $(OBJS) $(LFLAGS)
 
-all	: 	$(NAME)
+all	: $(NAME)
 
 clean	:
 		$(RM) $(OBJS)
@@ -75,4 +75,5 @@ re	:	fclean all
 tar	:
 		tar -cf ./misc/$(NAME).tar --exclude $(NAME).tar *
 
-.PHONY	:	$(NAME) all clean fclean re tar
+.PHONY	:
+		$(NAME) all clean fclean re tar

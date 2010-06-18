@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Mon Jun 14 14:38:45 2010 amine mouafik
+** Last update Fri Jun 18 15:59:04 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -60,7 +60,7 @@ ushort		check_player_team(t_env *e, t_players *player, char *cmd)
       if ((slots = check_team_slots(e->clients, e->params->maxclient, id_team)))
 	{
 	  player->id_team = id_team;
-	  sprintf(buff, "%d\n%d %d\n", slots, e->params->width, e->params->height);
+	  sprintf(buff, "%d\n%d %d\n", slots - 1, e->params->width, e->params->height);
 	  rb_write(player->wr_rb, buff, strlen(buff));
 	  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 	  return (0);

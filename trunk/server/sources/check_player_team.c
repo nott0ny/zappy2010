@@ -60,7 +60,7 @@ ushort		check_player_team(t_env *e, t_players *player, char *cmd)
       if ((slots = check_team_slots(e->clients, e->params->maxclient, id_team)))
 	{
 	  player->id_team = id_team;
-	  sprintf(buff, "%d\n%d %d\n", slots, player->posx, player->posy);
+	  sprintf(buff, "%d\n%d %d\n", slots, e->params->width, e->params->height);
 	  rb_write(player->wr_rb, buff, strlen(buff));
 	  e->network->fdt[player->fd_associate]->type |= T_WRITE;
 	  return (0);

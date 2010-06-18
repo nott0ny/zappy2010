@@ -13,8 +13,10 @@
 
 #include "types.h"
 #include "fdts.h"
+#include "stack.h"
 #include "ringbuffer.h"
 #include "utils.h"
+#include "check_player_team.h"
 
 static ushort	check_team_exists(t_teams *teams, char *team)
 {
@@ -60,9 +62,11 @@ ushort		check_player_team(t_env *e, t_players *player, char *cmd)
       if ((slots = check_team_slots(e->clients, e->params->maxclient, id_team)))
 	{
 	  player->id_team = id_team;
-	  sprintf(buff, "%d\n%d %d\n", slots - 1, e->params->width, e->params->height);
+	  sprintf(buff, "%d\n%d %d\n", slots - 1,
+		  e->params->width, e->params->height);
 	  rb_write(player->wr_rb, buff, strlen(buff));
 	  e->network->fdt[player->fd_associate]->type |= T_WRITE;
+	  add_stack_healthcare(e, player, HEALTHCARE, HEALTHCARE_T);
 	  return (0);
 	}
   if (!player->id_team)

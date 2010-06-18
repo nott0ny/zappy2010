@@ -14,6 +14,7 @@
 
 #include "server.h"
 #include "utils.h"
+#include "load_network.h"
 
 static ushort	init_fdt(t_network *network)
 {

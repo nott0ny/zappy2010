@@ -17,6 +17,7 @@
 
 #include "server.h"
 #include "utils.h"
+#include "connect_socket.h"
 
 static ushort		create_bind_socket(int port)
 {

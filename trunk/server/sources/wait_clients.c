@@ -12,10 +12,10 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <stdlib.h>
-#include <signal.h>
 
 #include "server.h"
 #include "utils.h"
+#include "wait_clients.h"
 
 static void		init_timeout(t_env *e)
 {
@@ -79,9 +79,8 @@ ushort		wait_clients(t_env *e)
 {
   ushort 	nfds;
 
-  while (gl_running)
+  while (42)
     {
-      signal(SIGINT, sighandler);
       init_timeout(e);
       init_fds(e);
       nfds = (int)_X(-1, select(e->network->max_fd_used + 1,
@@ -90,7 +89,6 @@ ushort		wait_clients(t_env *e)
       if (nfds)
 	watch_fds(e);
       execute_stack(e);
-      display_stack(e->execution);
     }
   clean_exit(e);
   return (0);

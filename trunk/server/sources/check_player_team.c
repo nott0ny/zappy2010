@@ -32,25 +32,6 @@ static ushort	check_team_exists(t_teams *teams, char *team)
   return (0);
 }
 
-static int	check_team_slots(t_players *clients, int maxclient, int id_team)
-{
-  t_players	*current;
-  int       	slots;
-
-  slots = 0;
-  current = clients;
-  while (current)
-    {
-      if (id_team)
-	if (id_team == current->id_team)
-	  slots++;
-      current = current->next;
-    }
-  if (slots < maxclient)
-    return (maxclient - slots);
-  return (0);
-}
-
 ushort		check_player_team(t_env *e, t_players *player, char *cmd)
 {
   char		buff[512];
@@ -59,7 +40,7 @@ ushort		check_player_team(t_env *e, t_players *player, char *cmd)
 
   if (!player->id_team)
     if ((id_team = check_team_exists(e->params->teams, cmd)))
-      if ((slots = check_team_slots(e->clients, e->params->maxclient, id_team)))
+      if ((slots = get_free_slots_byteam(e, id_team)))
 	{
 	  player->id_team = id_team;
 	  sprintf(buff, "%d\n%d %d\n", slots - 1,

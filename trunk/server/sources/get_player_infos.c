@@ -13,7 +13,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
+#include "stack.h"
+#include "ringbuffer.h"
 #include "utils.h"
 
 t_stack		*get_player_stacklast_byfd(t_env *e, ushort fd)

@@ -8,7 +8,8 @@
 ** Last update Mon Jun 14 13:08:31 2010 amine mouafik
 */
 
-#include "server.h"
+#include "types.h"
+#include "fdts.h"
 #include "ringbuffer.h"
 #include "answers.h"
 #include "utils.h"

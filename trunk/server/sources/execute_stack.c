@@ -12,7 +12,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
+#include "stack.h"
+#include "execute_stack.h"
 
 extern t_cmds gl_cmds[11];
 

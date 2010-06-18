@@ -11,6 +11,8 @@
 #ifndef __CONNECT_SOCKET_H__
 # define __CONNECT_SOCKET_H__
 
+# define STD_BACKLOG	5
+
 void	alloc_fd(t_network *network, ushort fd);
 void   	new_connection(t_env *e, int fd_conn);
 

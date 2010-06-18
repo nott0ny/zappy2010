@@ -10,7 +10,8 @@
 
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
+#include "check_args.h"
 
 static ushort	cmd_object_exists(char *cmd)
 {

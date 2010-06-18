@@ -8,7 +8,7 @@
 ** Last update Thu Jun 10 19:34:03 2010 amine mouafik
 */
 
-#include "server.h"
+#include "types.h"
 
 char		*get_args(char *cmd)
 {

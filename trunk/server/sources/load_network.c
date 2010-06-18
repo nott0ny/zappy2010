@@ -12,7 +12,7 @@
 #include <sys/socket.h>
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
 #include "utils.h"
 #include "load_network.h"
 

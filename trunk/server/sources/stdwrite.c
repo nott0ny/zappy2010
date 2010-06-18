@@ -8,13 +8,15 @@
 ** Last update Tue Jun 15 11:50:50 2010 amine mouafik
 */
 
+#include <netinet/in.h>
 #include <stdio.h>
-#include <unistd.h>
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
+#include "fdts.h"
 #include "ringbuffer.h"
 #include "utils.h"
+#include "stdwrite.h"
 
 static void	stdwbose(char *stdwrite, ushort len, t_players *player)
 {

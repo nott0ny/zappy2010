@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 
-#include "server.h"
+#include "types.h"
 #include "load_params.h"
 #include "utils.h"
 

@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 
-#include "server.h"
+#include "types.h"
 #include "utils.h"
 #include "main.h"
 

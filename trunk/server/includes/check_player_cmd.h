@@ -16,4 +16,8 @@
 # define BROADCAST	8
 # define INCANTATION	9
 
+ushort 	check_object_args(char *cmd);
+ushort 	check_msg_args(char *cmd);
+ushort 	check_incantation(t_env *e, t_players *player);
+
 #endif

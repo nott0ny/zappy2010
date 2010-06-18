@@ -11,10 +11,12 @@
 #include <time.h>
 #include <stdlib.h>
 
-#include "server.h"
+#include "types.h"
+#include "stack.h"
 #include "ringbuffer.h"
 #include "answers.h"
 #include "utils.h"
+#include "add_player.h"
 
 static int	generate(int limit)
 {

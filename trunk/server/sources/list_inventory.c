@@ -11,7 +11,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
+#include "fdts.h"
 #include "ringbuffer.h"
 
 void	list_inventory(t_env *e, t_players *player)

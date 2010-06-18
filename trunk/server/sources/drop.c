@@ -10,9 +10,11 @@
 
 #include <string.h>
 
-#include "server.h"
+#include "types.h"
+#include "fdts.h"
 #include "ringbuffer.h"
 #include "answers.h"
+#include "drop.h"
 
 void	drop_object(t_env *e, t_players *player)
 {

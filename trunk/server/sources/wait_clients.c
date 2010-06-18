@@ -13,7 +13,8 @@
 #include <sys/socket.h>
 #include <stdlib.h>
 
-#include "server.h"
+#include "types.h"
+#include "fdts.h"
 #include "utils.h"
 #include "wait_clients.h"
 

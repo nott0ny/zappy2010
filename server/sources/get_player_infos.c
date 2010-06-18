@@ -23,7 +23,7 @@ t_stack		*get_player_stacklast_byfd(t_env *e, ushort fd)
   stack = e->execution;
   while (stack)
     {
-      if (stack->fd_player == fd)
+      if (stack->fd_player == fd && strcmp(HEALTHCARE, stack->cmd))
 	return (stack);
       stack = stack->next;
     }

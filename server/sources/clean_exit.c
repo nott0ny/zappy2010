@@ -38,6 +38,8 @@ static void	free_clients(t_players *clients)
       flush = flush->next;
       free(clients->wr_rb->buffer);
       free(clients->rd_rb->buffer);
+      free(flush->wr_rb);
+      free(flush->rd_rb);
       free(clients->bag);
       free(clients);
     }

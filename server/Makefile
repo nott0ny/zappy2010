@@ -33,7 +33,6 @@ SRCS	=	sources/main.c			\
 		sources/manage_ringbuffer.c	\
 		sources/add_stack.c		\
 		sources/execute_stack.c		\
-		sources/actions.c		\
 		sources/moves.c			\
 		sources/take.c			\
 		sources/drop.c			\
@@ -42,6 +41,9 @@ SRCS	=	sources/main.c			\
 		sources/list_inventory.c	\
 		sources/incantation.c		\
 		sources/broadcast.c		\
+		sources/fork.c			\
+		sources/healthcare.c		\
+		sources/clean_player.c		\
 		sources/clean_exit.c		\
 		sources/x.c
 OBJS	=	$(SRCS:.c=.o)

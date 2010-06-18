@@ -32,7 +32,7 @@ static void	init_player_bag(t_bag *bag)
   bag->mendiane = 0;
   bag->phiras = 0;
   bag->thystame = 0;
-  bag->food = 0;
+  bag->food = 10;
 }
 
 static void	create_player_list(t_env *e, t_players *player)
@@ -71,4 +71,5 @@ void	add_player(t_env *e, ushort fd)
     add_player_tolist(e, player);
   e->world->map[player->posx][player->posy].nb_player++;
   rb_write(player->wr_rb, CONNECT, CONNECT_LEN);
+  add_stack_healthcare(e, player, HEALTHCARE, HEALTHCARE_T);
 }

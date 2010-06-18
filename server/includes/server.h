@@ -13,9 +13,11 @@
 
 # define CLIENT_GRAPHIC	"GRAPHIC"
 
-
 # define READ_SIZE	2048
 # define STD_BACKLOG	5
+
+# define HEALTHCARE	"healthcare"
+# define HEALTHCARE_T	126
 
 # define T_CONN		(1 << 0)
 # define T_READ		(1 << 1)
@@ -172,7 +174,8 @@ void	       	new_connection(t_env *e, int fd_conn);
 void	       	stdread(t_env *e, int fd);
 void	       	stdwrite(t_env *e, int fd);
 ushort	       	wait_clients(t_env *e);
-ushort	       	check_player_cmd(t_env *e, t_players *player, char *cmd, ushort len, ushort id);
+ushort	       	check_player_cmd(t_env *e, t_players *player, char *cmd,
+				 ushort len, ushort id);
 t_players      	*get_player_byfd(t_env *e, ushort fd);
 ushort	       	get_player_message(char **buf, ushort fd);
 void	       	add_stack(t_env *e, t_players *player, char *cmd, ushort duration);
@@ -185,5 +188,9 @@ void		remove_player_stack(t_stack *execution, t_players *player);
 void		clean_exit(t_env *e);
 char		*get_args(char *cmd);
 t_stack		*get_player_stacklast_byfd(t_env *e, ushort fd);
+void		healthcare(t_env *e, t_players *player);
+void	       	add_stack_healthcare(t_env *e, t_players *player,
+	       			     char *cmd, ushort duration);
+void		clean_player(t_env *e, t_players *player);
 
 #endif

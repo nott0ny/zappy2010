@@ -11,8 +11,6 @@
 #include "server.h"
 #include "ringbuffer.h"
 
-#define CMD_SIZE	512;
-
 void	player_fork(t_env *e, t_players *player)
 {
   e = e;

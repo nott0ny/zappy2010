@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Mon Jun 14 15:31:54 2010 amine mouafik
+** Last update Sat Jun 19 22:34:38 2010 amine mouafik
 */
 
 #include <time.h>
@@ -69,7 +69,6 @@ void	add_player(t_env *e, ushort fd)
     create_player_list(e, player);
   else
     add_player_tolist(e, player);
-  printf("X : %d | Y : %d\n", player->posx, player->posy);
   e->world->map[player->posx][player->posy].nb_player++;
   rb_write(player->wr_rb, CONNECT, CONNECT_LEN);
 }

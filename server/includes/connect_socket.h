@@ -11,7 +11,10 @@
 #ifndef __CONNECT_SOCKET_H__
 # define __CONNECT_SOCKET_H__
 
-# define STD_BACKLOG	5
+# define STD_BACKLOG   	5
+# ifndef SO_NOSIGPIPE
+#  define SO_NOSIGPIPE	0
+# endif
 
 void   	new_connection(t_env *e, int fd_conn);
 

@@ -12,6 +12,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <netdb.h>
 #include <unistd.h>
 #include <stdlib.h>
 
@@ -20,15 +21,18 @@
 #include "utils.h"
 #include "connect_socket.h"
 
-static ushort		create_bind_socket(int port)
+static short		create_bind_socket(int port)
 {
   struct sockaddr_in	host;
-  ushort       		fd;
-  int       		d;
+  static int           	dum = 4;
+  struct protoent       *p;
+  short       		fd;
 
-  d = 1;
-  fd = (int)X(-1, socket(PF_INET, SOCK_STREAM, 0), "socket");
-  /*  X(-1, setsockopt(fd, SOL_SOCKET, SO_NOSIGPIPE, &d, sizeof(d)), "setsockopt"); */
+  p = (struct protoent *)X(NULL, getprotobyname("tcp"), "getprotobyname");
+  fd = (int)X(-1, socket(PF_INET, SOCK_STREAM, p->p_proto), "socket");
+  dum = SO_NOSIGPIPE ? (int)X(-1, setsockopt(fd, SOL_SOCKET, SO_NOSIGPIPE,
+					     &dum, sizeof(dum)),
+			      "setsockopt") : 0;
   host.sin_family = PF_INET;
   host.sin_port = htons(port);
   host.sin_addr.s_addr = htonl(INADDR_ANY);
@@ -39,7 +43,7 @@ static ushort		create_bind_socket(int port)
 
 ushort		init_connect_socket(t_network *network, t_params *params)
 {
-  ushort	fd;
+  short		fd;
 
   fd = create_bind_socket(params->port);
   network->fdt[fd] = Xmalloc(sizeof(*network->fdt[fd]));

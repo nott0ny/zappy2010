@@ -13,6 +13,17 @@
 #include "types.h"
 #include "check_args.h"
 
+char	*gl_objects[] = {
+  "nourriture",
+  "linemate",
+  "deraumere",
+  "sibur",
+  "mendiane",
+  "phiras",
+  "thystame",
+  0
+};
+
 static ushort	cmd_object_exists(char *cmd)
 {
   ushort       	i;

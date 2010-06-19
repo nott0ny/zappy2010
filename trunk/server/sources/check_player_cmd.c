@@ -23,7 +23,7 @@ ushort	check_player_cmd(t_env *e, t_players *player,
   else if (len == (int)strlen(cmd))
     {
       if (id == INCANTATION)
-	return(check_incantation(e, player));
+	return (check_incantation(e, player));
       else
 	return (0);
     }

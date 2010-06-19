@@ -77,7 +77,7 @@ static void	close_connections(t_network *network)
   ushort       	cur;
 
   cur = 0;
-  while(cur < network->max_fd_used + 1)
+  while (cur < network->max_fd_used + 1)
     {
       if (!network->fdt[cur])
 	{

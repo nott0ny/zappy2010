@@ -19,47 +19,49 @@
 void	drop_object(t_env *e, t_players *player)
 {
   char	*object;
+  t_map	*w;
 
+  w = e->world;
   object = get_args(e->execution->cmd);
   if ((strcmp(object, "nourriture") == 0) && player->bag->food)
     {
-      e->world->map[player->posx][player->posy].food++;
+      w->map[player->posx][player->posy].food++;
       player->bag->food--;
       rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
   else if ((strcmp(object, "linemate") == 0) && player->bag->linemate)
     {
-      e->world->map[player->posx][player->posy].linemate++;
+      w->map[player->posx][player->posy].linemate++;
       player->bag->linemate--;
       rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
   else if ((strcmp(object, "deraumere") == 0) && player->bag->deraumere)
     {
-      e->world->map[player->posx][player->posy].deraumere++;
+      w->map[player->posx][player->posy].deraumere++;
       player->bag->deraumere--;
       rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
   else if ((strcmp(object, "sibur") == 0) && player->bag->sibur)
     {
-      e->world->map[player->posx][player->posy].sibur++;
+      w->map[player->posx][player->posy].sibur++;
       player->bag->sibur--;
       rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
   else if ((strcmp(object, "mendiane") == 0) && player->bag->mendiane)
     {
-      e->world->map[player->posx][player->posy].mendiane++;
+      w->map[player->posx][player->posy].mendiane++;
       player->bag->mendiane--;
       rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
   else if ((strcmp(object, "phiras") == 0) && player->bag->phiras)
     {
-      e->world->map[player->posx][player->posy].phiras++;
+      w->map[player->posx][player->posy].phiras++;
       player->bag->phiras--;
       rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
   else if ((strcmp(object, "thystame") == 0) && player->bag->thystame)
     {
-      e->world->map[player->posx][player->posy].thystame++;
+      w->map[player->posx][player->posy].thystame++;
       player->bag->thystame--;
       rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }

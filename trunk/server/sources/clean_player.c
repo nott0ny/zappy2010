@@ -12,6 +12,7 @@
 #include <stdlib.h>
 
 #include "types.h"
+#include "answers.h"
 #include "clean_player.h"
 
 void		free_player(t_players *flush)
@@ -29,7 +30,8 @@ void		clean_player(t_env *e, t_players *player)
   t_players	*flush;
   t_players	*current;
 
-  shutdown(player->fd_associate, SHUT_RDWR);
+  send(player->fd_associate, DEAD, DEAD_LEN, 0);
+  shutdown(player->fd_associate, SHUT_RD);
   close_fd(e->network, player->fd_associate);
   e->world->map[player->posx][player->posy].nb_player--;
   e->world->nb_player--;

@@ -46,6 +46,7 @@ SRCS	=	sources/main.c			\
 		sources/healthcare.c		\
 		sources/clean_player.c		\
 		sources/clean_exit.c		\
+		sources/verbose.c		\
 		sources/x.c
 OBJS	=	$(SRCS:.c=.o)
 CFLAGS	=	-W -Wall -ansi -pedantic -o $@ $(IFLAGS) -g3

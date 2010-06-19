@@ -28,9 +28,7 @@ static ushort		create_bind_socket(int port)
 
   dum = 1;
   fd = (int)X(-1, socket(PF_INET, SOCK_STREAM, 0), "socket");
-  if (SO_NOSIGPIPE)
-    X(-1, setsockopt(fd, SOL_SOCKET, SO_NOSIGPIPE, &dum, sizeof(dum)),
-    "setsockopt");
+  X(-1, setsockopt(fd, SOL_SOCKET, SO_NOSIGPIPE, &dum, sizeof(dum)), "setsockopt");
   host.sin_family = PF_INET;
   host.sin_port = htons(port);
   host.sin_addr.s_addr = htonl(INADDR_ANY);

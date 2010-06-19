@@ -88,7 +88,7 @@ static ushort	get_entry_point(t_env *e, t_players *orig, t_players *dest)
 void		broadcast(t_env *e, t_players *player)
 {
   t_players	*players;
-  char		buff[512];
+  char		buff[WR_SIZE];
   char		*msg;
   ushort       	k;
 

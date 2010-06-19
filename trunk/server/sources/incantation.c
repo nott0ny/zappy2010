@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Thu Jun 10 19:34:03 2010 amine mouafik
+** Last update Sun Jun 20 00:37:47 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -19,7 +19,7 @@
 
 void		incantation(t_env *e, t_players *player)
 {
-  char		buff[512];
+  char		buff[WR_SIZE];
   t_players	*players;
   int		levelup;
 

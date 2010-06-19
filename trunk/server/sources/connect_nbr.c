@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Mon Jun 14 15:31:54 2010 amine mouafik
+** Last update Sun Jun 20 00:37:40 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -36,7 +36,7 @@ int		get_free_slots_byteam(t_env *e, int id_team)
 
 void	connect_nbr(t_env *e, t_players *player)
 {
-  char	buff[512];
+  char	buff[WR_SIZE];
   int	free_slots;
 
   free_slots = get_free_slots_byteam(e, player->id_team);

@@ -8,14 +8,11 @@
 ** Last update Mon Jun 14 13:49:15 2010 amine mouafik
 */
 
-#include <sys/types.h>
-#include <sys/socket.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "types.h"
 #include "stack.h"
-#include "ringbuffer.h"
 #include "utils.h"
 
 t_stack		*get_player_stacklast_byfd(t_env *e, ushort fd)
@@ -47,14 +44,4 @@ t_players	*get_player_byfd(t_env *e, ushort fd)
 	}
     }
   return (player);
-}
-
-ushort	get_player_message(char **buf, ushort fd)
-{
-  int	len;
-
-  *buf = Xmalloc(READ_SIZE * sizeof(*buf));
-  X(NULL, memset(*buf, 0, READ_SIZE * sizeof(*buf)), "memset");
-  len = recv(fd, *buf, READ_SIZE, 0);
-  return (len);
 }

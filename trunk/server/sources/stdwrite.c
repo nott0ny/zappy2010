@@ -21,8 +21,12 @@
 
 static void	stdwbose(char *stdwrite, ushort len, t_players *player)
 {
+  struct timeval	timestamp;
+
+  gettimeofday(&timestamp);
   stdwrite[len - 1] = '\0';
-  printf("[->] Sent to #%d : %s%s%s\n",
+  printf("[%d:%d][->] Sent to #%d : %s%s%s\n",
+	 (int)timestamp.tv_sec, (int)timestamp.tv_usec,
 	 player->fd_associate, PURPLE, stdwrite, WHITE);
 }
 

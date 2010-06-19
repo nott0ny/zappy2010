@@ -23,12 +23,15 @@
 static ushort		create_bind_socket(int port)
 {
   struct sockaddr_in	host;
-  int       		dum;
+  static short		flag;
+  ushort       		dum;
   ushort       		fd;
 
-  fd = (int)X(-1, socket(PF_INET,SOCK_STREAM,0), "socket");
   dum = 1;
-  X(-1, setsockopt(fd, IPPROTO_IP, IP_TOS, &dum, sizeof(dum)), "setsockopt");
+  fd = (int)X(-1, socket(PF_INET, SOCK_STREAM, 0), "socket");
+  if (SO_NOSIGPIPE)
+    X(-1, setsockopt(fd, SOL_SOCKET, SO_NOSIGPIPE, &dum, sizeof(dum)),
+    "setsockopt");
   host.sin_family = PF_INET;
   host.sin_port = htons(port);
   host.sin_addr.s_addr = htonl(INADDR_ANY);

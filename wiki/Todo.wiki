@@ -16,15 +16,15 @@
  * Connect_nbr
  * Clean_player when dead
  * Makefile : fix 'is up-to-date' (see .PHONY)
+ * Limiter stack execution à 10
+ * Gerer si client deco
+ * Gerer proprement mort d'un joueur 
 <h1>En cours :</h1>
 <p>
  * Debug K broadcast<br>
 <h1>A faire :</h1>
 <p>
- * Piste du clean exit sur ERINT select
+ * Clean exit on CTRL+C
  * Xmalloc qui disconnect fd appelant si fail<br>
- * Limiter stack execution à 10
  * Faire fork
  * Faire random map
- * Gerer si client deco : set fdt 0 && set player first in eggs until death<br>
- * Gerer proprement mort d'un joueur / oeuf (slots principal / slots oeuf)<br>

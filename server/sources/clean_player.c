@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun 14 14:52:14 2010 amine mouafik
-** Last update Mon Jun 14 15:34:09 2010 amine mouafik
+** Last update Sun Jun 20 00:39:52 2010 amine mouafik
 */
 
 #include <sys/socket.h>
@@ -32,7 +32,6 @@ void		clean_player(t_env *e, t_players *player)
   t_players	*current;
 
   X(-1, send(player->fd_associate, DEAD, DEAD_LEN, 0), "send");
-  X(-1, shutdown(player->fd_associate, SHUT_RDWR), "shutdown");
   close_fd(e->network, player->fd_associate);
   e->world->map[player->posx][player->posy].nb_player--;
   player->stacklast = NULL;

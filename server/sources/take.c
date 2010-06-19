@@ -12,58 +12,74 @@
 
 #include "types.h"
 #include "fdts.h"
+#include "objects.h"
 #include "ringbuffer.h"
 #include "answers.h"
 #include "take.h"
 
-void	take_object(t_env *e, t_players *player)
-{
-  char *object;
+extern char	*gl_objects[8];
 
-  object = get_args(e->execution->cmd);
-  if ((strcmp(object, "nourriture") == 0) && e->world->map[player->posx][player->posy].food)
+ushort	update_aftertake(int object, t_map *w, t_players *player)
+{
+  if (object == NOURRITURE && w->map[player->posx][player->posy].food)
     {
-      e->world->map[player->posx][player->posy].food--;
+      w->map[player->posx][player->posy].food--;
       player->bag->food++;
-      rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
-  else if ((strcmp(object, "linemate") == 0) && e->world->map[player->posx][player->posy].linemate)
+  else if (object == LINEMATE && w->map[player->posx][player->posy].linemate)
     {
-      e->world->map[player->posx][player->posy].linemate--;
+      w->map[player->posx][player->posy].linemate--;
       player->bag->linemate++;
-      rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
-  else if ((strcmp(object, "deraumere") == 0) && e->world->map[player->posx][player->posy].deraumere)
+  else if (object == DERAUMERE && w->map[player->posx][player->posy].deraumere)
     {
-      e->world->map[player->posx][player->posy].deraumere--;
+      w->map[player->posx][player->posy].deraumere--;
       player->bag->deraumere++;
-      rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
-  else if ((strcmp(object, "sibur") == 0) && e->world->map[player->posx][player->posy].sibur)
+  else if (object == SIBUR && w->map[player->posx][player->posy].sibur)
     {
-      e->world->map[player->posx][player->posy].sibur--;
+      w->map[player->posx][player->posy].sibur--;
       player->bag->sibur++;
-      rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
-  else if ((strcmp(object, "mendiane") == 0) && e->world->map[player->posx][player->posy].mendiane)
+  else if (object == MENDIANE && w->map[player->posx][player->posy].mendiane)
     {
-      e->world->map[player->posx][player->posy].mendiane--;
+      w->map[player->posx][player->posy].mendiane--;
       player->bag->mendiane++;
-      rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
-  else if ((strcmp(object, "phiras") == 0) && e->world->map[player->posx][player->posy].phiras)
+  else if (object == PHIRAS && w->map[player->posx][player->posy].phiras)
     {
-      e->world->map[player->posx][player->posy].phiras--;
+      w->map[player->posx][player->posy].phiras--;
       player->bag->phiras++;
-      rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
-  else if ((strcmp(object, "thystame") == 0) && e->world->map[player->posx][player->posy].thystame)
+  else if (object == THYSTAME && w->map[player->posx][player->posy].thystame)
     {
-      e->world->map[player->posx][player->posy].thystame--;
+      w->map[player->posx][player->posy].thystame--;
       player->bag->thystame++;
-      rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
     }
   else
-    rb_write(player->wr_rb, FAILURE, FAILURE_LEN);
+    return (1);
+  return (0);
+}
+
+void	take_object(t_env *e, t_players *player)
+{
+  char	*object;
+  t_map	*w;
+  int	i;
+
+  i = -1;
+  w = e->world;
+  object = get_args(e->execution->cmd);
+  while (gl_objects[++i])
+    if (strcmp(gl_objects[i], object) == 0)
+      {
+	if (update_aftertake(i, w, player) == 0)
+	  rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
+	else
+	  break ;
+	e->network->fdt[player->fd_associate]->type |= T_WRITE;
+	return ;
+      }
+  rb_write(player->wr_rb, FAILURE, FAILURE_LEN);
   e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }

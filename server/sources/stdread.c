@@ -109,7 +109,7 @@ void		stdread(t_env *e, int fd)
 
   buf = Xmalloc(RD_SIZE * sizeof(char));
   player = get_player_byfd(e, fd);
-  if ((len = recv(fd, buf, RD_SIZE, 0)) == -1)
+  if ((len = recv(fd, buf, RD_SIZE, 0)) <= 0)
     {
       clean_player(e, player);
       return ;

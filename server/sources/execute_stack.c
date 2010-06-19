@@ -16,7 +16,7 @@
 #include "stack.h"
 #include "execute_stack.h"
 
-extern t_cmds gl_cmds[11];
+extern t_cmds	gl_cmds[13];
 
 void		remove_player_stack(t_stack *execution, t_players *player)
 {

@@ -67,25 +67,25 @@ void	fill_case(t_map *c, t_map *w)
 
 t_map	*load_map(t_params *params)
 {
-  t_map	*world;
+  t_map	*w;
   int	i;
   int	j;
 
   i = -1;
   srand(time(NULL));
-  world = Xmalloc(sizeof(t_map));
-  world->map = Xmalloc((params->height + 1) * sizeof(t_map));
+  w = Xmalloc(sizeof(t_map));
+  w->map = Xmalloc((params->height + 1) * sizeof(t_map));
   while (++i < params->height)
-    world->map[i] = Xmalloc((params->width + 1) * sizeof(t_map));
-  world->map[i] = NULL;
+    w->map[i] = Xmalloc((params->width + 1) * sizeof(t_map));
+  w->map[i] = NULL;
   i = -1;
   while (++i < params->height)
     {
       j = -1;
       while (++j < params->width)
-	fill_case(&(world->map[rand() % params->height][rand() % params->width])
-		  , world);
+	fill_case(&(w->map[rand() % params->height][rand() % params->width]),
+		  w);
     }
   printf("%sGenerating world ... done%s\n", GREEN, WHITE);
-  return (world);
+  return (w);
 }

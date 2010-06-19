@@ -18,10 +18,7 @@ void   	healthcare(t_env *e, t_players *player)
 {
   player->bag->food--;
   if (player->bag->food <= 0)
-    {
-      rb_write(player->wr_rb, DEAD, DEAD_LEN);
-      clean_player(e, player);
-    }
+    clean_player(e, player);
   else
     add_stack_healthcare(e, player, HEALTHCARE, HEALTHCARE_T);
 }

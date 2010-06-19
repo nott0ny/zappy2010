@@ -33,7 +33,7 @@ static ushort		create_bind_socket(int port)
   host.sin_port = htons(port);
   host.sin_addr.s_addr = htonl(INADDR_ANY);
   X(-1, bind(fd, (struct sockaddr *)&host, sizeof(host)), "bind");
-  X(-1, listen(fd,STD_BACKLOG), "listen");
+  X(-1, listen(fd, STD_BACKLOG), "listen");
   return (fd);
 }
 

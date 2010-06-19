@@ -38,7 +38,7 @@ void		stdwrite(t_env *e, int fd)
       while ((len = rb_has_cmd(player->wr_rb)) > 0)
 	{
 	  rb_read(player->wr_rb, stdwrite, len);
-	  if ((len = (int)X(-1, send(fd, stdwrite, strlen(stdwrite), MSG_NOSIGNAL), "send")) == -1)
+	  if ((len = (int)X(-1, send(fd, stdwrite, strlen(stdwrite), 0), "send")) == -1)
 	    {
 	      clean_player(e, player);
 	      return ;

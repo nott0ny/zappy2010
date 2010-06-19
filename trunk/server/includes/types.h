@@ -98,7 +98,6 @@ typedef struct		s_players {
   ushort       		fd_associate;
   ushort       		id_team;
   ushort       		level;
-  ushort       		life;
   t_bag			*bag;
   int			posx;
   int			posy;

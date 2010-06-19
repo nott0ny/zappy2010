@@ -30,9 +30,12 @@ static short		create_bind_socket(int port)
 
   p = (struct protoent *)X(NULL, getprotobyname("tcp"), "getprotobyname");
   fd = (int)X(-1, socket(PF_INET, SOCK_STREAM, p->p_proto), "socket");
-  dum = SO_NOSIGPIPE ? (int)X(-1, setsockopt(fd, SOL_SOCKET, SO_NOSIGPIPE,
-					     &dum, sizeof(dum)),
-			      "setsockopt") : 0;
+  dum = SO_NOSIGPIPE ?
+    (int)X(-1, setsockopt(fd, SOL_SOCKET, SO_NOSIGPIPE,
+			  &dum, sizeof(dum)), "setsockopt") : 0;
+ dum = SO_REUSEADDR ?
+   (int)X(-1, setsockopt(fd, SOL_SOCKET, SO_REUSEADDR,
+			 &dum, sizeof(dum)), "setsockopt") : 0;
   host.sin_family = PF_INET;
   host.sin_port = htons(port);
   host.sin_addr.s_addr = htonl(INADDR_ANY);

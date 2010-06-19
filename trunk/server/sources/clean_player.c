@@ -13,6 +13,7 @@
 
 #include "types.h"
 #include "answers.h"
+#include "utils.h"
 #include "clean_player.h"
 
 void		free_player(t_players *flush)
@@ -30,10 +31,10 @@ void		clean_player(t_env *e, t_players *player)
   t_players	*flush;
   t_players	*current;
 
-  send(player->fd_associate, DEAD, DEAD_LEN, 0);
+  X(-1, send(player->fd_associate, DEAD, DEAD_LEN, 0), "send");
+  X(-1, shutdown(player->fd_associate, SHUT_RDWR), "shutdown");
   close_fd(e->network, player->fd_associate);
   e->world->map[player->posx][player->posy].nb_player--;
-  e->world->nb_player--;
   player->stacklast = NULL;
   remove_player_stack(e->execution, player);
   flush = player;

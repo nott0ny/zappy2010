@@ -40,6 +40,8 @@ static void	remove_cmd_stack(t_env *e)
 
   flush = e->execution;
   player = get_player_byfd(e, e->execution->fd_player);
+  if (player->stacksize)
+    player->stacksize--;
   e->execution = e->execution->next;
   if (player)
     {

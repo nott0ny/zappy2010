@@ -78,17 +78,23 @@ void			add_stack(t_env *e, t_players *player,
   struct timeval	timestamp;
   t_stack		*newcmd;
 
-  if (player->stacklast)
-    timestamp = player->stacklast->timestamp;
+  player->stacksize++;
+  if (player->stacksize <= 10)
+    {
+      if (player->stacklast)
+	timestamp = player->stacklast->timestamp;
+      else
+	gettimeofday(&timestamp, NULL);
+      durationtime = (float)duration / (float)e->params->time;
+      timestamp.tv_sec += floor(durationtime);
+      timestamp.tv_usec += (int)(durationtime - (float)floor(durationtime)) * USEC;
+      newcmd = Xmalloc(sizeof(*newcmd));
+      newcmd->timestamp = timestamp;
+      newcmd->cmd = cmd;
+      newcmd->fd_player = player->fd_associate;
+      push_sorted_onstack(e, newcmd);
+      player->stacklast = newcmd;
+    }
   else
-    gettimeofday(&timestamp, NULL);
-  durationtime = (float)duration / (float)e->params->time;
-  timestamp.tv_sec += floor(durationtime);
-  timestamp.tv_usec += (int)(durationtime - (float)floor(durationtime)) * USEC;
-  newcmd = Xmalloc(sizeof(*newcmd));
-  newcmd->timestamp = timestamp;
-  newcmd->cmd = cmd;
-  newcmd->fd_player = player->fd_associate;
-  player->stacklast = newcmd;
-  push_sorted_onstack(e, newcmd);
+    player->stacksize--;
 }

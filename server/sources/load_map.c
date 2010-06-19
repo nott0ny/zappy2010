@@ -9,83 +9,56 @@
 */
 
 #include <time.h>
-#include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
 
 #include "types.h"
 #include "load_map.h"
 #include "utils.h"
 
-static ushort	generate_food(t_map *w)
+static int      generate(int rarety)
 {
-  ushort       	nb;
+  int           nb;
 
-  nb = rand() % PERCASE;
-  w->food += ((w->food + nb) <= w->food) ? nb : (nb = 0);
-  return (nb);
+  rarety = rarety;
+  nb = rand() % 100;
+  if (nb < DENSITY_HIGH)
+    return (2);
+  else if (nb < (DENSITY_LOW + DENSITY_HIGH))
+    return (1);
+  return (0);
 }
 
-static ushort	generate_common(t_map *w, int stone)
+t_map   *load_map(t_params *params)
 {
-  ushort       	nb;
-
-  nb = rand() % PERCASE;
-  if (stone == LINEMATE)
-    w->linemate += ((w->linemate + nb) <= w->linemate) ? nb : (nb = 0);
-  else if (stone == DERAUMERE)
-    w->deraumere += ((w->deraumere + nb) <= w->deraumere) ? nb : (nb = 0);
-  else if (stone == SIBUR)
-    w->sibur += ((w->sibur + nb) <= w->sibur) ? nb : (nb = 0);
-  else if (stone == PHIRAS)
-    w->phiras += ((w->phiras + nb) <= w->phiras) ? nb : (nb = 0);
-  return (nb);
-}
-
-static ushort	generate_uncommon(t_map *w, int stone)
-{
-  ushort       	nb;
-
-  nb = rand() % PERCASE;
-  if (stone == MENDIANE)
-    w->mendiane += ((w->mendiane + nb) <= w->mendiane) ? nb : (nb = 0);
-  else if (stone == THYSTAME)
-    w->thystame += ((w->thystame + nb) <= w->thystame) ? nb : (nb = 0);
-  return (nb);
-}
-
-void	fill_case(t_map *c, t_map *w)
-{
-  c->food = (!c->food) ? generate_food(w) : c->food;
-  c->linemate = (!c->linemate) ? generate_common(w, LINEMATE) : c->linemate;
-  c->deraumere = (!c->deraumere) ? generate_common(w, DERAUMERE) : c->deraumere;
-  c->sibur = (!c->sibur) ? generate_common(w, SIBUR) : c->sibur;
-  c->mendiane = (!c->mendiane) ? generate_uncommon(w, MENDIANE) : c->mendiane;
-  c->phiras = (!c->phiras) ? generate_common(w, PHIRAS) : c->phiras;
-  c->thystame = (!c->thystame) ? generate_uncommon(w, THYSTAME) : c->thystame;
-}
-
-t_map	*load_map(t_params *params)
-{
-  t_map	*w;
-  int	i;
-  int	j;
+  t_map *world;
+  int   i;
+  int   j;
 
   i = -1;
-  srand(time(NULL));
-  w = Xmalloc(sizeof(t_map));
-  w->map = Xmalloc((params->height + 1) * sizeof(t_map));
+  srand(time(NULL) * getpid());
+  world = Xmalloc(sizeof(t_map));
+  world->map = Xmalloc((params->height + 1) * sizeof(t_map));
   while (++i < params->height)
-    w->map[i] = Xmalloc((params->width + 1) * sizeof(t_map));
-  w->map[i] = NULL;
+    world->map[i] = Xmalloc((params->width + 1) * sizeof(t_map));
+  world->map[i] = NULL;
   i = -1;
   while (++i < params->height)
     {
       j = -1;
       while (++j < params->width)
-	fill_case(&(w->map[rand() % params->height][rand() % params->width]),
-		  w);
+        {
+	  world->map[i][j].nb_player = 0;
+          world->map[i][j].food = generate(1);
+          world->map[i][j].linemate = generate(2);
+          world->map[i][j].deraumere = generate(2);
+          world->map[i][j].sibur = generate(2);
+          world->map[i][j].mendiane = generate(0);
+          world->map[i][j].phiras = generate(2);
+          world->map[i][j].thystame = generate(0);
+        }
     }
   printf("%sGenerating world ... done%s\n", GREEN, WHITE);
-  return (w);
+  return (world);
 }

@@ -11,25 +11,7 @@
 #ifndef __LOAD_MAP_H__
 # define __LOAD_MAP_H__
 
-# define COMMON_PERCENT		35
-# define FOOD_PERCENT		15
-# define PERCASE		3
-# define UNCOMMON_PERCASE	2
-
-/*enum	stone {
-  LINEMATE,
-  DERAUMERE,
-  SIBUR,
-  MENDIANE,
-  PHIRAS,
-  THYSTAME
-  }*/
-
-# define LINEMATE 1
-# define DERAUMERE 2
-# define SIBUR 3
-# define MENDIANE 4
-# define PHIRAS 5
-# define THYSTAME 6
+# define DENSITY_HIGH   10
+# define DENSITY_LOW    30
 
 #endif

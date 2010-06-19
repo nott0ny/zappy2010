@@ -69,6 +69,7 @@ void	add_player(t_env *e, ushort fd)
     create_player_list(e, player);
   else
     add_player_tolist(e, player);
+  printf("X : %d | Y : %d\n", player->posx, player->posy);
   e->world->map[player->posx][player->posy].nb_player++;
   rb_write(player->wr_rb, CONNECT, CONNECT_LEN);
 }

@@ -67,16 +67,12 @@ static ushort	manage_player_cmd(t_env *e, t_players *player, int cmdlen)
 {
   char		*cmd;
   ushort       	i;
-  struct timeval	timestamp;
 
-  gettimeofday(&timestamp);
   i = -1;
   cmd = Xmalloc((cmdlen + 1) * sizeof(char));
   rb_read(player->rd_rb, cmd, cmdlen);
-  cmd = clean_player_cmd(cmd);
-  printf("[%d:%d][<-] Received from #%d : %s%s%s\n",
-	 (int)timestamp.tv_sec, (int)timestamp.tv_usec,
-	 player->fd_associate, CYAN, cmd, WHITE);
+  /*  cmd = clean_player_cmd(cmd);*/
+  verbose(0, cmdlen, cmd, player);
   if (!player->id_team)
     {
       if (check_player_team(e, player, cmd))
@@ -90,7 +86,7 @@ static ushort	manage_player_cmd(t_env *e, t_players *player, int cmdlen)
   return (2);
 }
 
-static void	stdrbose(char *stdread, t_players *player, t_env *e, int ret)
+static void	manage_ko(char *stdread, t_players *player, t_env *e, int ret)
 {
   stdread = clean_player_cmd(stdread);
   if (ret == 2)
@@ -123,7 +119,7 @@ void		stdread(t_env *e, int fd)
       while ((len = rb_has_cmd(player->rd_rb)) > 0)
 	{
 	  verbose = manage_player_cmd(e, player, len);
-	  stdrbose(buf, player, e, verbose);
+	  manage_ko(buf, player, e, verbose);
 	}
     }
   free(buf);

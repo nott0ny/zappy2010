@@ -19,17 +19,6 @@
 #include "utils.h"
 #include "stdwrite.h"
 
-static void	stdwbose(char *stdwrite, ushort len, t_players *player)
-{
-  struct timeval	timestamp;
-
-  gettimeofday(&timestamp);
-  stdwrite[len - 1] = '\0';
-  printf("[%d:%d][->] Sent to #%d : %s%s%s\n",
-	 (int)timestamp.tv_sec, (int)timestamp.tv_usec,
-	 player->fd_associate, PURPLE, stdwrite, WHITE);
-}
-
 void		stdwrite(t_env *e, int fd)
 {
   t_players	*player;
@@ -47,7 +36,7 @@ void		stdwrite(t_env *e, int fd)
 	      clean_player(e, player);
 	      return ;
 	    }
-	  stdwbose(stdwrite, len, player);
+	  verbose(1, len, stdwrite, player);
 	}
       e->network->fdt[fd]->type |= T_READ;
       e->network->fdt[fd]->type &= T_READ;

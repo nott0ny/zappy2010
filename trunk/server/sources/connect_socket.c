@@ -23,7 +23,6 @@
 static ushort		create_bind_socket(int port)
 {
   struct sockaddr_in	host;
-  static short		flag;
   ushort       		dum;
   ushort       		fd;
 

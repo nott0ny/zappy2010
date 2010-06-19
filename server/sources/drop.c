@@ -29,7 +29,10 @@ void	drop_object(t_env *e, t_players *player)
       player->bag->food--;
       rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
       if (!player->bag->food)
-	clean_player(e, player);
+	{
+	  clean_player(e, player);
+	  return ;
+	}
     }
   else if ((strcmp(object, "linemate") == 0) && player->bag->linemate)
     {

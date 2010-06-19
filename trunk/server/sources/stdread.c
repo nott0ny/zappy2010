@@ -8,6 +8,7 @@
 ** Last update Tue Jun 15 12:07:34 2010 amine mouafik
 */
 
+#include <sys/socket.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -103,11 +104,16 @@ void		stdread(t_env *e, int fd)
 {
   t_players	*player;
   char		*buf;
-  ushort       	len;
+  short       	len;
   ushort       	verbose;
 
-  len = get_player_message(&buf, fd);
+  buf = Xmalloc(RD_SIZE * sizeof(char));
   player = get_player_byfd(e, fd);
+  if ((len = recv(fd, buf, RD_SIZE, 0)) == -1)
+    {
+      clean_player(e, player);
+      return ;
+    }
   if (player)
     {
       rb_write(player->rd_rb, buf, len);

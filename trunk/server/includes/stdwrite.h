@@ -12,5 +12,6 @@
 # define __STDWRITE_H__
 
 t_players	*get_player_byfd(t_env *e, ushort fd);
+void		clean_player(t_env *e, t_players *player);
 
 #endif

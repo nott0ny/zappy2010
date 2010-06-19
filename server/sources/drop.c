@@ -28,6 +28,8 @@ void	drop_object(t_env *e, t_players *player)
       w->map[player->posx][player->posy].food++;
       player->bag->food--;
       rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
+      if (!player->bag->food)
+	clean_player(e, player);
     }
   else if ((strcmp(object, "linemate") == 0) && player->bag->linemate)
     {

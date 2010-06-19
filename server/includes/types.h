@@ -54,8 +54,6 @@ typedef struct		s_fdt {
 }			t_fdt;
 
 typedef struct		s_network {
-  ushort       		op_flags;
-  int			port;
   ushort       		max_fd_used;
   ushort       		max_fd;
   t_fdt			**fdt;

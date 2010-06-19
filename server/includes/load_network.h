@@ -12,7 +12,6 @@
 # define __LOAD_NETWORK__
 
 void   	search_max_fd(t_network *e);
-void	alloc_fdt(t_network *network);
-ushort 	init_connect_socket(t_network *network);
+ushort 	init_connect_socket(t_network *network, t_params *params);
 
 #endif

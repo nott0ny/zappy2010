@@ -14,14 +14,25 @@
 #include "types.h"
 #include "clean_player.h"
 
+void		free_player(t_players *flush)
+{
+  free(flush->wr_rb->buffer);
+  free(flush->rd_rb->buffer);
+  free(flush->wr_rb);
+  free(flush->rd_rb);
+  free(flush->bag);
+  free(flush);
+}
+
 void		clean_player(t_env *e, t_players *player)
 {
-
   t_players	*flush;
   t_players	*current;
 
   shutdown(player->fd_associate, SHUT_RDWR);
   close_fd(e->network, player->fd_associate);
+  e->world->map[player->posx][player->posy].nb_player--;
+  e->world->nb_player--;
   player->stacklast = NULL;
   remove_player_stack(e->execution, player);
   flush = player;
@@ -34,10 +45,5 @@ void		clean_player(t_env *e, t_players *player)
     }
   else
     e->clients = current->next;
-  free(flush->wr_rb->buffer);
-  free(flush->rd_rb->buffer);
-  free(flush->wr_rb);
-  free(flush->rd_rb);
-  free(flush->bag);
-  free(flush);
+  free_player(flush);
 }

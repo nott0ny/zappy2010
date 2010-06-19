@@ -11,6 +11,7 @@
 #ifndef __DROP_H__
 # define __DROP_H__
 
+void   	clean_player(t_env *e, t_players *player);
 char   	*get_args(char *cmd);
 
 #endif

@@ -27,7 +27,6 @@ ushort		rb_init(t_ringbuffer **rb, ushort size)
   ring = Xmalloc(sizeof(t_ringbuffer));
   if (ring == NULL)
     return (0);
-  memset(ring, 0, sizeof(t_ringbuffer));
   ring->size = 1;
   while (ring->size <= size)
     ring->size <<= 1;

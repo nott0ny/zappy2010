@@ -8,9 +8,9 @@
 ** Last update Mon Jun 14 15:59:24 2010 amine mouafik
 */
 
-#include <sys/types.h>
+/*#include <sys/types.h>
 #include <sys/socket.h>
-#include <string.h>
+#include <string.h>*/
 
 #include "types.h"
 #include "utils.h"
@@ -19,26 +19,16 @@
 static ushort	init_fdt(t_network *network)
 {
   search_max_fd(network);
-  alloc_fdt(network);
+  network->fdt = Xmalloc(network->max_fd * sizeof(**network->fdt));
   return (0);
-}
-
-static t_network	*init_network(t_params *params)
-{
-  t_network		*network;
-
-  network = Xmalloc(sizeof(*network));
-  X(NULL, memset(network, 0, sizeof(*network)), "memset");
-  network->port = params->port;
-  return (network);
 }
 
 t_network	*load_network(t_params *params)
 {
   t_network	*network;
 
-  network = init_network(params);
+  network = Xmalloc(sizeof(t_network));
   init_fdt(network);
-  init_connect_socket(network);
+  init_connect_socket(network, params);
   return (network);
 }

@@ -28,15 +28,11 @@ static ushort	cmd_object_exists(char *cmd)
 {
   ushort       	i;
   char		*object;
-  char		*objects[] = {
-    "food", "linemate", "deraumere", "sibur", "mendiane",
-    "phiras", "thystame", 0
-  };
 
   i = -1;
   object = get_args(cmd);
-  while (objects[++i])
-    if (strcmp(objects[i], object) == 0)
+  while (gl_objects[++i])
+    if (strcmp(gl_objects[i], object) == 0)
       return (0);
   return (1);
 }

@@ -30,19 +30,6 @@ void		search_max_fd(t_network *e)
   e->max_fd = rlp.rlim_cur;
 }
 
-void	alloc_fd(t_network *network, ushort fd)
-{
-  network->fdt[fd] = Xmalloc(sizeof(*network->fdt[fd]));
-  X(NULL, memset(network->fdt[fd], 0, sizeof(*network->fdt[fd])), "memset");
-}
-
-void	alloc_fdt(t_network *network)
-{
-  network->fdt = Xmalloc(network->max_fd * sizeof(**network->fdt));
-  X(NULL, memset(network->fdt, 0, network->max_fd * sizeof(**network->fdt)),
-    "memset");
-}
-
 void		close_fd(t_network *network, ushort fd)
 {
   ushort	cur;

@@ -13,7 +13,6 @@
 
 void   	stdread(t_env *e, int fd);
 void   	stdwrite(t_env *e, int fd);
-void	alloc_fd(t_network *network, ushort fd);
 void	add_player(t_env *e, ushort fd);
 
 #endif

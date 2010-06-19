@@ -29,7 +29,7 @@ void			new_connection(t_env *e, int fd_conn)
   fd = (int)X(-1, accept(fd_conn, (struct sockaddr *)&name, &namelen),
 	      "accept");
   memcpy(&addr, &name.sin_addr.s_addr, sizeof(name.sin_addr.s_addr));
-  alloc_fd(e->network, fd);
+  e->network->fdt[fd] = Xmalloc(sizeof(*e->network->fdt[fd]));
   e->network->fdt[fd]->type |= T_WRITE;
   e->network->fdt[fd]->in.f = stdread;
   e->network->fdt[fd]->out.f = stdwrite;

@@ -5,25 +5,14 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Sun Jun 20 04:04:39 2010 amine mouafik
-** Last update Sun Jun 20 11:44:19 2010 amine mouafik
+** Last update Sun Jun 20 15:18:30 2010 amine mouafik
 */
 
 #include <stdlib.h>
 
 #include "types.h"
 #include "graphic.h"
-
-int	convert_direction(int direction)
-{
-  int	converted;
-
-  converted = 1;
-  converted = (direction == 0) ? 3 : converted;
-  converted = (direction == 1) ? 4 : converted;
-  converted = (direction == 2) ? 1 : converted;
-  converted = (direction == 3) ? 2 : converted;
-  return (converted);
-}
+#include "answers.h"
 
 static ushort	player_exists(t_env *e, char *cmd)
 {
@@ -65,6 +54,7 @@ ushort	check_graphic_player(t_env *e, char *cmd)
   if (cmd_count(cmd) == 1)
     if (player_exists(e, cmd) == 0)
       return (0);
+  send_graphic(e, NULL, SBP);
   return (1);
 }
 
@@ -73,5 +63,6 @@ ushort	check_graphic_case(t_env *e, char *cmd)
   if (cmd_count(cmd) == 2)
     if (case_exists(e, cmd) == 0)
       return (0);
+  send_graphic(e, NULL, SBP);
   return (1);
 }

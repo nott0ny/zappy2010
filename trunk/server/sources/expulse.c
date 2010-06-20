@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 14:50:17 2010 amine mouafik
+** Last update Sun Jun 20 16:00:25 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -26,6 +26,7 @@ static ushort	expulse_player(t_env *e, t_players *player, t_players *cur)
   X(NULL, memset(buff, 0, sizeof(char) * WR_SIZE),  "memset");
   sprintf(buff, "pex %d\n", player->fd_associate);
   send_graphic(e, NULL, buff);
+  printf("");
   if (player->direction == LEFT)
     cur->posx = (--cur->posx < 0) ? e->params->width - 1 : cur->posx;
   else if (player->direction == RIGHT)

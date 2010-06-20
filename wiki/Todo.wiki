@@ -19,7 +19,7 @@
  * Limiter stack execution à 10
  * Gerer si client deco
  * Gerer proprement mort d'un joueur 
- * Clean exit on --CTRL+C-- ISSET FD 0 (stdin, moulinette friendly)
+ * Clean exit on ~~CTRL+C~~ ISSET FD 0 (stdin, moulinette friendly)
 <h1>En cours :</h1>
 <p>
  * Debug K broadcast<br>

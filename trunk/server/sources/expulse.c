@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 16:00:25 2010 amine mouafik
+** Last update Sun Jun 20 16:19:10 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -23,10 +23,7 @@ static ushort	expulse_player(t_env *e, t_players *player, t_players *cur)
   static ushort	i;
   char		buff[WR_SIZE];
 
-  X(NULL, memset(buff, 0, sizeof(char) * WR_SIZE),  "memset");
   sprintf(buff, "pex %d\n", player->fd_associate);
-  send_graphic(e, NULL, buff);
-  printf("");
   if (player->direction == LEFT)
     cur->posx = (--cur->posx < 0) ? e->params->width - 1 : cur->posx;
   else if (player->direction == RIGHT)
@@ -35,9 +32,8 @@ static ushort	expulse_player(t_env *e, t_players *player, t_players *cur)
     cur->posy = ((--cur->posy) < 0) ? e->params->height - 1 : cur->posy;
   else if (player->direction == DOWN)
     cur->posy = ((++cur->posy) >=  e->params->height) ? 0 : cur->posy;
-  X(NULL, memset(buff, 0, sizeof(char) * WR_SIZE),  "memset");
-  sprintf(buff, "ppo %d %d %d %d\n", cur->fd_associate,
-	  cur->posx, cur->posy, cur->direction);
+  sprintf(buff + strlen(buff), "ppo %d %d %d %d\n",
+	  cur->fd_associate, cur->posx, cur->posy, cur->direction);
   send_graphic(e, NULL, buff);
   return (++i);
 }
@@ -52,7 +48,7 @@ void		expulse(t_env *e, t_players *player)
   while (cur)
     {
       if (cur->posx == player->posx && cur->posy == player ->posy
-	  && player->fd_associate != cur->fd_associate)
+	  && player->fd_associate != cur->fd_associate && cur->active)
 	if ((i = expulse_player(e, player, cur)) == 1)
 	  if (i == 1)
 	    rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);

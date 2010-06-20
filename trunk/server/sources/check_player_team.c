@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Sun Jun 20 11:49:22 2010 amine mouafik
+** Last update Sun Jun 20 16:17:57 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -34,8 +34,7 @@ static void	joined(t_env *e, t_players *player, int id_team,
   add_stack_healthcare(e, player, HEALTHCARE, HEALTHCARE_T);
   printf("%sPlayer #%d successfully joined team '%s'.%s\n",
 	 GREEN, player->fd_associate, team, WHITE);
-  X(NULL, memset(buff, 0, sizeof(char)), "memset");
-  sprintf(buff, "pnw %d %d %d %d %d %s\n", player->fd_associate,
+  sprintf(buff + strlen(buff), "pnw %d %d %d %d %d %s\n", player->fd_associate,
 	  player->posx, player->posy, player->direction,
 	  player->level, get_team_byid(e, player->id_team));
   send_graphic(e, NULL, buff);

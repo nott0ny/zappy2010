@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Fri May  7 10:58:37 2010 amine mouafik
-** Last update Tue Jun 15 12:06:19 2010 amine mouafik
+** Last update Sun Jun 20 10:12:08 2010 amine mouafik
 */
 
 #include <sys/time.h>
@@ -74,7 +74,7 @@ void			add_stack_healthcare(t_env *e, t_players *player,
 void			add_stack(t_env *e, t_players *player,
 				char *cmd, ushort duration)
 {
-  float			durationtime;
+  float			durationt;
   struct timeval	timestamp;
   t_stack		*newcmd;
 
@@ -85,9 +85,9 @@ void			add_stack(t_env *e, t_players *player,
 	timestamp = player->stacklast->timestamp;
       else
 	gettimeofday(&timestamp, NULL);
-      durationtime = (float)duration / (float)e->params->time;
-      timestamp.tv_sec += floor(durationtime);
-      timestamp.tv_usec += (int)(durationtime - (float)floor(durationtime)) * USEC;
+      durationt = (float)duration / (float)e->params->time;
+      timestamp.tv_sec += floor(durationt);
+      timestamp.tv_usec += (int)(durationt - (float)floor(durationt)) * USEC;
       newcmd = Xmalloc(sizeof(*newcmd));
       newcmd->timestamp = timestamp;
       newcmd->cmd = cmd;

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Sun Jun 20 04:04:39 2010 amine mouafik
-** Last update Sun Jun 20 08:08:54 2010 amine mouafik
+** Last update Sun Jun 20 11:44:19 2010 amine mouafik
 */
 
 #include <stdlib.h>
@@ -34,7 +34,6 @@ static ushort	player_exists(t_env *e, char *cmd)
   player_fd = 0;
   current = e->clients;
   player = get_args(cmd);
-  player++;
   if (player)
     player_fd = atoi(player);
   if (player_fd > 0)

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 01:35:39 2010 amine mouafik
+** Last update Sun Jun 20 12:16:27 2010 amine mouafik
 */
 
 #include <time.h>
@@ -16,11 +16,13 @@
 #include "answers.h"
 #include "utils.h"
 
-static int	generate(int limit)
+static int	generate(int limit, int dir)
 {
   int		nb;
 
   nb = rand() % limit;
+  if (!nb && dir)
+    nb++;
   return (nb);
 }
 
@@ -49,9 +51,9 @@ void	add_player(t_env *e, short fd)
   player->id_team = 0;
   player->active = 0;
   player->level = 1;
-  player->posx = generate(e->params->width);
-  player->posy = generate(e->params->height);
-  player->direction = generate(4);
+  player->posx = generate(e->params->width, 0);
+  player->posy = generate(e->params->height, 0);
+  player->direction = generate(5, 1);
   player->stacksize = 0;
   player->stacklast = NULL;
   player->next = e->clients;

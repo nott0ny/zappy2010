@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Wed May  5 18:34:02 2010 amine mouafik
-** Last update Thu Jun 10 19:33:20 2010 amine mouafik
+** Last update Sun Jun 20 10:18:56 2010 amine mouafik
 */
 
 #include <time.h>
@@ -17,7 +17,7 @@
 #include "load_map.h"
 #include "utils.h"
 
-static int      generate(int rarety)
+static int	generate(int rarety)
 {
   int           nb;
 
@@ -30,7 +30,19 @@ static int      generate(int rarety)
   return (0);
 }
 
-t_map   *load_map(t_params *params)
+static void	fill_map(t_map *world, int i, int j)
+{
+  world->map[i][j].nb_player = 0;
+  world->map[i][j].food = generate(1);
+  world->map[i][j].linemate = generate(2);
+  world->map[i][j].deraumere = generate(2);
+  world->map[i][j].sibur = generate(2);
+  world->map[i][j].mendiane = generate(0);
+  world->map[i][j].phiras = generate(2);
+  world->map[i][j].thystame = generate(0);
+}
+
+t_map	*load_map(t_params *params)
 {
   t_map *world;
   int   i;
@@ -48,16 +60,7 @@ t_map   *load_map(t_params *params)
     {
       j = -1;
       while (++j < params->width)
-        {
-	  world->map[i][j].nb_player = 0;
-          world->map[i][j].food = generate(1);
-          world->map[i][j].linemate = generate(2);
-          world->map[i][j].deraumere = generate(2);
-          world->map[i][j].sibur = generate(2);
-          world->map[i][j].mendiane = generate(0);
-          world->map[i][j].phiras = generate(2);
-          world->map[i][j].thystame = generate(0);
-        }
+	fill_map(world, i, j);
     }
   printf("%sGenerating world ... done%s\n", GREEN, WHITE);
   return (world);

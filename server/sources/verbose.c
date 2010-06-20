@@ -1,4 +1,3 @@
-
 /*
 ** stdread.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
 **
@@ -6,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Tue Jun 15 12:07:34 2010 amine mouafik
+** Last update Sun Jun 20 11:25:59 2010 amine mouafik
 */
 
 #include <sys/time.h>

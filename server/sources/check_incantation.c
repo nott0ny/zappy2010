@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 07:07:56 2010 amine mouafik
+** Last update Sun Jun 20 10:13:48 2010 amine mouafik
 */
 
 #include "types.h"
@@ -24,6 +24,13 @@ typedef struct	s_incantation {
   int		phiras;
   int		thystame;
 }		t_incantation;
+
+static void	display_progress(t_env *e, t_players *player)
+{
+  rb_write(player->wr_rb, ELEVATION, ELEVATION_LEN);
+  e->network->fdt[player->fd_associate]->type |= T_WRITE;
+
+}
 
 static void	init_incantation_have(t_incantation *have)
 {
@@ -99,10 +106,7 @@ ushort		check_incantation(t_env *e, t_players *player, ushort callback)
       if (check_incantation_requirements(requirements, have, i) == 0)
 	{
 	  if (!callback)
-	    {
-	      rb_write(player->wr_rb, ELEVATION, ELEVATION_LEN);
-	      e->network->fdt[player->fd_associate]->type |= T_WRITE;
-	    }
+	    display_progress(e, player);
 	  return (0);
 	}
   return (1);

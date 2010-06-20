@@ -5,7 +5,7 @@
 ## Login   <mouafi_a@epitech.net>
 ##
 ## Started on  Tue May  4 20:55:10 2010 amine mouafik
-## Last update Sun Jun 20 07:19:36 2010 amine mouafik
+## Last update Sun Jun 20 11:40:00 2010 amine mouafik
 ##
 
 CC	=	cc
@@ -23,6 +23,7 @@ SRCS	=	sources/main.c			\
 		sources/add_player.c		\
 		sources/stdread.c		\
 		sources/get_player_infos.c	\
+		sources/get_graphic_infos.c	\
 		sources/get_team_infos.c	\
 		sources/check_player_team.c	\
 		sources/check_player_cmd.c	\

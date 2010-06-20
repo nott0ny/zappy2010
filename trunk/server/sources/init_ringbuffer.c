@@ -1,11 +1,11 @@
 /*
-** init_ringbuffer.c for Zappy in /u/all/roux_a/cu/rendu/c/zappy/zappy2010/server/sources
+** init_ringbuffer.c for zappy in /u/all/mouafi_a/cu/rendu/c/zappy2010/server/sources
 **
-** Made by alban roux
-** Login   <roux_a@epitech.net>
+** Made by amine mouafik
+** Login   <mouafi_a@epitech.net>
 **
-** Started on  Tue May  4 22:17:56 2010 alban roux
-** Last update Thu Jun 10 20:19:42 2010 amine mouafik
+** Started on  Tue May  4 22:17:56 2010 amine mouafik
+** Last update Sun Jun 20 10:20:17 2010 amine mouafik
 */
 
 #include <stdlib.h>

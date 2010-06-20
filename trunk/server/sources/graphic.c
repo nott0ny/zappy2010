@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 06:55:06 2010 amine mouafik
+** Last update Sun Jun 20 11:27:03 2010 amine mouafik
 */
 
 #include <sys/socket.h>
@@ -81,6 +81,7 @@ void	send_graphic(t_env *e, t_players *graphic, char *cmd)
       while (current)
 	{
 	  send(current->fd_associate, cmd, strlen(cmd), 0);
+	  verbose(1, strlen(cmd), cmd, (t_players *)current);
 	  current = current->next;
 	}
     }

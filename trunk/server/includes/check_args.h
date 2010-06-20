@@ -5,11 +5,15 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Mon Jun 14 15:59:47 2010 amine mouafik
+** Last update Sun Jun 20 18:05:20 2010 amine mouafik
 */
 
 #ifndef __CHECK_ARGS_H__
 # define __CHECK_ARGS_H__
+
+# define PREND_SP	"prend "
+# define POSE_SP	"pose "
+# define BROADCAST_SP	"broadcast "
 
 char   	*get_args(char *cmd);
 

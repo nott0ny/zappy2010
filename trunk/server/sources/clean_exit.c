@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun 14 16:08:37 2010 amine mouafik
-** Last update Tue Jun 15 12:18:05 2010 amine mouafik
+** Last update Sun Jun 20 18:53:17 2010 amine mouafik
 */
 
 #include <sys/socket.h>
@@ -23,7 +23,6 @@ static void	free_stack(t_stack *execution)
     {
       execution = flush;
       flush = flush->next;
-      free(execution->cmd);
       free(execution);
     }
 }
@@ -39,8 +38,8 @@ static void	free_clients(t_players *clients)
       flush = flush->next;
       free(clients->wr_rb->buffer);
       free(clients->rd_rb->buffer);
-      free(flush->wr_rb);
-      free(flush->rd_rb);
+      free(clients->wr_rb);
+      free(clients->rd_rb);
       free(clients->bag);
       free(clients);
     }
@@ -70,6 +69,7 @@ static void	free_background(t_params *params, t_map *world, t_network *fdts)
     free(fdts->fdt[i++]);
   free(fdts->fdt);
   free(fdts->timeout);
+  free(fdts);
 }
 
 static void	close_connections(t_network *network)
@@ -96,4 +96,6 @@ void	clean_exit(t_env *e)
   free_background(e->params, e->world, e->network);
   free_clients(e->clients);
   free_stack(e->execution);
+  free(e);
+  exit(EXIT_SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 16:17:35 2010 amine mouafik
+** Last update Sun Jun 20 17:46:48 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -64,10 +64,10 @@ static int	get_direction(t_env *e, t_players *dest, int x, int y)
   return (0);
 }
 
-static ushort	get_entry_point(t_env *e, t_players *orig, t_players *dest)
+ushort	get_entry_point(t_env *e, t_players *orig, t_players *dest)
 {
-  int		dx;
-  int		dy;
+  int	dx;
+  int	dy;
 
   dx = dest->posx - orig->posx;
   dx = (dx > (e->params->width / 2)) ? dx - e->params->width : dx;

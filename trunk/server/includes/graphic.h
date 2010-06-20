@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Sun Jun 20 11:26:07 2010 amine mouafik
+** Last update Sun Jun 20 19:22:04 2010 amine mouafik
 */
 
 #ifndef __GRAPHIC_H__
@@ -30,8 +30,8 @@ void		set_time(t_env *e, t_players *graphic, char *cmd);
 char		*get_args(char *cmd);
 void		send_graphic(t_env *e, t_players *graphic, char *cmd);
 t_players	*get_player_byfd(t_env *e, short fd);
-ushort		check_graphic_player(t_env *e, char *cmd);
-ushort		check_graphic_case(t_env *e, char *cmd);
+ushort		check_graphic_player(t_env *e, t_players *graphic, char *cmd);
+ushort		check_graphic_case(t_env *e, t_players *graphic, char *cmd);
 ushort		cmd_count(char *cmd);
 void		verbose(int output, int len, char *verbose, t_players *player);
 

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:13:39 2010 amine mouafik
-** Last update Sun Jun 20 00:59:20 2010 amine mouafik
+** Last update Sun Jun 20 16:39:47 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -33,9 +33,8 @@ static short		create_bind_socket(int port)
   dum = SO_NOSIGPIPE ?
     (int)X(-1, setsockopt(fd, SOL_SOCKET, SO_NOSIGPIPE,
 			  &dum, sizeof(dum)), "setsockopt") : 0;
-  dum = SO_REUSEPORT ?
-    (int)X(-1, setsockopt(fd, SOL_SOCKET, SO_REUSEPORT,
-			  &dum, sizeof(dum)), "setsockopt") : 0;
+ (int)X(-1, setsockopt(fd, SOL_SOCKET, SO_REUSEADDR,
+			  &dum, sizeof(dum)), "setsockopt");
   host.sin_family = PF_INET;
   host.sin_port = htons(port);
   host.sin_addr.s_addr = htonl(INADDR_ANY);

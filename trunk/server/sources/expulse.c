@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 16:19:10 2010 amine mouafik
+** Last update Sun Jun 20 18:01:14 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -17,6 +17,7 @@
 #include "graphic.h"
 #include "answers.h"
 #include "utils.h"
+#include "expulse.h"
 
 static ushort	expulse_player(t_env *e, t_players *player, t_players *cur)
 {
@@ -35,6 +36,9 @@ static ushort	expulse_player(t_env *e, t_players *player, t_players *cur)
   sprintf(buff + strlen(buff), "ppo %d %d %d %d\n",
 	  cur->fd_associate, cur->posx, cur->posy, cur->direction);
   send_graphic(e, NULL, buff);
+  sprintf(buff, "deplacement %d\n", get_entry_point(e, player, cur));
+  rb_write(cur->wr_rb, buff, strlen(buff));
+  e->network->fdt[cur->fd_associate]->type |= T_WRITE;
   return (++i);
 }
 

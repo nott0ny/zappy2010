@@ -23,6 +23,7 @@
 <h1>En cours :</h1>
 <p>
  * Debug K broadcast<br>
+ * Debug expulse (graphiqe & more (?))<br>
 <h1>A faire :</h1>
 <p>
  * Xmalloc qui disconnect fd appelant si fail<br>

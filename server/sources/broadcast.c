@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 14:50:02 2010 amine mouafik
+** Last update Sun Jun 20 16:17:35 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -112,8 +112,7 @@ void		broadcast(t_env *e, t_players *player)
     }
   rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
   e->network->fdt[player->fd_associate]->type |= T_WRITE;
-  X(NULL, memset(buff, 0, sizeof(char) * WR_SIZE),  "memset");
-  sprintf(buff, "pbc %d %s\n", player->fd_associate, msg);
+  sprintf(buff + strlen(buff), "pbc %d %s\n", player->fd_associate, msg);
   send_graphic(e, NULL, buff);
 }
 

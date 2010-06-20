@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Mon Jun 14 13:49:15 2010 amine mouafik
+** Last update Sun Jun 20 01:41:36 2010 amine mouafik
 */
 
 #include <stdlib.h>
@@ -15,7 +15,7 @@
 #include "stack.h"
 #include "utils.h"
 
-t_stack		*get_player_stacklast_byfd(t_env *e, ushort fd)
+t_stack		*get_player_stacklast_byfd(t_env *e, short fd)
 {
   t_stack      	*stack;
 
@@ -29,7 +29,7 @@ t_stack		*get_player_stacklast_byfd(t_env *e, ushort fd)
   return (NULL);
 }
 
-t_players	*get_player_byfd(t_env *e, ushort fd)
+t_players	*get_player_byfd(t_env *e, short fd)
 {
   t_players	*player;
 

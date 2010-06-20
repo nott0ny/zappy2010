@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Mon Jun 14 13:09:50 2010 amine mouafik
+** Last update Sun Jun 20 05:51:10 2010 amine mouafik
 */
 
 #include <string.h>
@@ -23,7 +23,7 @@ ushort	check_player_cmd(t_env *e, t_players *player,
   else if (len == (int)strlen(cmd))
     {
       if (id == INCANTATION)
-	return (check_incantation(e, player));
+	return (check_incantation(e, player, 0));
       else
 	return (0);
     }

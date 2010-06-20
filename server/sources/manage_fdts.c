@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:48:48 2010 amine mouafik
-** Last update Thu Jun 10 19:33:06 2010 amine mouafik
+** Last update Sun Jun 20 01:41:50 2010 amine mouafik
 */
 
 #include <sys/types.h>
@@ -30,7 +30,7 @@ void		search_max_fd(t_network *e)
   e->max_fd = rlp.rlim_cur;
 }
 
-void		close_fd(t_network *network, ushort fd)
+void		close_fd(t_network *network, short fd)
 {
   ushort	cur;
 

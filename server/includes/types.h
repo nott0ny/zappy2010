@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Mon Jun 14 15:59:47 2010 amine mouafik
+** Last update Sun Jun 20 09:33:12 2010 amine mouafik
 */
 
 #include <sys/select.h>
@@ -81,9 +81,9 @@ typedef struct		s_ringbuffer
 }			t_ringbuffer;
 
 enum direction {
-  DOWN,
+  UP = 1,
   RIGHT,
-  UP,
+  DOWN,
   LEFT
 };
 
@@ -96,7 +96,8 @@ typedef struct		s_stack {
 
 typedef struct		s_players {
   ushort       		fd_associate;
-  ushort       		id_team;
+  short       		id_team;
+  ushort		active;
   ushort       		level;
   t_bag			*bag;
   int			posx;
@@ -108,6 +109,13 @@ typedef struct		s_players {
   enum direction       	direction;
   struct s_players	*next;
 }			t_players;
+
+typedef struct		s_graphics {
+  ushort       		fd_associate;
+  t_ringbuffer	       	*wr_rb;
+  t_ringbuffer		*rd_rb;
+  struct s_graphics	*next;
+}			t_graphics;
 
 typedef struct		s_cmds {
   short       		id;
@@ -121,6 +129,7 @@ typedef struct		s_env {
   t_map			*world;
   t_network		*network;
   t_players		*clients;
+  t_graphics		*graphics;
   t_stack		*execution;
 }			t_env;
 

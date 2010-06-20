@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sat Jun 19 22:34:38 2010 amine mouafik
+** Last update Sun Jun 20 01:35:39 2010 amine mouafik
 */
 
 #include <time.h>
@@ -35,19 +35,7 @@ static void	init_player_bag(t_bag *bag)
   bag->food = 10;
 }
 
-static void	create_player_list(t_env *e, t_players *player)
-{
-  player->next = NULL;
-  e->clients = player;
-}
-
-static void	add_player_tolist(t_env *e, t_players *player)
-{
-  player->next = e->clients;
-  e->clients = player;
-}
-
-void	add_player(t_env *e, ushort fd)
+void	add_player(t_env *e, short fd)
 {
   t_players	*player;
 
@@ -59,16 +47,14 @@ void	add_player(t_env *e, ushort fd)
   rb_init(&player->rd_rb, BUF_SIZE);
   player->fd_associate = fd;
   player->id_team = 0;
+  player->active = 0;
   player->level = 1;
   player->posx = generate(e->params->width);
   player->posy = generate(e->params->height);
   player->direction = generate(4);
   player->stacksize = 0;
   player->stacklast = NULL;
-  if (e->clients == NULL)
-    create_player_list(e, player);
-  else
-    add_player_tolist(e, player);
-  e->world->map[player->posx][player->posy].nb_player++;
+  player->next = e->clients;
+  e->clients = player;
   rb_write(player->wr_rb, CONNECT, CONNECT_LEN);
 }

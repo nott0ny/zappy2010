@@ -5,17 +5,20 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Mon Jun 14 13:09:50 2010 amine mouafik
+** Last update Sun Jun 20 07:29:18 2010 amine mouafik
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "types.h"
 #include "fdts.h"
 #include "ringbuffer.h"
+#include "graphic.h"
 #include "answers.h"
 #include "broadcast.h"
+#include "utils.h"
 
 static void	get_first_case(t_env *e, t_players *dest, int *cx, int *cy)
 {
@@ -96,7 +99,7 @@ void		broadcast(t_env *e, t_players *player)
   players = e->clients;
   while (players)
     {
-      if (players == player)
+      if (players == player || !players->active)
 	{
 	  players = players->next;
 	  continue;
@@ -109,5 +112,8 @@ void		broadcast(t_env *e, t_players *player)
     }
   rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
   e->network->fdt[player->fd_associate]->type |= T_WRITE;
+  X(NULL, memset(buff, 0, sizeof(char) * WR_SIZE),  "memset");
+  sprintf(buff, "pbc #%d %s\n", player->fd_associate, msg);
+  send_graphic(e, NULL, buff);
 }
 

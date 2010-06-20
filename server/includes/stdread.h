@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Mon Jun 14 15:59:47 2010 amine mouafik
+** Last update Sun Jun 20 03:10:15 2010 amine mouafik
 */
 
 #ifndef __STDREAD_H__
@@ -26,8 +26,9 @@ void		connect_nbr(t_env *e, t_players *player);
 void		clean_player(t_env *e, t_players *player);
 void		remove_player_stack(t_stack *execution, t_players *player);
 void		verbose(int output, int len, char *verbose, t_players *player);
-t_players	*get_player_byfd(t_env *e, ushort fd);
-ushort		get_player_message(char **buf, ushort fd);
+t_players	*get_player_byfd(t_env *e, short fd);
+ushort		get_player_message(char **buf, short fd);
+ushort		get_graphic(t_env *e, t_players *graphic, char *cmd);
 ushort		check_player_team(t_env *e, t_players *player, char *cmd);
 ushort		check_player_cmd(t_env *e, t_players *player,
 				 char *cmd, ushort len, ushort id);

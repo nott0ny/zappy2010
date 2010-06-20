@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Thu Jun 10 19:34:03 2010 amine mouafik
+** Last update Sun Jun 20 09:37:45 2010 amine mouafik
 */
 
 #include <string.h>
@@ -19,14 +19,15 @@ static t_map	*get_case_front(t_env *e, t_players *player, int level, int cx)
   int  	x;
   int  	y;
 
-  x = (player->direction == LEFT) ? player->posx - level + cx : 0;
-  y = (player->direction == LEFT) ? player->posy - level : 0;
-  x = (player->direction == RIGHT) ? player->posx + level + cx : x;
-  y = (player->direction == RIGHT) ? player->posy + level : y;
-  x = (player->direction == UP) ? player->posx + level : x;
-  y = (player->direction == UP) ? player->posy - level + cx : y;
-  x = (player->direction == DOWN) ? player->posx - level : x;
-  y = (player->direction == DOWN) ? player->posy + level - cx : y;
+
+  x = (player->direction == LEFT) ? player->posx - level : 0;
+  y = (player->direction == LEFT) ? player->posy - level + cx : 0;
+  x = (player->direction == RIGHT) ? player->posx + level : x;
+  y = (player->direction == RIGHT) ? player->posy - level + cx : y;
+  x = (player->direction == UP) ? player->posx - level + cx : x;
+  y = (player->direction == UP) ? player->posy - level : y;
+  x = (player->direction == DOWN) ? player->posx - level + cx : x;
+  y = (player->direction == DOWN) ? player->posy + level : y;
   x = (x < 0) ? e->params->width + x : x;
   x = (x > e->params->width - 1) ? x - e->params->width : x;
   y = (y < 0) ? e->params->height + y : y;

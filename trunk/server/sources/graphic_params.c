@@ -5,10 +5,11 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Sun Jun 20 03:26:42 2010 amine mouafik
-** Last update Sun Jun 20 06:16:20 2010 amine mouafik
+** Last update Sun Jun 20 15:14:18 2010 amine mouafik
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "types.h"
@@ -41,7 +42,11 @@ void	get_time(t_env *e, t_players *graphic,
 
 void	set_time(t_env *e, t_players *graphic, char *cmd)
 {
-  e = e;
-  graphic = graphic;
-  cmd = cmd;
+  char	buff[WR_SIZE];
+  int	time;
+
+  time = atoi(get_args(cmd));
+  e->params->time = time;
+  sprintf(buff + strlen(buff), "sqt %d\n", e->params->time);
+  send_graphic(e, graphic, buff);
 }

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Sun Jun 20 07:14:15 2010 amine mouafik
+** Last update Sun Jun 20 15:18:15 2010 amine mouafik
 */
 
 #ifndef __ANSWERS_H__
@@ -25,5 +25,6 @@
 # define DEAD_LEN	5
 
 # define SUC		"suc\n"
+# define SBP		"sbp\n"
 
 #endif

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 17:46:48 2010 amine mouafik
+** Last update Sun Jun 20 22:03:34 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -25,13 +25,13 @@ static void	get_first_case(t_env *e, t_players *dest, int *cx, int *cy)
   *cx = dest->posx;
   *cy = dest->posy;
   if (dest->direction == UP)
-    *cx = (*cx == 0) ? e->params->width - 1 : *cx - 1;
-  else if (dest->direction == DOWN)
-    *cx = (*cx == e->params->width - 1) ? 0 : *cx + 1;
-  else if (dest->direction == LEFT)
     *cy = (*cy == 0) ? e->params->height - 1 : *cy - 1;
-  else if (dest->direction == RIGHT)
+  else if (dest->direction == DOWN)
     *cy = (*cy == e->params->height - 1) ? 0 : *cy + 1;
+  else if (dest->direction == LEFT)
+    *cx = (*cx == 0) ? e->params->width - 1 : *cx - 1;
+  else if (dest->direction == RIGHT)
+    *cx = (*cx == e->params->width - 1) ? 0 : *cx + 1;
 }
 
 static int	get_direction(t_env *e, t_players *dest, int x, int y)
@@ -48,17 +48,19 @@ static int	get_direction(t_env *e, t_players *dest, int x, int y)
   o = dest->direction;
   while (++i <= 8)
     {
+      printf("[%d] [X = %d, Y = %d] [Cx = %d, Cy = %d]\n ",
+	     i, x, y, cx, cy);
       if ((cx == x) && (cy == y))
 	return (i);
       o = (i % 2 == 0) ? o - 1 : o;
-      o = (o < DOWN) ? LEFT : o;
+      o = (o < UP) ? LEFT : o;
       if (o == UP)
 	cy = (cy == 0) ? e->params->height - 1 : cy - 1;
       else if (o == DOWN)
 	cy = (cy == e->params->height - 1) ? 0 : cy + 1;
-      else if (o == LEFT)
-	cx = (cx == e->params->width - 1) ? 0 : cx + 1;
       else if (o == RIGHT)
+	cx = (cx == e->params->width - 1) ? 0 : cx + 1;
+      else if (o == LEFT)
 	cx = (cx == 0) ? e->params->width - 1 : cx - 1;
     }
   return (0);

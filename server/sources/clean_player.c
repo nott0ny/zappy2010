@@ -5,14 +5,17 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun 14 14:52:14 2010 amine mouafik
-** Last update Sun Jun 20 12:21:13 2010 amine mouafik
+** Last update Sun Jun 20 15:04:07 2010 amine mouafik
 */
 
 #include <sys/socket.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "types.h"
+#include "ringbuffer.h"
 #include "answers.h"
+#include "graphic.h"
 #include "utils.h"
 #include "clean_player.h"
 
@@ -45,12 +48,21 @@ void		clean_graphic(t_env *e, t_graphics *graphic)
   free(flush);
 }
 
+static void	dead(t_env *e, t_players *player)
+{
+  char		buff[WR_SIZE];
+
+  sprintf(buff, "pdi %d\n", player->fd_associate);
+  send_graphic(e, NULL, buff);
+  send(player->fd_associate, DEAD, DEAD_LEN, 0);
+}
+
 void		clean_player(t_env *e, t_players *player)
 {
   t_players	*flush;
   t_players	*current;
 
-  send(player->fd_associate, DEAD, DEAD_LEN, 0);
+  dead(e, player);
   close_fd(e->network, player->fd_associate);
   player->stacklast = NULL;
   flush = player;

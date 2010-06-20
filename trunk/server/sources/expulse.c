@@ -5,18 +5,27 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Mon Jun 14 15:31:54 2010 amine mouafik
+** Last update Sun Jun 20 07:42:36 2010 amine mouafik
 */
+
+#include <stdio.h>
+#include <string.h>
 
 #include "types.h"
 #include "fdts.h"
 #include "ringbuffer.h"
+#include "graphic.h"
 #include "answers.h"
+#include "utils.h"
 
 static ushort	expulse_player(t_env *e, t_players *player, t_players *cur)
 {
   static ushort	i;
+  char		buff[WR_SIZE];
 
+  X(NULL, memset(buff, 0, sizeof(char) * WR_SIZE),  "memset");
+  sprintf(buff, "pex #%d\n", player->fd_associate);
+  send_graphic(e, NULL, buff);
   if (player->direction == LEFT)
     cur->posx = (--cur->posx < 0) ? e->params->width - 1 : cur->posx;
   else if (player->direction == RIGHT)
@@ -25,6 +34,10 @@ static ushort	expulse_player(t_env *e, t_players *player, t_players *cur)
     cur->posy = ((--cur->posy) < 0) ? e->params->height - 1 : cur->posy;
   else if (player->direction == DOWN)
     cur->posy = ((++cur->posy) >=  e->params->height) ? 0 : cur->posy;
+  X(NULL, memset(buff, 0, sizeof(char) * WR_SIZE),  "memset");
+  sprintf(buff, "ppo #%d %d %d %d\n", player->fd_associate,
+	  player->posx, player->posy, convert_direction(player->direction));
+  send_graphic(e, NULL, buff);
   return (i++);
 }
 
@@ -38,7 +51,10 @@ void		expulse(t_env *e, t_players *player)
       if (cur->posx == player->posx && cur->posy == player ->posy
 	  && player->fd_associate != cur->fd_associate)
 	if (expulse_player(e, player, cur) == 1)
-	  rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
+	  {
+	    rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
+	    return ;
+	  }
       cur = cur->next;
     }
   rb_write(player->wr_rb, FAILURE, FAILURE_LEN);

@@ -5,7 +5,7 @@
 ## Login   <mouafi_a@epitech.net>
 ##
 ## Started on  Tue May  4 20:55:10 2010 amine mouafik
-## Last update Mon Jun 14 16:26:59 2010 amine mouafik
+## Last update Sun Jun 20 07:19:36 2010 amine mouafik
 ##
 
 CC	=	cc
@@ -23,6 +23,7 @@ SRCS	=	sources/main.c			\
 		sources/add_player.c		\
 		sources/stdread.c		\
 		sources/get_player_infos.c	\
+		sources/get_team_infos.c	\
 		sources/check_player_team.c	\
 		sources/check_player_cmd.c	\
 		sources/check_args.c		\
@@ -46,6 +47,11 @@ SRCS	=	sources/main.c			\
 		sources/healthcare.c		\
 		sources/clean_player.c		\
 		sources/clean_exit.c		\
+		sources/graphic.c		\
+		sources/graphic_checks.c	\
+		sources/graphic_map.c		\
+		sources/graphic_player.c	\
+		sources/graphic_params.c	\
 		sources/verbose.c		\
 		sources/x.c
 OBJS	=	$(SRCS:.c=.o)

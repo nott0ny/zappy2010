@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Tue Jun 15 12:07:34 2010 amine mouafik
+** Last update Sun Jun 20 07:16:10 2010 amine mouafik
 */
 
 #include <sys/socket.h>
@@ -17,6 +17,7 @@
 #include "fdts.h"
 #include "stack.h"
 #include "ringbuffer.h"
+#include "graphic.h"
 #include "answers.h"
 #include "utils.h"
 #include "stdread.h"
@@ -71,7 +72,6 @@ static ushort	manage_player_cmd(t_env *e, t_players *player, int cmdlen)
   i = -1;
   cmd = Xmalloc((cmdlen + 1) * sizeof(char));
   rb_read(player->rd_rb, cmd, cmdlen);
-  /*  cmd = clean_player_cmd(cmd);*/
   verbose(0, cmdlen, cmd, player);
   if (!player->id_team)
     {
@@ -80,6 +80,8 @@ static ushort	manage_player_cmd(t_env *e, t_players *player, int cmdlen)
       else
 	return (0);
     }
+  if (player->id_team == -1)
+    return (get_graphic(e, player, cmd));
   while (gl_cmds[++i].id != -1)
     if (match_player_cmd(e, player, cmd, i) != 0)
       return (0);
@@ -94,6 +96,8 @@ static void	manage_ko(char *stdread, t_players *player, t_env *e, int ret)
       rb_write(player->wr_rb, FAILURE, FAILURE_LEN);
       remove_player_stack(e->execution, player);
     }
+  else if (ret == 1 && player->id_team < 0)
+    send_graphic(e, NULL, SUC);
   else if (ret == 1)
     rb_write(player->wr_rb, FAILURE, FAILURE_LEN);
   e->network->fdt[player->fd_associate]->type |= T_WRITE;
@@ -104,7 +108,7 @@ void		stdread(t_env *e, int fd)
   t_players		*player;
   char			*buf;
   short			len;
-  ushort		verbose;
+  ushort		ko;
 
   buf = Xmalloc(RD_SIZE * sizeof(char));
   player = get_player_byfd(e, fd);
@@ -118,8 +122,8 @@ void		stdread(t_env *e, int fd)
       rb_write(player->rd_rb, buf, len);
       while ((len = rb_has_cmd(player->rd_rb)) > 0)
 	{
-	  verbose = manage_player_cmd(e, player, len);
-	  manage_ko(buf, player, e, verbose);
+	  ko = manage_player_cmd(e, player, len);
+	  manage_ko(buf, player, e, ko);
 	}
     }
   free(buf);

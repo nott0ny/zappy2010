@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Mon Jun  7 21:48:51 2010 alban roux
+** Last update Sun Jun 20 05:51:50 2010 amine mouafik
 */
 
 #ifndef __CHECK_PLAYER_CMD_H__
@@ -18,6 +18,6 @@
 
 ushort 	check_object_args(char *cmd);
 ushort 	check_msg_args(char *cmd);
-ushort 	check_incantation(t_env *e, t_players *player);
+ushort 	check_incantation(t_env *e, t_players *player, ushort callback);
 
 #endif

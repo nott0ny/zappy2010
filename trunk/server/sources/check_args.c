@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Thu Jun 10 19:51:50 2010 amine mouafik
+** Last update Sun Jun 20 06:17:49 2010 amine mouafik
 */
 
 #include <string.h>
@@ -37,7 +37,7 @@ static ushort	cmd_object_exists(char *cmd)
   return (1);
 }
 
-static ushort	cmd_count(char *cmd)
+ushort		cmd_count(char *cmd)
 {
   ushort       	argc;
   ushort       	i;

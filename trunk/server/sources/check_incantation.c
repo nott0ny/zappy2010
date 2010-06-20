@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Mon Jun 14 13:08:31 2010 amine mouafik
+** Last update Sun Jun 20 07:07:56 2010 amine mouafik
 */
 
 #include "types.h"
@@ -48,7 +48,7 @@ static t_incantation   	*check_incantation_have(t_env *e, t_players *player)
   while (players)
     {
       if (players->posx == player->posx && players->posy == player->posy
-	  && players->level == player->level)
+	  && players->level == player->level && player->active)
 	{
 	  have->linemate += players->bag->linemate;
 	  have->deraumere += players->bag->deraumere;
@@ -77,7 +77,7 @@ static ushort	check_incantation_requirements(t_incantation *requirements,
   return (1);
 }
 
-ushort		check_incantation(t_env *e, t_players *player)
+ushort		check_incantation(t_env *e, t_players *player, ushort callback)
 {
   ushort       	i;
   t_incantation	*have;
@@ -98,8 +98,11 @@ ushort		check_incantation(t_env *e, t_players *player)
     if ((requirements[i].elevation - 1) == player->level)
       if (check_incantation_requirements(requirements, have, i) == 0)
 	{
-	  rb_write(player->wr_rb, ELEVATION, ELEVATION_LEN);
-	  e->network->fdt[player->fd_associate]->type |= T_WRITE;
+	  if (!callback)
+	    {
+	      rb_write(player->wr_rb, ELEVATION, ELEVATION_LEN);
+	      e->network->fdt[player->fd_associate]->type |= T_WRITE;
+	    }
 	  return (0);
 	}
   return (1);

@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Tue May  4 22:10:54 2010 amine mouafik
-** Last update Mon Jun 14 15:59:47 2010 amine mouafik
+** Last update Sun Jun 20 07:14:15 2010 amine mouafik
 */
 
 #ifndef __ANSWERS_H__
@@ -23,5 +23,7 @@
 # define IGNORE_LEN	7
 # define ELEVATION_LEN	19
 # define DEAD_LEN	5
+
+# define SUC		"suc\n"
 
 #endif

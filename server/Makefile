@@ -5,11 +5,11 @@
 ## Login   <mouafi_a@epitech.net>
 ##
 ## Started on  Tue May  4 20:55:10 2010 amine mouafik
-## Last update Sun Jun 20 11:40:00 2010 amine mouafik
+## Last update Sun Jun 20 16:33:53 2010 amine mouafik
 ##
 
 CC	=	cc
-NAME	=	server
+NAME	=	serveur
 SRCS	=	sources/main.c			\
 		sources/load_params.c		\
 		sources/get_params.c		\

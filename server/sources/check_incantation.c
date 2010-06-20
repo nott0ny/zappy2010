@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 14:50:46 2010 amine mouafik
+** Last update Sun Jun 20 17:04:22 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -102,7 +102,11 @@ static ushort	check_incantation_requirements(t_incantation *requirements,
 	  if (requirements[i].mendiane == have->mendiane)
 	    if (requirements[i].phiras == have->phiras)
 	      if (requirements[i].thystame == have->thystame)
-		return (0);
+		{
+		  free(have);
+		  return (0);
+		}
+  free(have);
   return (1);
 }
 

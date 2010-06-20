@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Fri May  7 10:58:37 2010 amine mouafik
-** Last update Sun Jun 20 05:49:03 2010 amine mouafik
+** Last update Sun Jun 20 16:39:17 2010 amine mouafik
 */
 
 #include <sys/time.h>
@@ -41,6 +41,7 @@ static void	init_fds(t_env *e)
   cur = 0;
   FD_ZERO(&e->network->r);
   FD_ZERO(&e->network->w);
+  FD_SET(0, &e->network->r);
   while (cur < e->network->max_fd_used + 1)
     {
       if (!e->network->fdt[cur])
@@ -61,6 +62,8 @@ static void	watch_fds(t_env *e)
   ushort       	cur;
 
   cur = 0;
+  if (FD_ISSET(0, &e->network->r))
+    clean_exit(e);
   while (cur < e->network->max_fd_used + 1)
     {
       if (!e->network->fdt[cur])
@@ -91,6 +94,5 @@ ushort		wait_clients(t_env *e)
 	watch_fds(e);
       execute_stack(e);
     }
-  clean_exit(e);
   return (0);
 }

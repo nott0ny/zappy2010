@@ -5,14 +5,16 @@
 ** Login   <mouafi_a@epitech.net>
 ** 
 ** Started on  Sun Jun 20 04:04:39 2010 amine mouafik
-** Last update Sun Jun 20 15:18:30 2010 amine mouafik
+** Last update Sun Jun 20 19:22:29 2010 amine mouafik
 */
 
 #include <stdlib.h>
+#include <string.h>
 
 #include "types.h"
 #include "graphic.h"
 #include "answers.h"
+#include "graphic_checks.h"
 
 static ushort	player_exists(t_env *e, char *cmd)
 {
@@ -49,20 +51,34 @@ static ushort	case_exists(t_env *e, char *cmd)
   return (0);
 }
 
-ushort	check_graphic_player(t_env *e, char *cmd)
+ushort	check_graphic_player(t_env *e, t_players *graphic, char *cmd)
 {
   if (cmd_count(cmd) == 1)
-    if (player_exists(e, cmd) == 0)
-      return (0);
-  send_graphic(e, NULL, SBP);
+    if (strncmp(cmd, PPO_SP, strlen(PPO_SP)) == 0 ||
+	strncmp(cmd, PLV_SP, strlen(PLV_SP)) == 0 ||
+	strncmp(cmd, PIN_SP, strlen(PIN_SP)) == 0)
+      if (player_exists(e, cmd) == 0)
+	return (0);
+      else
+	send_graphic(e, graphic, SBP);
+    else
+      send_graphic(e, graphic, SUC);
+  else
+    send_graphic(e, graphic, SUC);
   return (1);
 }
 
-ushort	check_graphic_case(t_env *e, char *cmd)
+ushort	check_graphic_case(t_env *e, t_players *graphic, char *cmd)
 {
   if (cmd_count(cmd) == 2)
-    if (case_exists(e, cmd) == 0)
-      return (0);
-  send_graphic(e, NULL, SBP);
+    if (strncmp(cmd, BCT_SP, strlen(BCT_SP)) == 0)
+      if (case_exists(e, cmd) == 0)
+	return (0);
+      else
+	send_graphic(e, graphic, SBP);
+    else
+      send_graphic(e, graphic, SUC);
+  else
+    send_graphic(e, graphic, SUC);
   return (1);
 }

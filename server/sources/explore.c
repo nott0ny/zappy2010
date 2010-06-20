@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 09:37:45 2010 amine mouafik
+** Last update Sun Jun 20 18:27:35 2010 amine mouafik
 */
 
 #include <string.h>
@@ -21,12 +21,12 @@ static t_map	*get_case_front(t_env *e, t_players *player, int level, int cx)
 
 
   x = (player->direction == LEFT) ? player->posx - level : 0;
-  y = (player->direction == LEFT) ? player->posy - level + cx : 0;
+  y = (player->direction == LEFT) ? player->posy + level - cx : 0;
   x = (player->direction == RIGHT) ? player->posx + level : x;
-  y = (player->direction == RIGHT) ? player->posy - level + cx : y;
+  y = (player->direction == RIGHT) ? player->posy + level - cx : y;
   x = (player->direction == UP) ? player->posx - level + cx : x;
   y = (player->direction == UP) ? player->posy - level : y;
-  x = (player->direction == DOWN) ? player->posx - level + cx : x;
+  x = (player->direction == DOWN) ? player->posx + level - cx : x;
   y = (player->direction == DOWN) ? player->posy + level : y;
   x = (x < 0) ? e->params->width + x : x;
   x = (x > e->params->width - 1) ? x - e->params->width : x;
@@ -71,7 +71,7 @@ void	explore(t_env *e, t_players *player)
   int	nb;
 
   i = 0;
-  rb_write(player->wr_rb, "{", 1);
+  rb_write(player->wr_rb, "{ ", 2);
   write_case_content(e, player,
 		     &(e->world->map[player->posx][player->posy]), i);
   rb_write(player->wr_rb, ",", 1);
@@ -88,6 +88,6 @@ void	explore(t_env *e, t_players *player)
 	}
       i++;
     }
-  rb_write(player->wr_rb, "}\n", 2);
+  rb_write(player->wr_rb, " }\n", 3);
   e->network->fdt[player->fd_associate]->type |= T_WRITE;
 }

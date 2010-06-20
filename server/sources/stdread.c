@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 15:05:51 2010 amine mouafik
-** Last update Sun Jun 20 07:16:10 2010 amine mouafik
+** Last update Sun Jun 20 19:16:26 2010 amine mouafik
 */
 
 #include <sys/socket.h>
@@ -96,8 +96,8 @@ static void	manage_ko(char *stdread, t_players *player, t_env *e, int ret)
       rb_write(player->wr_rb, FAILURE, FAILURE_LEN);
       remove_player_stack(e->execution, player);
     }
-  else if (ret == 1 && player->id_team < 0)
-    send_graphic(e, NULL, SUC);
+  else if (player->id_team < 0)
+    return ;
   else if (ret == 1)
     rb_write(player->wr_rb, FAILURE, FAILURE_LEN);
   e->network->fdt[player->fd_associate]->type |= T_WRITE;
@@ -105,10 +105,10 @@ static void	manage_ko(char *stdread, t_players *player, t_env *e, int ret)
 
 void		stdread(t_env *e, int fd)
 {
-  t_players		*player;
-  char			*buf;
-  short			len;
-  ushort		ko;
+  t_players	*player;
+  char		*buf;
+  short		len;
+  ushort	ko;
 
   buf = Xmalloc(RD_SIZE * sizeof(char));
   player = get_player_byfd(e, fd);

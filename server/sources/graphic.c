@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 11:27:03 2010 amine mouafik
+** Last update Sun Jun 20 19:21:51 2010 amine mouafik
 */
 
 #include <sys/socket.h>
@@ -30,18 +30,19 @@ t_cmds	gl_graphic_cmds[] = {
   {-1, 0, 0, 0}
 };
 
-ushort	check_graphic_cmd(t_env *e, char *cmd, ushort len, ushort id)
+static ushort	check_graphic_cmd(t_env *e, t_players *graphic, char *cmd,
+			  ushort len, ushort id)
 {
   if (id == PLAYER_POS || id == PLAYER_LEVEL || id == PLAYER_INVENTORY)
-    return (check_graphic_player(e, cmd));
+    return (check_graphic_player(e, graphic, cmd));
   else if (id == CASE_CONTENT)
-    return (check_graphic_case(e, cmd));
+    return (check_graphic_case(e, graphic, cmd));
   else if (len == (int)strlen(cmd))
     return (0);
   return (1);
 }
 
-ushort	match_graphic_cmd(t_env *e, t_players *graphic, char *cmd, int i)
+static ushort	match_graphic_cmd(t_env *e, t_players *graphic, char *cmd, int i)
 {
   ushort       	id_cmd;
   ushort       	len_cmd;
@@ -50,7 +51,7 @@ ushort	match_graphic_cmd(t_env *e, t_players *graphic, char *cmd, int i)
   if (strncmp(cmd, gl_graphic_cmds[i].cmd, len_cmd) == 0)
     {
       id_cmd = gl_graphic_cmds[i].id;
-      if (check_graphic_cmd(e, cmd, len_cmd, id_cmd) == 1)
+      if (check_graphic_cmd(e, graphic, cmd, len_cmd, id_cmd) == 1)
 	return (0);
       gl_graphic_cmds[i].f(e, graphic, cmd);
       return (1);

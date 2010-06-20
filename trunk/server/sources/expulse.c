@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 09:57:11 2010 amine mouafik
+** Last update Sun Jun 20 14:50:17 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -24,7 +24,7 @@ static ushort	expulse_player(t_env *e, t_players *player, t_players *cur)
   char		buff[WR_SIZE];
 
   X(NULL, memset(buff, 0, sizeof(char) * WR_SIZE),  "memset");
-  sprintf(buff, "pex #%d\n", player->fd_associate);
+  sprintf(buff, "pex %d\n", player->fd_associate);
   send_graphic(e, NULL, buff);
   if (player->direction == LEFT)
     cur->posx = (--cur->posx < 0) ? e->params->width - 1 : cur->posx;
@@ -35,7 +35,7 @@ static ushort	expulse_player(t_env *e, t_players *player, t_players *cur)
   else if (player->direction == DOWN)
     cur->posy = ((++cur->posy) >=  e->params->height) ? 0 : cur->posy;
   X(NULL, memset(buff, 0, sizeof(char) * WR_SIZE),  "memset");
-  sprintf(buff, "ppo #%d %d %d %d\n", cur->fd_associate,
+  sprintf(buff, "ppo %d %d %d %d\n", cur->fd_associate,
 	  cur->posx, cur->posy, cur->direction);
   send_graphic(e, NULL, buff);
   return (++i);

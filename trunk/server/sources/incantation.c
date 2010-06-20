@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 10:16:21 2010 amine mouafik
+** Last update Sun Jun 20 14:36:18 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -23,7 +23,7 @@ static ushort	display_incantation(t_env *e, t_players *player)
 {
   char		buff[WR_SIZE];
 
-  sprintf(buff, "pie %d %d %d\n", player->posx, player->posy, 1);
+  sprintf(buff, "pie %d %d %d\n", player->posx, player->posy, 0);
   send_graphic(e, NULL, buff);
   return (1);
 }
@@ -48,6 +48,9 @@ void		incantation(t_env *e, t_players *player)
 	  players->level++;
 	  sprintf(buff, "niveau actuel : %d\n", players->level);
 	  rb_write(players->wr_rb, buff, strlen(buff));
+	  X(NULL, memset(buff, 0, sizeof(char) * WR_SIZE), "memset");
+	  sprintf(buff, "plv %d %d\n", players->fd_associate, players->level);
+	  send_graphic(e, NULL, buff);
 	  e->network->fdt[players->fd_associate]->type |= T_WRITE;
 	}
       players = players->next;

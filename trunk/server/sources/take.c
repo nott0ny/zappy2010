@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 12:43:02 2010 amine mouafik
+** Last update Sun Jun 20 15:05:15 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -38,8 +38,8 @@ static void	display_take(int object, t_map *world,
 
 static void	take(ushort *mapcount, ushort *bagcount)
 {
-  mapcount--;
-  bagcount++;
+  (*mapcount)--;
+  (*bagcount)++;
 }
 
 static ushort	update_aftertake(int object, t_map *w, t_players *player)
@@ -49,7 +49,8 @@ static ushort	update_aftertake(int object, t_map *w, t_players *player)
   else if (object == LINEMATE && w->map[player->posx][player->posy].linemate)
     take(&w->map[player->posx][player->posy].linemate, &player->bag->linemate);
   else if (object == DERAUMERE && w->map[player->posx][player->posy].deraumere)
-    take(&w->map[player->posx][player->posy].deraumere, &player->bag->deraumere);
+    take(&w->map[player->posx][player->posy].deraumere,
+	 &player->bag->deraumere);
   else if (object == SIBUR && w->map[player->posx][player->posy].sibur)
     take(&w->map[player->posx][player->posy].sibur, &player->bag->sibur);
   else if (object == MENDIANE && w->map[player->posx][player->posy].mendiane)

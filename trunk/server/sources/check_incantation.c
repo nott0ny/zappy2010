@@ -5,12 +5,17 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 10:13:48 2010 amine mouafik
+** Last update Sun Jun 20 14:50:46 2010 amine mouafik
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "types.h"
 #include "fdts.h"
 #include "ringbuffer.h"
+#include "graphic.h"
 #include "answers.h"
 #include "utils.h"
 
@@ -27,9 +32,26 @@ typedef struct	s_incantation {
 
 static void	display_progress(t_env *e, t_players *player)
 {
+  char		buff[WR_SIZE];
+  t_players	*current;
+
   rb_write(player->wr_rb, ELEVATION, ELEVATION_LEN);
   e->network->fdt[player->fd_associate]->type |= T_WRITE;
-
+  current = e->clients;
+  sprintf(buff, "pic %d %d %d %d", player->posx, player->posy,
+	  player->level, player->fd_associate);
+  while (current)
+    {
+      if (current->posx == player->posx && current->posy == player->posy
+	  && current->level == player->level && current->active &&
+	  current->fd_associate != player->fd_associate)
+	{
+	  sprintf(buff + strlen(buff), " %d", current->fd_associate);
+	}
+      current = current->next;
+    }
+  sprintf(buff + strlen(buff), "\n");
+  send_graphic(e, NULL, buff);
 }
 
 static void	init_incantation_have(t_incantation *have)
@@ -55,7 +77,7 @@ static t_incantation   	*check_incantation_have(t_env *e, t_players *player)
   while (players)
     {
       if (players->posx == player->posx && players->posy == player->posy
-	  && players->level == player->level && player->active)
+	  && players->level == player->level && players->active)
 	{
 	  have->linemate += players->bag->linemate;
 	  have->deraumere += players->bag->deraumere;

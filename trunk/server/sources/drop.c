@@ -5,7 +5,7 @@
 ** Login   <mouafi_a@epitech.net>
 **
 ** Started on  Mon Jun  7 14:58:20 2010 amine mouafik
-** Last update Sun Jun 20 12:24:24 2010 amine mouafik
+** Last update Sun Jun 20 15:04:36 2010 amine mouafik
 */
 
 #include <stdio.h>
@@ -36,26 +36,19 @@ static void	display_drop(int object, t_map casecontent,
 
 static void	drop(ushort *mapcount, ushort *bagcount)
 {
-  *mapcount++;
-  *bagcount--;
+  (*mapcount)++;
+  (*bagcount)--;
 }
 
-static ushort	update_afterdrop(int object, t_map *w,
-				 t_players *player, t_env *e)
+static ushort	update_afterdrop(int object, t_map *w, t_players *player)
 {
   if (object == NOURRITURE && player->bag->food)
-    {
-      drop(&w->map[player->posx][player->posy].food, &player->bag->food);
-      if (!player->bag->food)
-	{
-	  clean_player(e, player);
-	  return (0);
-	}
-    }
+    drop(&w->map[player->posx][player->posy].food, &player->bag->food);
   else if (object == LINEMATE && player->bag->linemate)
     drop(&w->map[player->posx][player->posy].linemate, &player->bag->linemate);
   else if (object == DERAUMERE && player->bag->deraumere)
-    drop(&w->map[player->posx][player->posy].deraumere, &player->bag->deraumere);
+    drop(&w->map[player->posx][player->posy].deraumere,
+	 &player->bag->deraumere);
   else if (object == SIBUR && player->bag->sibur)
     drop(&w->map[player->posx][player->posy].sibur, &player->bag->sibur);
   else if (object == MENDIANE && player->bag->mendiane)
@@ -81,15 +74,16 @@ void	drop_object(t_env *e, t_players *player)
   while (gl_objects[++i])
     if (strcmp(gl_objects[i], object) == 0)
       {
-	if (update_afterdrop(i, w, player, e) == 0)
+	if (update_afterdrop(i, w, player) == 0)
 	  {
 	    rb_write(player->wr_rb, SUCCESS, SUCCESS_LEN);
-	    display_drop(i, w->map[player->posx][player->posy],
-			 player, e);
+	    display_drop(i, w->map[player->posx][player->posy], player, e);
 	  }
 	else
 	  break;
 	e->network->fdt[player->fd_associate]->type |= T_WRITE;
+	if (!player->bag->food)
+	  clean_player(e, player);
 	return ;
       }
   rb_write(player->wr_rb, FAILURE, FAILURE_LEN);
